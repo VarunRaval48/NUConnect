@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">NUConnect</string>
+    <string name="login_name">SignIn</string>
+    <string name="default_domain">\@nirmauni.ac.in</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="initial_fragment">Hello Initial Fragment</string>
+    <string name="title_activity_welcome">NUConect</string>
+
+</resources>
