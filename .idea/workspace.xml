@@ -57,13 +57,45 @@
       <file leaf-file-name="LoginActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/LoginActivity.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state vertical-scroll-proportion="0.68113524">
               <caret line="32" column="63" selection-start-line="32" selection-start-column="63" selection-end-line="32" selection-end-column="63" />
               <folding>
                 <element signature="e#1001#1539#0" expanded="true" />
                 <element signature="e#1538#1539#0" expanded="true" />
+=======
+            <state vertical-scroll-proportion="0.7445743">
+              <caret line="77" column="102" selection-start-line="77" selection-start-column="102" selection-end-line="77" selection-end-column="102" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#3454#4207#0" expanded="true" />
+                <element signature="e#4206#4207#0" expanded="true" />
+>>>>>>> Update1LogIN
               </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="14" column="41" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_login.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
           </provider>
         </entry>
       </file>
@@ -73,6 +105,10 @@
     <FindUsagesManager>
       <setting name="OPEN_NEW_TAB" value="true" />
     </FindUsagesManager>
+  </component>
+  <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
     <option name="tasksExpandState">
@@ -1380,10 +1416,10 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/AfterLogInFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/WelcomeActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_welcome.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/LoginActivity.java" />
       </list>
     </option>
@@ -1397,7 +1433,7 @@
     <option name="width" value="1382" />
     <option name="height" value="784" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -1423,7 +1459,11 @@
       <sortByType />
     </navigator>
     <panes>
+<<<<<<< HEAD
       <pane id="ProjectPane" />
+=======
+      <pane id="Scratches" />
+>>>>>>> Update1LogIN
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -1441,10 +1481,6 @@
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -1456,26 +1492,16 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NUConnect" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+              <option name="myItemId" value="manifests" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidManifestsGroupNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+<<<<<<< HEAD
+=======
+      <pane id="ProjectPane" />
+>>>>>>> Update1LogIN
       <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="Scratches" />
@@ -1490,11 +1516,16 @@
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="ZH80004Y6Y" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="192.168.56.101:5555" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_21_x86" />
     <property name="DEBUGGABLE_DEVICE" value="sony-c2104-ZH80004Y6Y" />
     <property name="DEBUGGABLE_PROCESS" value="com.nirma.varunraval.nuconnect" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="OverrideImplement.combined" value="true" />
+    <property name="OverrideImplement.overriding.sorted" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/GitHub/PortableGit_c2ba306e536fdf878271f7fe636a147ff37326ad/bin/git.exe" />
   </component>
   <component name="RecentsManager">
     <key name="android.template.packageName">
@@ -1717,7 +1748,11 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32854864" sideWeight="0.5151286" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32854864" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+>>>>>>> Update1LogIN
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32695374" sideWeight="0.48184568" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32854864" sideWeight="0.49394855" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1760,11 +1795,69 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/LoginActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="41" column="9" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3454#4207#0" expanded="true" />
+            <element signature="e#4206#4207#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/LoginActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="93" column="13" selection-start-line="93" selection-start-column="13" selection-end-line="93" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3454#4207#0" expanded="true" />
+            <element signature="e#4206#4207#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/LoginActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+<<<<<<< HEAD
             <element signature="e#1001#1539#0" expanded="true" />
             <element signature="e#1538#1539#0" expanded="true" />
           </folding>
@@ -1778,6 +1871,11 @@
           <folding>
             <element signature="e#1001#1539#0" expanded="true" />
             <element signature="e#1538#1539#0" expanded="true" />
+=======
+            <element signature="imports" expanded="true" />
+            <element signature="e#3454#4207#0" expanded="true" />
+            <element signature="e#4206#4207#0" expanded="true" />
+>>>>>>> Update1LogIN
           </folding>
         </state>
       </provider>
@@ -1787,8 +1885,14 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding>
+<<<<<<< HEAD
             <element signature="e#1001#1539#0" expanded="true" />
             <element signature="e#1538#1539#0" expanded="true" />
+=======
+            <element signature="imports" expanded="true" />
+            <element signature="e#3454#4207#0" expanded="true" />
+            <element signature="e#4206#4207#0" expanded="true" />
+>>>>>>> Update1LogIN
           </folding>
         </state>
       </provider>
@@ -1811,6 +1915,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="53" column="49" selection-start-line="53" selection-start-column="49" selection-end-line="53" selection-end-column="49" />
+<<<<<<< HEAD
+=======
+          <folding />
+>>>>>>> Update1LogIN
         </state>
       </provider>
       <provider editor-type-id="android-designer">
@@ -1839,8 +1947,14 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="33" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
           <folding>
+<<<<<<< HEAD
             <element signature="e#1001#1539#0" expanded="true" />
             <element signature="e#1538#1539#0" expanded="true" />
+=======
+            <element signature="imports" expanded="true" />
+            <element signature="e#3454#4207#0" expanded="true" />
+            <element signature="e#4206#4207#0" expanded="true" />
+>>>>>>> Update1LogIN
           </folding>
         </state>
       </provider>
@@ -1863,6 +1977,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="53" column="49" selection-start-line="53" selection-start-column="49" selection-end-line="53" selection-end-column="49" />
+<<<<<<< HEAD
+=======
+          <folding />
+>>>>>>> Update1LogIN
         </state>
       </provider>
       <provider editor-type-id="android-designer">
@@ -1905,8 +2023,14 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="48" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
           <folding>
+<<<<<<< HEAD
             <element signature="e#1001#1539#0" expanded="true" />
             <element signature="e#1538#1539#0" expanded="true" />
+=======
+            <element signature="imports" expanded="true" />
+            <element signature="e#3454#4207#0" expanded="true" />
+            <element signature="e#4206#4207#0" expanded="true" />
+>>>>>>> Update1LogIN
           </folding>
         </state>
       </provider>
@@ -1915,6 +2039,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="53" column="49" selection-start-line="53" selection-start-column="49" selection-end-line="53" selection-end-column="49" />
+<<<<<<< HEAD
+=======
+          <folding />
+>>>>>>> Update1LogIN
         </state>
       </provider>
       <provider editor-type-id="android-designer">
@@ -1957,8 +2085,14 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="39" selection-start-line="0" selection-start-column="39" selection-end-line="0" selection-end-column="39" />
           <folding>
+<<<<<<< HEAD
             <element signature="e#1001#1539#0" expanded="true" />
             <element signature="e#1538#1539#0" expanded="true" />
+=======
+            <element signature="imports" expanded="true" />
+            <element signature="e#3454#4207#0" expanded="true" />
+            <element signature="e#4206#4207#0" expanded="true" />
+>>>>>>> Update1LogIN
           </folding>
         </state>
       </provider>
@@ -1977,6 +2111,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="6" column="117" selection-start-line="6" selection-start-column="117" selection-end-line="6" selection-end-column="117" />
+<<<<<<< HEAD
+=======
+          <folding />
+>>>>>>> Update1LogIN
         </state>
       </provider>
       <provider editor-type-id="android-designer">
@@ -2002,8 +2140,14 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding>
+<<<<<<< HEAD
             <element signature="e#1001#1539#0" expanded="true" />
             <element signature="e#1538#1539#0" expanded="true" />
+=======
+            <element signature="imports" expanded="true" />
+            <element signature="e#3454#4207#0" expanded="true" />
+            <element signature="e#4206#4207#0" expanded="true" />
+>>>>>>> Update1LogIN
           </folding>
         </state>
       </provider>
@@ -2022,6 +2166,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="24" column="63" selection-start-line="24" selection-start-column="63" selection-end-line="24" selection-end-column="63" />
+<<<<<<< HEAD
+=======
+          <folding />
+>>>>>>> Update1LogIN
         </state>
       </provider>
       <provider editor-type-id="android-designer">
@@ -2047,8 +2195,14 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="36" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
           <folding>
+<<<<<<< HEAD
             <element signature="e#1001#1539#0" expanded="true" />
             <element signature="e#1538#1539#0" expanded="true" />
+=======
+            <element signature="imports" expanded="true" />
+            <element signature="e#3454#4207#0" expanded="true" />
+            <element signature="e#4206#4207#0" expanded="true" />
+>>>>>>> Update1LogIN
           </folding>
         </state>
       </provider>
@@ -2067,6 +2221,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
+<<<<<<< HEAD
+=======
+          <folding />
+>>>>>>> Update1LogIN
         </state>
       </provider>
       <provider editor-type-id="android-designer">
@@ -2121,6 +2279,7 @@
         <state />
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8230384">
@@ -2138,6 +2297,8 @@
         <state />
       </provider>
     </entry>
+=======
+>>>>>>> Update1LogIN
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_welcome.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.66233766">
@@ -2162,13 +2323,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="41" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/LoginActivity.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="0.68113524">
           <caret line="32" column="63" selection-start-line="32" selection-start-column="63" selection-end-line="32" selection-end-column="63" />
           <folding>
             <element signature="e#1001#1539#0" expanded="true" />
             <element signature="e#1538#1539#0" expanded="true" />
+=======
+        <state vertical-scroll-proportion="0.7445743">
+          <caret line="77" column="102" selection-start-line="77" selection-start-column="102" selection-end-line="77" selection-end-column="102" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3454#4207#0" expanded="true" />
+            <element signature="e#4206#4207#0" expanded="true" />
+>>>>>>> Update1LogIN
           </folding>
         </state>
       </provider>

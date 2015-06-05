@@ -15,43 +15,13 @@
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:orientation="vertical">
-            <RelativeLayout
-                android:layout_height="wrap_content"
-                android:layout_width="fill_parent">
 
-                <AutoCompleteTextView
-                    android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress" android:hint="Enter Email"
-                    android:ems="8" android:id="@+id/emailEdit"
-                    android:textColor="@color/wallet_link_text_light"/>
-
-                <TextView
-                    android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="@string/default_domain" android:id="@+id/textView"
-                    android:editable="false" android:layout_toRightOf="@id/emailEdit"
-                    android:layout_gravity="right" android:textColor="@color/wallet_link_text_light"
-                    android:layout_weight="6.11" />
-            </RelativeLayout>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="@dimen/activity_vertical_margin">
-
-                <EditText
-                    android:layout_width="fill_parent" android:layout_height="wrap_content"
-                    android:inputType="textPassword" android:hint="Enter Password"
-                    android:ems="10" android:id="@+id/passwordEdit"
-                    android:layout_weight="1" />
-
-                <Button
-                    android:paddingTop="15dp" android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:text="Log In"
-                    android:id="@+id/LogInbutton" android:layout_gravity="center_horizontal" />
-
-            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:textSize="@dimen/abc_text_size_large_material"
+                android:text="Sign In" android:textColor="@color/wallet_holo_blue_light"
+                android:id="@+id/textView" android:editable="false"/>
         </LinearLayout>
     </ScrollView>
+
 </LinearLayout>
