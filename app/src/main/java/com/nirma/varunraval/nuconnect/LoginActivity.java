@@ -3,13 +3,19 @@ package com.nirma.varunraval.nuconnect;
 import android.accounts.AccountManager;
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.GoogleAuthException;
@@ -19,6 +25,15 @@ import com.google.android.gms.auth.UserRecoverableAuthException;
 import com.google.android.gms.common.AccountPicker;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -27,12 +42,24 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+import javax.net.ssl.HttpsURLConnection;
 
 /**
  * Created by Varun on 5/19/2015.
  */
-public class LoginActivity extends Activity{
+
+//TODO Allow only nirmauni.ac.in accounts
+//TODO Remember signed in activity
+
+public class LoginActivity extends Activity implements RetryLoginFragment.OnFragmentRetryInteractionListener {
 
     static final int REQUEST_CODE_PICK_ACCOUNT = 999;
     String email;
@@ -40,57 +67,122 @@ public class LoginActivity extends Activity{
     String oAuthscopes;
     int REQUEST_AUTHORIZATION = 998, REQUEST_CODE_RECOVER_FROM_PLAY_SERVICES_ERROR = 997;
     static boolean handling = false;
+    private static final ScheduledExecutorService worker =
+            Executors.newSingleThreadScheduledExecutor();
+    FragmentManager fragmentManager;
 
-    public void onCreate(Bundle savedInstanceState){
+
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
+        Log.i("View", "After setting view");
+
         scope = "audience:server:client_id:611036220045-sjstaa7r37ufc1t4q0iotb1otng8ktj2.apps.googleusercontent.com";
-        oAuthscopes = "oauth2:"+"https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/plus.login";
+        oAuthscopes = "oauth2:" + "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/plus.login";
 
-        if(!isDeviceOnline()){
-            Toast.makeText(getApplicationContext(), "Connect to a network to Log in", Toast.LENGTH_LONG).show();
-        }
-        else{
+        pickUserAccount();
+//        int retry=5;
+//        if(isDeviceOnline()){
+//            Log.i("Picking", "Picking User Account");
+//            pickUserAccount();
+//        }
+//        else{
+//            Log.i("Network", "Not able to connect");
+//            Toast.makeText(getApplicationContext(), "Connect to a network to Log in Retrying in "+retry, Toast.LENGTH_SHORT).show();
+//
+//            Runnable r = new Runnable(){
+//                public void run(){
+//                    Toast.makeText(getApplicationContext(), "Retrying to Connect", Toast.LENGTH_SHORT).show();
+//                }
+//            };
+//
+//            while(!isDeviceOnline()){
+//              Thread.sleep(retry*1000);
+//                worker.schedule(r, retry, TimeUnit.SECONDS);
+//                retry+=5;
+//            }
+//            catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//            pickUserAccount();
+//        }
+    }
+
+    public void onPause(){
+        super.onPause();
+        Log.i("Checking", "in onPause");
+    }
+
+    public void pickUserAccount() {
+
+        if (isDeviceOnline()) {
             Log.i("Picking", "Picking User Account");
-            pickUserAccount();
+            String accountTypes[] = new String[]{"com.google"}; //com.google.android.legacyimap for all types of accounts
+            Intent in = AccountPicker.newChooseAccountIntent(null, null, accountTypes, true, null, null, null, null);
+
+            startActivityForResult(in, REQUEST_CODE_PICK_ACCOUNT);
+        } else {
+            Log.i("Network", "Not able to connect");
+            Toast.makeText(getApplicationContext(), "Connect to a network to Log in", Toast.LENGTH_SHORT).show();
+            inflateRetry();
         }
     }
 
-    private void pickUserAccount(){
-        String accountTypes[] = new String[]{"com.google"}; //com.google.android.legacyimap for all types of accounts
-        Intent in = AccountPicker.newChooseAccountIntent(null, null, accountTypes, true, null, null, null, null);
+    protected void inflateRetry() {
+        Fragment retryFragment = new RetryLoginFragment();
+        fragmentManager = getFragmentManager();
 
-        startActivityForResult(in, REQUEST_CODE_PICK_ACCOUNT);
+        fragmentManager.beginTransaction().replace(R.id.frameLaoyoutSpin, retryFragment).commit();
+        fragmentManager.executePendingTransactions();
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        Log.i("Activity Result", "Request Code "+requestCode+" Result Code "+resultCode);
-        if(requestCode == REQUEST_CODE_PICK_ACCOUNT){
-            if(resultCode == RESULT_OK){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.i("Activity Result", "Request Code " + requestCode + " Result Code " + resultCode);
+        if (requestCode == REQUEST_CODE_PICK_ACCOUNT) {
+            if (resultCode == RESULT_OK) {
                 email = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
 
-                if(isDeviceOnline()){
+                if (!email.endsWith("nirmauni.ac.in")) {
+                    Log.i("Toast", "Wrong Account");
+                    Toast.makeText(this, "You must chose nirmauni account", Toast.LENGTH_SHORT).show();
+                    inflateRetry();
+                } else if (isDeviceOnline()) {
                     new GetUsername(LoginActivity.this, email, scope, oAuthscopes).execute();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Netwotk is not accessible. Please recheck.", Toast.LENGTH_SHORT).show();
+                    inflateRetry();
                 }
-            }
-            else if(resultCode == RESULT_CANCELED){
+            } else if (resultCode == RESULT_CANCELED) {
                 Toast.makeText(this, "You must chose an account to Login", Toast.LENGTH_SHORT).show();
                 pickUserAccount();
             }
         }
+        else if(requestCode == REQUEST_AUTHORIZATION){
+            if(resultCode == RESULT_OK){
+                new GetUsername(LoginActivity.this, email, scope, oAuthscopes).execute();
+            }
+            else{
+                inflateRetry();
+            }
+        }
+        else if(resultCode == REQUEST_CODE_RECOVER_FROM_PLAY_SERVICES_ERROR){
+            //called when returning from GooglePlayServices Exception
+            inflateRetry();
+        }
     }
 
-    boolean isDeviceOnline(){
-        ConnectivityManager comMng = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+    boolean isDeviceOnline() {
+        ConnectivityManager comMng = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         final NetworkInfo netInfo = comMng.getActiveNetworkInfo();
 
-        if(netInfo != null && netInfo.isConnected())
+        if (netInfo != null && netInfo.isConnected())
             return true;
         return false;
     }
 
-    public void handleException(final Exception e){
+    public void handleException(final Exception e) {
         handling = true;
         runOnUiThread(new Runnable() {
             public void run() {
@@ -99,6 +191,7 @@ public class LoginActivity extends Activity{
                             .getConnectionStatusCode();
                     Dialog dialog = GooglePlayServicesUtil.getErrorDialog(statusCode,
                             LoginActivity.this, REQUEST_CODE_RECOVER_FROM_PLAY_SERVICES_ERROR);
+                    Log.i("Check First", "Going to handle");
                     dialog.show();
                 } else if (e instanceof UserRecoverableAuthException) {
                     Intent intent = ((UserRecoverableAuthException) e).getIntent();
@@ -107,35 +200,241 @@ public class LoginActivity extends Activity{
             }
         });
         handling = false;
+//        notify();
     }
-}
 
-class GetUsername extends AsyncTask{
+    public void showSpinner(){
+        runOnUiThread(new Runnable(){
+            public void run() {
+                Fragment fragment = new SpinnerFragment();
 
-    LoginActivity act;
-    String email;
-    String scope;
-    String oAuthscopes;
+                FragmentManager fragmentManager = getFragmentManager();
 
-    GetUsername(LoginActivity act, String email, String scope, String oAuthScopes){
-        this.act = act;
-        this.email = email;
-        this.scope = scope;
-        this.oAuthscopes = oAuthScopes;
+                fragmentManager.beginTransaction().replace(R.id.frameLaoyoutSpin, fragment).commit();
+
+                fragmentManager.executePendingTransactions();
+            }
+        });
+    }
+
+
+    void validateAndGo(Bundle arg) {
+
+        if (arg.getBoolean("verified")) {
+            Log.i("name", arg.getString("name"));
+
+            Intent in = new Intent(LoginActivity.this, BodyActivity.class);
+            in.putExtra("user_info", arg);
+
+            startActivity(in);
+        }
+
     }
 
     @Override
-    protected Object doInBackground(Object[] params) {
-        try {
-            String idToken = fetchIDToken();
-            String accessToken = fetchAccessToken();
+    public void onFragmentRetryInteraction() {
+        pickUserAccount();
+    }
 
-            while(act.handling){}
 
-            Log.i("ID Token", idToken);
-            Log.i("Access Token", accessToken);
+    public class GetUsername extends AsyncTask<Object, Void, Bundle> {
 
-            URL url = new URL("https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token="+accessToken);
+        LoginActivity act;
+        String email;
+        String scope;
+        String oAuthscopes;
+        List<NameValuePair> nameValuePairs;
+        URL serverCheckuser;
+        boolean waiting = false;
+
+        String idToken = null;
+        String accessToken = null;
+//    ProgressDialog progressDialog;
+
+        GetUsername(LoginActivity act, String email, String scope, String oAuthScopes) {
+            this.act = act;
+            this.email = email;
+            this.scope = scope;
+            this.oAuthscopes = oAuthScopes;
+
+            nameValuePairs = new ArrayList<>();
+//        progressDialog = new ProgressDialog(act.getApplicationContext());
+        }
+
+
+        protected void onPreExecute() {
+            showSpinner();
+//        this.progressDialog.setMessage("Please Wait...");
+//        this.progressDialog.show();
+        }
+
+        @Override
+        protected Bundle doInBackground(Object... params) {
+
+            Bundle values = new Bundle();
+
+            try {
+//                idToken = fetchIDToken();
+                accessToken = fetchAccessToken();
+
+                Log.i("Before", "Before waiting " + handling);
+//                while (handling) {
+//                    Log.i("Before", "In Before waiting");
+//                    waiting = true;
+//                    wait();
+//                }
+
+                if (accessToken != null) {
+
+//                    Log.i("ID Token", idToken);
+                    Log.i("Access Token", accessToken);
+
+//                    nameValuePairs.add(new BasicNameValuePair("id_token", idToken));
+//                    nameValuePairs.add(new BasicNameValuePair("access_token", accessToken));
+
+                    URL url = new URL("https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=" + accessToken);
+                    StringBuffer val = returnJson(url);
+
+//                    url = new URL("https://www.googleapis.com/oauth2/v1/tokeninfo?alt=json&id_token=" + idToken);
+//                    StringBuffer valVerify = returnJson(url);
+
+                    Log.i("Value :", val.toString());
+//                    Log.i("Value Verified :", valVerify.toString());
+
+                    //            serverCheckuser = new URL("http://localhost:9000/nuconnect/checkuser.php");
+                    //            serverCheckuser = new URL("http://localhost:9000/nuconnect/checkuser.php?id_token="+idToken+"&access_token="+accessToken);
+                    //
+                    //            Log.i("Request", "Requesting server to get name");
+                    //
+                    //            StringBuffer valueVerify = validate_and_get(serverCheckuser);
+                    //
+                    //            Log.i("Value Verified :", valueVerify.toString());
+                    //
+                    //            JSONArray jArray = new JSONArray(valueVerify.toString());
+                    //
+                    JSONObject reader;
+                    reader = new JSONObject(val.toString());
+                    //            reader = jArray.getJSONObject(0);
+
+                    values.putString("email", (String) reader.get("email"));
+                    values.putString("name", (String) reader.get("name"));
+
+//                    reader = new JSONObject(valVerify.toString());
+                    //            reader = jArray.getJSONObject(1);
+                    values.putBoolean("verified", reader.getBoolean("verified_email"));
+
+                    //            Log.i("Email is", em);
+                }
+                else {
+//                    Toast.makeText(act.getApplicationContext(), "Login Error", Toast.LENGTH_SHORT).show();
+//                    inflateRetry();
+                }
+            } catch (IOException e) {
+//            Toast.makeText(act, "Network is not accessible. Please recheck.", Toast.LENGTH_SHORT);
+                inflateRetry();
+                e.printStackTrace();
+            } catch (JSONException e) {
+                inflateRetry();
+                e.printStackTrace();
+            }
+//            catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+
+            return values;
+        }
+
+        protected void onProgressUpdate(Void... values) {
+        }
+
+        protected void onPostExecute(Bundle result) {
+
+//        if(progressDialog.isShowing()){
+//            progressDialog.dismiss();
+//        }
+//            inflateRetry();
+            validateAndGo(result);
+        }
+
+        protected String fetchIDToken() throws IOException {
+            try {
+                return GoogleAuthUtil.getToken(act, email, scope);
+            } catch (GooglePlayServicesAvailabilityException e) {
+                handling = true;
+                Log.i("Before", "Before calling handle Exception gPlay " + handling);
+                handleException(e);
+            } catch (UserRecoverableAuthException e) {
+                handling = true;
+                Log.i("Before", "Before calling handle Exception recoverable");
+                handleException(e);
+            } catch (GoogleAuthException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        protected String fetchAccessToken() throws IOException {
+            try {
+                return GoogleAuthUtil.getToken(act, email, oAuthscopes);
+            } catch (GooglePlayServicesAvailabilityException e) {
+                act.handling = true;
+                Log.i("Before", "Before calling handle Exception gPlay " + act.handling);
+                act.handleException(e);
+            } catch (UserRecoverableAuthException e) {
+                act.handling = true;
+                Log.i("Before", "Before calling handle Exception recoverable");
+                act.handleException(e);
+            } catch (GoogleAuthException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        StringBuffer returnJson(URL url) throws IOException {
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            InputStream iStream = conn.getInputStream();
+
+            BufferedReader read = new BufferedReader(new InputStreamReader(iStream));
+
+            String line;
+            StringBuffer val = new StringBuffer();
+
+            while ((line = read.readLine()) != null) {
+                val.append(line);
+            }
+
+            return val;
+        }
+
+        StringBuffer validate_and_get(URL url) throws IOException {
+
+//        HttpClient httpClient;
+//        HttpPost httpPost;
+//        HttpResponse httpResponse;
+//        HttpEntity httpEntity = null;
+//        try
+//        {
+//            httpClient = new DefaultHttpClient();
+//            httpPost = new HttpPost(url.toURI());
+//            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+//            httpResponse = httpClient.execute(httpPost);
+//            httpEntity = httpResponse.getEntity();
+//        }
+//        catch (URISyntaxException e) {
+//            e.printStackTrace();
+//        }
+//
+//        InputStream iStream = httpEntity.getContent();
+//
+//        BufferedReader read = new BufferedReader(new InputStreamReader(iStream,"iso-8859-1"),8);
+//
+//        String line;
+//        StringBuffer val = new StringBuffer();
+//
+//        while((line = read.readLine())!=null){
+//            val.append(line);
+//        }
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
@@ -146,55 +445,12 @@ class GetUsername extends AsyncTask{
             String line;
             StringBuffer val = new StringBuffer();
 
-            while((line = read.readLine())!=null){
+            while ((line = read.readLine()) != null) {
                 val.append(line);
             }
 
-            Log.i("Value :", val.toString());
+            return val;
 
-            JSONObject reader = new JSONObject(val.toString());
-
-            String em = (String)reader.get("email");
-
-            Log.i("Email is", em);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
-
-        return null;
-    }
-
-    protected String fetchIDToken() throws IOException{
-        try {
-            return GoogleAuthUtil.getToken(act, email, scope);
-        }
-        catch(GooglePlayServicesAvailabilityException e){
-            act.handleException(e);
-        }
-        catch(UserRecoverableAuthException e){
-            act.handleException(e);
-        }
-        catch (GoogleAuthException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-    protected String fetchAccessToken() throws IOException{
-        try {
-            return GoogleAuthUtil.getToken(act, email, oAuthscopes);
-        }
-        catch(GooglePlayServicesAvailabilityException e){
-            act.handleException(e);
-        }
-        catch(UserRecoverableAuthException e){
-            act.handleException(e);
-        }
-        catch (GoogleAuthException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 }

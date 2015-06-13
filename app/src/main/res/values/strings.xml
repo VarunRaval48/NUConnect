@@ -11,5 +11,19 @@
 <!-- TODO: Remove or change this placeholder text -->
     <string name="initial_fragment">Hello Initial Fragment</string>
     <string name="title_activity_welcome">NUConect</string>
+    <string name="title_activity_body">NUConnect</string>
+
+
+    <string name="drawer_open">Open Drawer</string>
+    <string name="drawer_close">Close Drawer</string>
+
+    <string-array name="list_drawer">
+        <item>Home</item>
+        <item>Set Location</item>
+        <item>Sign Out</item>
+    </string-array>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

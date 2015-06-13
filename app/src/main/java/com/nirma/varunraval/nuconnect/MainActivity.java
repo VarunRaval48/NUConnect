@@ -1,5 +1,6 @@
 package com.nirma.varunraval.nuconnect;
 
+import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
@@ -10,7 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 
     static boolean isSignedIn = false;
     static int logInReqestCode = 99;

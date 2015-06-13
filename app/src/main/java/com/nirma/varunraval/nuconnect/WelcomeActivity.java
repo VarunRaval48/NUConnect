@@ -8,18 +8,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 
 public class WelcomeActivity extends Activity{
 
-    Button loginButton;
+    ImageButton loginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        loginButton = (Button) findViewById(R.id.LogInMainButton);
+        loginButton = (ImageButton) findViewById(R.id.loginMainButton);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override

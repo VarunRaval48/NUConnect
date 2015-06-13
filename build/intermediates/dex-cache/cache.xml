@@ -2,172 +2,186 @@
 <items version="2" >
 
     <item
-        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\7.3.0\classes.jar"
+        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\7.5.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="e5bf453b070c1e39297986144960e45afa0fdfad">
-        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-9e389be4f28b7d0cd3ae3bb0151f94f196a6c78d.jar" />
+        sha1="a172852a35ff919e85b9b7f14bbc15c5bee25520">
+        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-b89ae3bd3a8bc94c01e62a545e829be54604f13d.jar" />
     </item>
     <item
-        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\7.3.0\classes.jar"
+        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\7.5.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="0708ef60917bf94913fe9ef972a655b99462dca7">
-        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-06ecc185239bfafb1c79f79222cc22499b7ef966.jar" />
+        sha1="f02127a85abd52a2cd526d4c2409f21969f80ee8">
+        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-bef28247f242b82f6c896e4ed4a9bc0b1e44ea2d.jar" />
     </item>
     <item
-        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\7.3.0\classes.jar"
+        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\7.5.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="3b4ff5c39dace8f3b4ab4cab8191785547a0815f">
-        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-b4c07c5154d3a39c9f2fe6a2efee1b7136c682f9.jar" />
+        sha1="8d736fefa22d896e84a268354b3ed48a42663150">
+        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-984260c1b243c4f4f192c555dd96e99b97aef45e.jar" />
     </item>
     <item
-        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\7.3.0\classes.jar"
+        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\7.5.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="bb36004beb02b69562cbec9aa7d6a3cf16bf5d1b">
-        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-45795b6b0eeb265ba72bac94a0c80c04b6ce2982.jar" />
+        sha1="6836d188602ec5382d1967c58b00960eb8ff8773">
+        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-a42b272c8be0fd19280d66300d060c0cbeb71f87.jar" />
     </item>
     <item
-        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.3.0\classes.jar"
+        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\7.5.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="fe3e0c6de7cceed888b277487238b6af9a1cc299">
-        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-19b9ad55d50f70f3ea9df78ac6ad803a7c97c729.jar" />
+        sha1="6440e5e5cfe368f9bff3c537fb8988048069cb33">
+        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-e80d15aa67dfa4d836714934a2d92c0a9e7b89fa.jar" />
     </item>
     <item
-        jar="D:\adt-bundle-windows-x86_64-20131030\sdk\extras\android\m2repository\com\android\support\support-annotations\22.1.1\support-annotations-22.1.1.jar"
+        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\7.5.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
-        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\support-annotations-22.1.1-a39addb01907c59dafebb3b6af1d76ab4cb3c03b.jar" />
+        sha1="8e3a972f28b8bae817e382257ba177a31bcadbbc">
+        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-b1833e500ba4c631fd3ae1c60ca0f8636191ddeb.jar" />
     </item>
     <item
-        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.3.0\classes.jar"
+        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.0.0\libs\internal_impl-22.0.0.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="f2f7ec211ce4d244ee97a57523eeb4526dc3cf8a">
-        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-1734bc63eb6a7d4f85e9ce6d7c5159528dc82e61.jar" />
+        sha1="ba3df4eb0a630d7de294f0e48d3f9267d279b784">
+        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-e41da4a4636989e8fc484b6c67059602f0cc509b.jar" />
     </item>
     <item
-        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\7.3.0\classes.jar"
+        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.5.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="a0ce76dfaccbfbd6c551ed2174280aaabe60fe47">
-        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-79bd71a290b8732fd3ea3697576a848e99673f72.jar" />
+        sha1="06a42becc33232ec0ee125161da68c1829c9f8fd">
+        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-8f289c6eca1c912b11c0d763a63656a625c174b8.jar" />
     </item>
     <item
-        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\7.3.0\classes.jar"
+        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.5.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="6046e5cdaf799120b7c56a5a061d80e8854c4d34">
-        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-fd42022718fa2d19bd1ff031d9326fb3fba15b96.jar" />
+        sha1="29ebc7e04d877062317c8cc0e68b20f0c1fcda66">
+        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-ce21f253af17d7fde6bc7a5164ef43db59a963b6.jar" />
     </item>
     <item
-        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\7.3.0\classes.jar"
+        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\libs\internal_impl-22.2.0.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="5ea948d825957be6c4358c48422bee60eef2d487">
-        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-ab2dcd7d9471a472704dcf708f432fd15c02628e.jar" />
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-eff8620452ef9769064280b608bcc354d7149d24.jar" />
     </item>
     <item
-        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\7.3.0\classes.jar"
+        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\7.5.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="4f4fe3c23776540625f3c2844152a7510fddf9f1">
-        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-fc3175556601f786e5acaeffa67ffa676d6afde0.jar" />
+        sha1="d405025c600055237c171a0bbabaa49d69696573">
+        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-2996e539c45d4e7e4c0da6120af32a4da3e35153.jar" />
     </item>
     <item
-        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\classes.jar"
+        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.0.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
-        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-88596613ac5c624fb732f894546d6777126fd4b0.jar" />
+        sha1="a1372c17fccacca753d3951d3ad820571cbce075">
+        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-04bc159e77b87ac26c3d936f755bf3d4647a3589.jar" />
     </item>
     <item
-        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.3.0\classes.jar"
+        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\7.5.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="3988694bf9d8186ff97ad5cdfa4ed88b5010fe08">
-        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-37635b675bad99169ad121be76c6cf78c602b789.jar" />
+        sha1="272bc5d7063f24bc3a33ea1d318cde8f31f5ec4c">
+        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-da28b4c7cea22a10c1c9098ca5fbcf7be9dd1378.jar" />
     </item>
     <item
-        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\7.3.0\classes.jar"
+        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="565a01f90f1529f73362707c4c185d0623a68782">
-        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-e851a260e4ada780d340aa84288765ccd37c888f.jar" />
+        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
+        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-1bfa5aa7aa7577b63e4e40755774fc82c7048577.jar" />
     </item>
     <item
-        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\7.3.0\classes.jar"
+        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\7.5.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="59652857a825fff0de62166fca1bc9553cc01abb">
-        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-67acf080adb130f9f9e4f4d38f095d39b0a0fedf.jar" />
+        sha1="1a6411087ab88ce5542f593e63a2752b6b0d6f1a">
+        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-40d1090dc2b6d2d49d231a27bf0a8e88416a5e9e.jar" />
     </item>
     <item
-        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\7.3.0\classes.jar"
+        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\7.5.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="b48d5c51a9a9e329005106b4667f54948de4d4d8">
-        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-1099368e61a8f0808fa604af5c5b6eee6bf240c6.jar" />
+        sha1="02bac2dc792d78241077861566f2c82da955e7fa">
+        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-a09d7b5850dcf59fdd3ad1a9c3ff7391242757fe.jar" />
     </item>
     <item
-        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\7.3.0\classes.jar"
+        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\7.5.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="e35fae1b377c23aa5fd2d309a190c2d0f73d54ec">
-        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-9ebbfea5d940e07ec08e0f1031f8acdd7e916bec.jar" />
+        sha1="63ec6e9f4fe5482a7447d0f3091b8e543a02554c">
+        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-ce9add30037816c0068da57a706a413357dabfe5.jar" />
     </item>
     <item
-        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.1.1\classes.jar"
+        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\7.5.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
-        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-d29c95afed075ac5b591e64bd136de0afb1c4543.jar" />
+        sha1="69dd177337ead693c408c8dddc9546bb6f1244fa">
+        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-34ad777e548518240c785bd4a699dc8d1d235106.jar" />
     </item>
     <item
-        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appstate\7.3.0\classes.jar"
+        jar="D:\adt-bundle-windows-x86_64-20131030\sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.0\support-annotations-22.2.0.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="0180d031a7b54dabb93b4af3869468b55dc938bd">
-        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-55df0dfd4f022e2142643c340f19691abcafabc9.jar" />
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.0-de84ccae945acda63621da4746da02c955dfbf71.jar" />
     </item>
     <item
-        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\7.3.0\classes.jar"
+        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\7.5.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="e5b9f5b0aa8dee788beb63d23832cb29ce771343">
-        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-a1764465cf77f93ca1aafc3dfb8b9cd1ac900002.jar" />
+        sha1="1e98ef3f124bb7a11f8575f9ff5dfea330b61b6f">
+        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-fbd066066b846e321ac36957ba206f446055e380.jar" />
     </item>
     <item
-        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\7.3.0\classes.jar"
+        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="b2c07cdb814fe988ad05f7b4d767a841514a5991">
-        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-33ed69c7973b82a29f2782cf687c1b0a29870e29.jar" />
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-c3be0a86322216d00d6b524f35387912eda5d88d.jar" />
     </item>
     <item
-        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\7.3.0\classes.jar"
+        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\7.5.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="9c9dea9e85aceb09d95df5e6f7bc8a43fc286068">
-        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-b8882c2fdb3bce28013870fe86a80fcaf0103498.jar" />
+        sha1="f44d03c138cb6488fdbaa65e3a7e5878861a56d8">
+        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-e2acb0c38e1cadd63e7a425ebb71309fa0b6accc.jar" />
     </item>
     <item
-        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\libs\internal_impl-22.1.1.jar"
+        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.5.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
-        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\internal_impl-22.1.1-7dd15b5d72c3af8743a781ce7831d10493bf2675.jar" />
+        sha1="a78183f30e769a98ab4820794f597763088d3065">
+        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-ae7113b152d3f842e33169623414ffae874ba917.jar" />
     </item>
     <item
-        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\7.3.0\classes.jar"
+        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\7.5.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="7215ac1f2fca947b9415a6ee2a1bf991364aab24">
-        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-6272d4be71af5735008eb0edfe07447141b0a0be.jar" />
+        sha1="e7b35244f50663b3f8d150714bca9ecd7a290da1">
+        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-db1b5ff770b052c93129ba8608b1a3432d3ca629.jar" />
+    </item>
+    <item
+        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\7.5.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="ba207be21987c11b37d9f8faa08ed6e722569f30">
+        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-2772100b2ba3069291664fdd294a799292221d4a.jar" />
+    </item>
+    <item
+        jar="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appstate\7.5.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="68c140702c7242d914655bcb3164d9e8c45b84cb">
+        <dex dex="D:\Users\AndroidstudioProjects\NUConnect\app\build\intermediates\pre-dexed\debug\classes-49cb7aa889e067f1e0a4df147699f194c318c934.jar" />
     </item>
 
 </items>
