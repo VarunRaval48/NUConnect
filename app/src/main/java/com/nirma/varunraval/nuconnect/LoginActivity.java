@@ -5,17 +5,21 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.GoogleAuthException;
@@ -28,12 +32,12 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -41,16 +45,15 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-
-import javax.net.ssl.HttpsURLConnection;
 
 /**
  * Created by Varun on 5/19/2015.
@@ -59,7 +62,8 @@ import javax.net.ssl.HttpsURLConnection;
 //TODO Allow only nirmauni.ac.in accounts
 //TODO Remember signed in activity
 
-public class LoginActivity extends Activity implements RetryLoginFragment.OnFragmentRetryInteractionListener {
+public class LoginActivity extends Activity implements RetryLoginFragment.OnFragmentRetryInteractionListener,
+        NextFragment.OnNextFragmentInteractionListener {
 
     static final int REQUEST_CODE_PICK_ACCOUNT = 999;
     String email;
@@ -70,7 +74,16 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
     private static final ScheduledExecutorService worker =
             Executors.newSingleThreadScheduledExecutor();
     FragmentManager fragmentManager;
+    static String nuconnect_accessToken;
+    static String login_type = null;
+    static int serverConnected=0;
 
+    public static String serverURL = "192.168.1.11:9000";
+
+
+    public void setAccessToken(String accessToken){
+        nuconnect_accessToken = accessToken;
+    }
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +95,46 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
         scope = "audience:server:client_id:611036220045-sjstaa7r37ufc1t4q0iotb1otng8ktj2.apps.googleusercontent.com";
         oAuthscopes = "oauth2:" + "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/plus.login";
 
-        pickUserAccount();
+
+        Spinner spinner = (Spinner)findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(this, R.array.login_type, android.R.layout.simple_spinner_item);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(arrayAdapter);
+
+        Button nextTempButton = (Button)findViewById(R.id.buttonTempNext);
+        nextTempButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent inte = new Intent(LoginActivity.this, BodyActivity.class);
+                Bundle arg = new Bundle();
+
+                arg.putString("email", "test");
+                arg.putString("name", "test");
+                arg.putBoolean("verified", true);
+                arg.putString("login_type", "Faculty");
+
+                inte.putExtra("user_info", arg);
+
+                startActivity(inte);
+
+                finish();
+            }
+        });
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                login_type = parent.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        inflateNext();
+
 //        int retry=5;
 //        if(isDeviceOnline()){
 //            Log.i("Picking", "Picking User Account");
@@ -138,6 +190,14 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
         fragmentManager.executePendingTransactions();
     }
 
+    protected void inflateNext(){
+        Fragment nextFragment = new NextFragment();
+        fragmentManager = getFragmentManager();
+
+        fragmentManager.beginTransaction().replace(R.id.frameLaoyoutSpin, nextFragment).commit();
+        fragmentManager.executePendingTransactions();
+    }
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.i("Activity Result", "Request Code " + requestCode + " Result Code " + resultCode);
         if (requestCode == REQUEST_CODE_PICK_ACCOUNT) {
@@ -151,12 +211,12 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
                 } else if (isDeviceOnline()) {
                     new GetUsername(LoginActivity.this, email, scope, oAuthscopes).execute();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Netwotk is not accessible. Please recheck.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Network is not accessible. Please recheck.", Toast.LENGTH_SHORT).show();
                     inflateRetry();
                 }
             } else if (resultCode == RESULT_CANCELED) {
                 Toast.makeText(this, "You must chose an account to Login", Toast.LENGTH_SHORT).show();
-                pickUserAccount();
+                inflateRetry();
             }
         }
         else if(requestCode == REQUEST_AUTHORIZATION){
@@ -204,7 +264,7 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
     }
 
     public void showSpinner(){
-        runOnUiThread(new Runnable(){
+        runOnUiThread(new Runnable() {
             public void run() {
                 Fragment fragment = new SpinnerFragment();
 
@@ -217,14 +277,114 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
         });
     }
 
+    public void setUsername(Bundle arg){
+
+        Log.i("Checking", "Calling sendtoserver class");
+        new SendTokenToServerClass(arg.getString("email"), arg).execute();
+        //TODO send access token to server
+    }
+
+    @Override
+    public void onNextFragmentInteraction() {
+        pickUserAccount();
+    }
+
+
+    public class SendTokenToServerClass extends AsyncTask<Object, Void, Void> {
+
+        String email;
+        Bundle arg;
+        String line;
+        StringBuffer value = new StringBuffer();
+
+        SendTokenToServerClass(String email, Bundle arg) {
+            this.email = email;
+            this.arg = arg;
+        }
+
+        @Override
+        protected Void doInBackground(Object... params) {
+            Log.i("Calling sendtokenmethod", "In do in Background");
+            if(!nuconnect_accessToken.equals(null))
+                sendTokenToServer(email);
+            return null;
+        }
+
+        protected void onPostExecute(Void params){
+            if(serverConnected == 1)
+                validateAndGo(arg);
+            else
+                doOnUIInflate("retry", new IOException());
+        }
+
+        void sendTokenToServer(String email) {
+            Log.i("In", "send Token To Server method");
+            List<NameValuePair> nameValuePairs = new ArrayList<>();
+            nameValuePairs.add(new BasicNameValuePair("access_token", nuconnect_accessToken));
+            nameValuePairs.add(new BasicNameValuePair("email", email));
+            try {
+                URL url = new URL("http://" + serverURL + "/nuconnect/setaccesstoken.php");
+                HttpClient httpClient = new DefaultHttpClient();
+                HttpPost httpPost = new HttpPost(url.toURI());
+                httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                HttpResponse httpResponse = httpClient.execute(httpPost);
+
+                HttpEntity httpEntity = httpResponse.getEntity();
+
+                InputStream inputStream = httpEntity.getContent();
+
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+
+                while ((line = bufferedReader.readLine()) != null) {
+                    value.append(line);
+                }
+                bufferedReader.close();
+
+                Log.i("In SendToenToServerJson", value.toString());
+                JSONObject reader = new JSONObject(value.toString());
+
+                serverConnected = reader.getInt("success");
+
+                Log.i("Returned from Server", reader.getString("message"));
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            } catch (ClientProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                doOnUIInflate("retry", e);
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     void validateAndGo(Bundle arg) {
 
         if (arg.getBoolean("verified")) {
+
+            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
+            editor.putString("NUConnect_username", arg.getString("name"));
+            editor.putString("NUConnect_email", arg.getString("email"));
+            editor.putString("NUConnect_accesstoken", nuconnect_accessToken);
+            editor.putString("NUConnect_login_type", login_type);
+            editor.commit();
+
             Log.i("name", arg.getString("name"));
 
+//            setUsername(getApplicationContext(), arg);
+
+            arg.putString("login_type", login_type);
             Intent in = new Intent(LoginActivity.this, BodyActivity.class);
             in.putExtra("user_info", arg);
+
+            Intent serviceIntent = new Intent(this, RegisterDeviceService.class);
+            serviceIntent.putExtra("email", arg.getString("email"));
+            startService(serviceIntent);
 
             startActivity(in);
         }
@@ -236,6 +396,20 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
         pickUserAccount();
     }
 
+    public void doOnUIInflate(final String typeOfFragment,final Exception exceptionType){
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if(exceptionType instanceof IOException){
+                    Toast.makeText(getApplicationContext(), "Network is not accessible. Please recheck.", Toast.LENGTH_SHORT).show();
+                }
+                if(typeOfFragment.equals("retry")){
+                    inflateRetry();
+                }
+            }
+        });
+    }
 
     public class GetUsername extends AsyncTask<Object, Void, Bundle> {
 
@@ -289,6 +463,7 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
 //                    Log.i("ID Token", idToken);
                     Log.i("Access Token", accessToken);
 
+                    setAccessToken(accessToken);
 //                    nameValuePairs.add(new BasicNameValuePair("id_token", idToken));
 //                    nameValuePairs.add(new BasicNameValuePair("access_token", accessToken));
 
@@ -301,8 +476,8 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
                     Log.i("Value :", val.toString());
 //                    Log.i("Value Verified :", valVerify.toString());
 
-                    //            serverCheckuser = new URL("http://localhost:9000/nuconnect/checkuser.php");
-                    //            serverCheckuser = new URL("http://localhost:9000/nuconnect/checkuser.php?id_token="+idToken+"&access_token="+accessToken);
+                    //            serverCheckuser = new URL("http://192.168.1.6:9000/nuconnect/checkuser.php");
+                    //            serverCheckuser = new URL("http://192.168.1.6:9000/nuconnect/checkuser.php?id_token="+idToken+"&access_token="+accessToken);
                     //
                     //            Log.i("Request", "Requesting server to get name");
                     //
@@ -330,11 +505,10 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
 //                    inflateRetry();
                 }
             } catch (IOException e) {
-//            Toast.makeText(act, "Network is not accessible. Please recheck.", Toast.LENGTH_SHORT);
-                inflateRetry();
+                doOnUIInflate("retry", e);
                 e.printStackTrace();
             } catch (JSONException e) {
-                inflateRetry();
+                doOnUIInflate("retry", e);
                 e.printStackTrace();
             }
 //            catch (InterruptedException e) {
@@ -353,7 +527,8 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
 //            progressDialog.dismiss();
 //        }
 //            inflateRetry();
-            validateAndGo(result);
+//            validateAndGo(result);
+            setUsername(result);
         }
 
         protected String fetchIDToken() throws IOException {

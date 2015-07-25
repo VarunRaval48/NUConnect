@@ -18,13 +18,26 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:textSize="@dimen/abc_text_size_large_material"
-                android:text="Sign In" android:textColor="@color/wallet_holo_blue_light"
+                android:layout_height="wrap_content" android:textSize="26sp"
+                android:text="Sign In" android:textColor="@android:color/holo_blue_dark"
                 android:id="@+id/textView" android:editable="false"/>
 
+            <Spinner
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:id="@+id/spinner" android:layout_gravity="center_horizontal"
+                android:gravity="center" android:paddingTop="20dp"/>
+
             <FrameLayout android:id="@+id/frameLaoyoutSpin"
-                android:layout_width="match_parent" android:layout_height="match_parent">
+                android:layout_width="match_parent" android:layout_height="match_parent"
+                android:paddingTop="50dp">
             </FrameLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Next" android:background="@android:color/darker_gray"
+                android:id="@+id/buttonTempNext"
+                android:layout_gravity="center_horizontal" />
 
         </LinearLayout>
     </ScrollView>

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_light">
+    android:background="@drawable/drawerlayout_item_view">
 
 
     <TextView
         android:layout_width="wrap_content" android:layout_height="50dip" android:text="Sign Out"
-        android:id="@+id/list_item_text_view" android:textSize="22dp" android:typeface="sans"
-        android:gravity="center" android:layout_centerInParent="true"
+        android:id="@+id/list_item_text_view" android:textSize="21dp" android:typeface="sans"
+        android:fontFamily="@string/common_google_play_services_update_text"
+        android:gravity="center" android:layout_centerInParent="true" android:textStyle="bold"
         android:textColor="@android:color/widget_edittext_dark"/>
 </RelativeLayout>

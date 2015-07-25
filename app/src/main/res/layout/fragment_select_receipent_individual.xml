@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView3" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Enter Receipent/s :" android:layout_marginTop="10dp"
+                android:id="@+id/textViewEnterReceipent" />
+
+            <TableLayout
+                android:layout_width="match_parent" android:layout_height="match_parent"
+                android:layout_marginTop="20dp" android:layout_below="@+id/textViewEnterReceipent"
+                android:id="@+id/tableLayoutIndividual">
+
+                <TableRow
+                    android:layout_width="wrap_content" android:layout_height="match_parent"
+                    android:id="@+id/tableRowIndividual">
+
+                    <Button
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Add \nRecepipent" android:id="@+id/buttonAddIndv" />
+
+                    <AutoCompleteTextView
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:text="" android:id="@+id/autoCompleteTextViewIndv1"
+                        android:layout_column="11" android:textColor="@android:color/white"
+                        android:hint="Enter username" android:layout_marginTop="18dp"
+                        android:layout_marginLeft="10dp" android:freezesText="true"/>
+                </TableRow>
+            </TableLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+</LinearLayout>

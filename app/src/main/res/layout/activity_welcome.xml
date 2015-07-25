@@ -14,20 +14,20 @@
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Welcome To" android:textSize="35dp" android:layout_gravity="center"
-                android:id="@+id/textView2" android:textColor="@color/wallet_link_text_light"/>
+                android:id="@+id/textView2" android:textColor="@android:color/white"/>
 
             <TextView
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="NUConnect" android:textSize="45dp" android:layout_gravity="center"
-                android:id="@+id/textView3" android:textColor="@color/common_signin_btn_default_background"/>
+                android:id="@+id/textView3" android:textColor="@android:color/white"/>
 
             <!--<LinearLayout android:layout_height="wrap_content" android:layout_width="fill_parent"-->
                 <!--android:layout_gravity="center" android:orientation="horizontal">-->
 
                 <ImageButton
                     android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:id="@+id/loginMainButton" android:src="@drawable/common_signin_btn_text_pressed_dark"
+                    android:id="@+id/loginMainButton" android:src="@drawable/btn_gsignin_normal_copy"
                     android:layout_gravity="center"/>
 
                 <!--<TextView-->

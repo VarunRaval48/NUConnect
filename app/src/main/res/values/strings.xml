@@ -17,12 +17,52 @@
     <string name="drawer_open">Open Drawer</string>
     <string name="drawer_close">Close Drawer</string>
 
-    <string-array name="list_drawer">
+    <string name="sender_id">611036220045</string>
+    <string name="api_key">AIzaSyBO1EeoxA7GqZ8iRvQZEdeX2rtL9266Lts</string>
+
+    <string-array name="list_drawer_student">
         <item>Home</item>
         <item>Set Location</item>
         <item>Sign Out</item>
     </string-array>
 
+    <string-array name="list_drawer_faculty">
+        <item>Home</item>
+        <item>Inform</item>
+        <item>Set Location</item>
+        <item>Sign Out</item>
+    </string-array>
+
+    <string-array name="login_type">
+        <item>Student</item>
+        <item>Faculty</item>
+        <item>Staff</item>
+    </string-array>
+
+    <string-array name="inform_what_to">
+        <item>Assignment</item>
+        <item>Extra Lecture</item>
+        <item>Meeting</item>
+    </string-array>
+
+    <string-array name="inform_who_to_type">
+        <item>Individual</item>
+        <item>Group</item>
+    </string-array>
+
+    <string-array name="inform_who_to">
+        <item>Mechenical</item>
+        <item>Computer</item>
+        <item>Information Technology</item>
+        <item>EC</item>
+        <item>EE</item>
+        <item>IC</item>
+    </string-array>
+
+    <string-array name="inform_division">
+        <item>A</item>
+        <item>B</item>
+    </string-array>
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

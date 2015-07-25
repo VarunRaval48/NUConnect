@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="wrap_content" android:layout_height="match_parent">
+    <AutoCompleteTextView
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="" android:layout_column="11" android:textColor="@android:color/white"
+        android:hint="Enter username" android:layout_marginTop="18dp"
+        android:layout_marginLeft="10dp" android:layout_marginStart="10dp"
+        android:textColorHint="#303030" android:freezesText="true"
+        android:visibility="visible" android:id="@+id/autoCompleteViewIndReceipent"/>
+</TableRow>

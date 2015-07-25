@@ -1,0 +1,68 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.nirma.varunraval.nuconnect.SelectReceipentFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:layout_gravity="center|top">
+        <TableLayout
+            android:layout_width="match_parent" android:layout_height="match_parent"
+            android:id="@+id/tableLayoutGroup" android:layout_gravity="center_horizontal|top">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textSize="21sp"
+                    android:text="Inform to : " android:id="@+id/textViewInformWhoTo" android:paddingTop="30dp"/>
+
+                <Spinner
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:id="@+id/spinnerInformWhoTo"
+                    android:layout_column="11"/>
+                    <!--android:theme="@style/Widget.AppCompat.TextView.SpinnerItem"/>-->
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textSize="21sp"
+                    android:text="Division : " android:id="@+id/textViewInformDivision"
+                    android:paddingTop="40dp"/>
+
+                <Spinner
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:id="@+id/spinnerInformDivision"
+                    android:layout_column="11" />
+                    <!--android:theme="@style/Widget.AppCompat.TextView.SpinnerItem"/>-->
+            </TableRow>
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20sp">
+
+                <Button
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Add \nRecepipent" android:id="@+id/buttonAddGroup" />
+
+                <AutoCompleteTextView
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="" android:id="@+id/autoCompleteTextViewGroup"
+                    android:layout_column="11" android:textColor="@android:color/white"
+                    android:hint="Enter Username" android:layout_marginTop="18dp"
+                    android:layout_marginLeft="10dp"/>
+            </TableRow>
+
+        </TableLayout>
+
+    </RelativeLayout>
+</FrameLayout>
