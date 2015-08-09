@@ -1,4 +1,4 @@
-package com.nirma.varunraval.nuconnect;
+package com.nirma.varunraval.nuconnect.Login;
 
 import android.accounts.AccountManager;
 import android.app.Activity;
@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -28,15 +27,15 @@ import com.google.android.gms.auth.GooglePlayServicesAvailabilityException;
 import com.google.android.gms.auth.UserRecoverableAuthException;
 import com.google.android.gms.common.AccountPicker;
 import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.nirma.varunraval.nuconnect.Body.BodyActivity;
+import com.nirma.varunraval.nuconnect.NextFragment;
+import com.nirma.varunraval.nuconnect.R;
+import com.nirma.varunraval.nuconnect.RegisterDeviceService;
+import com.nirma.varunraval.nuconnect.RetryLoginFragment;
+import com.nirma.varunraval.nuconnect.SendIDToServer;
+import com.nirma.varunraval.nuconnect.SpinnerFragment;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,10 +44,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -295,7 +292,7 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
         String email;
         Bundle arg;
         String line;
-        StringBuffer value = new StringBuffer();
+        String value;
 
         SendTokenToServerClass(String email, Bundle arg) {
             this.email = email;
@@ -305,8 +302,34 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
         @Override
         protected Void doInBackground(Object... params) {
             Log.i("Calling sendtokenmethod", "In do in Background");
-            if(!nuconnect_accessToken.equals(null))
-                sendTokenToServer(email);
+            try {
+
+                if (!nuconnect_accessToken.equals(null)) {
+
+                    List<NameValuePair> nameValuePairs = new ArrayList<>();
+                    nameValuePairs.add(new BasicNameValuePair("access_token", nuconnect_accessToken));
+                    nameValuePairs.add(new BasicNameValuePair("email", email));
+                    URL url = new URL("http://" + serverURL + "/nuconnect/setaccesstoken.php");
+
+                    SendIDToServer sendIDToServer = new SendIDToServer(url, nameValuePairs);
+                    value = sendIDToServer.sendToken();
+
+                    Log.i("In SendToenToServerJson", value.toString());
+                    JSONObject reader = new JSONObject(value.toString());
+
+                    serverConnected = reader.getInt("success");
+
+                    Log.i("Returned from Server", reader.getString("message"));
+                }
+
+            }catch (MalformedURLException e) {
+                e.printStackTrace();
+            }catch (IOException e) {
+                doOnUIInflate("retry", e);
+                e.printStackTrace();
+            }catch (JSONException e) {
+                e.printStackTrace();
+            }
             return null;
         }
 
@@ -319,47 +342,6 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
 
         void sendTokenToServer(String email) {
             Log.i("In", "send Token To Server method");
-            List<NameValuePair> nameValuePairs = new ArrayList<>();
-            nameValuePairs.add(new BasicNameValuePair("access_token", nuconnect_accessToken));
-            nameValuePairs.add(new BasicNameValuePair("email", email));
-            try {
-                URL url = new URL("http://" + serverURL + "/nuconnect/setaccesstoken.php");
-                HttpClient httpClient = new DefaultHttpClient();
-                HttpPost httpPost = new HttpPost(url.toURI());
-                httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-                HttpResponse httpResponse = httpClient.execute(httpPost);
-
-                HttpEntity httpEntity = httpResponse.getEntity();
-
-                InputStream inputStream = httpEntity.getContent();
-
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-
-                while ((line = bufferedReader.readLine()) != null) {
-                    value.append(line);
-                }
-                bufferedReader.close();
-
-                Log.i("In SendToenToServerJson", value.toString());
-                JSONObject reader = new JSONObject(value.toString());
-
-                serverConnected = reader.getInt("success");
-
-                Log.i("Returned from Server", reader.getString("message"));
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            } catch (ClientProtocolException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                doOnUIInflate("retry", e);
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
         }
     }
 

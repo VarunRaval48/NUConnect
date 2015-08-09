@@ -1,4 +1,4 @@
-package com.nirma.varunraval.nuconnect;
+package com.nirma.varunraval.nuconnect.Message;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.gms.gcm.GcmListenerService;
+import com.nirma.varunraval.nuconnect.Body.BodyActivity;
 
 /**
  * Created by Varun on 6/20/2015.

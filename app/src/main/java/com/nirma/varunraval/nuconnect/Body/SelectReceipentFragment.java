@@ -1,27 +1,20 @@
-package com.nirma.varunraval.nuconnect;
+package com.nirma.varunraval.nuconnect.Body;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.util.AttributeSet;
 import android.util.Log;
-import android.util.Xml;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TableLayout;
-import android.widget.TableRow;
 
-import org.xmlpull.v1.XmlPullParser;
+import com.nirma.varunraval.nuconnect.R;
 
 import java.util.ArrayList;
 
@@ -97,7 +90,12 @@ public class SelectReceipentFragment extends Fragment implements View.OnClickLis
             receipentIndividualList.add(R.id.autoCompleteTextViewIndv1);
             Button addReceipentIndButton = (Button)view.findViewById(R.id.buttonAddIndv);
 
-            addReceipentIndButton.setOnClickListener(this);
+            addReceipentIndButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onButtonPressed("view", "AutoCompleteTextViewInd");
+                }
+            });
 
         }//TODO Correct layout of group receipent (row size)
         else if(mParam1type.equals("Group")){
@@ -117,18 +115,21 @@ public class SelectReceipentFragment extends Fragment implements View.OnClickLis
 
             Button addReceipentGrpButton = (Button)view.findViewById(R.id.buttonAddGroup);
 
-            addReceipentGrpButton.setOnClickListener(this);
+            addReceipentGrpButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onButtonPressed("view", "AutoCompleteTextViewGrp");
+                }
+            });
         }
-
-
 
         return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
+    public void onButtonPressed(String type, String fragmentType) {
         if (mListener != null) {
-            mListener.onReceipentFragmentInteraction(uri);
+            mListener.onReceipentFragmentInteraction(type, fragmentType);
         }
     }
 
@@ -164,7 +165,7 @@ public class SelectReceipentFragment extends Fragment implements View.OnClickLis
      */
     public interface OnReceipentFragmentInteractionListener {
         // TODO: Update argument type and name
-        public void onReceipentFragmentInteraction(Uri uri);
+        public void onReceipentFragmentInteraction(String type, String fragmentType);
     }
 
     @Override
@@ -232,7 +233,7 @@ public class SelectReceipentFragment extends Fragment implements View.OnClickLis
         }
     }
 
-    boolean canAddIndividual(){
+    static boolean canAddIndividual(){
 
         return true;
     }

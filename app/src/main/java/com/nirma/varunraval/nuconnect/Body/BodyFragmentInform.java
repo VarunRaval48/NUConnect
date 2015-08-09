@@ -1,8 +1,7 @@
-package com.nirma.varunraval.nuconnect;
+package com.nirma.varunraval.nuconnect.Body;
 
 import android.app.Activity;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,7 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.google.android.gms.appindexing.AndroidAppUri;
+import com.nirma.varunraval.nuconnect.R;
 
 
 /**

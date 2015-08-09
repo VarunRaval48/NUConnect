@@ -1,4 +1,4 @@
-package com.nirma.varunraval.nuconnect;
+package com.nirma.varunraval.nuconnect.GCMToken;
 
 
 import android.app.IntentService;
@@ -7,24 +7,15 @@ import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.iid.InstanceID;
+import com.nirma.varunraval.nuconnect.Login.LoginActivity;
+import com.nirma.varunraval.nuconnect.R;
+import com.nirma.varunraval.nuconnect.SendIDToServer;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +39,7 @@ public class RegisterDeviceService extends IntentService {
     protected void onHandleIntent(Intent intent) {
 
         String token = null;
+        String value;
 
         String email = intent.getStringExtra("email");
         Log.i("In RegisterDevice Email", email);
@@ -72,34 +64,12 @@ public class RegisterDeviceService extends IntentService {
 
                 URL url = new URL("http://" + LoginActivity.serverURL + "/nuconnect/setRegistrationID.php");
 
-                HttpClient httpClient = new DefaultHttpClient();
-                HttpPost httpPost = new HttpPost(url.toURI());
+                SendIDToServer sendIDToServer = new SendIDToServer(url, list);
+                value = sendIDToServer.sendToken();
 
-                httpPost.setEntity(new UrlEncodedFormEntity(list));
-
-                HttpResponse httpResponse = httpClient.execute(httpPost);
-
-                HttpEntity httpEntity = httpResponse.getEntity();
-
-                InputStream inputStream = httpEntity.getContent();
-
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-                String line;
-                StringBuffer value = new StringBuffer();
-
-                while((line=bufferedReader.readLine())!=null){
-                    value.append(line);
-                }
-
-                Log.i("Response from Server", value.toString());
+                Log.i("Response from Server", value);
 
             } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            } catch (ClientProtocolException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();

@@ -1,4 +1,4 @@
-package com.nirma.varunraval.nuconnect;
+package com.nirma.varunraval.nuconnect.Login;
 
 import android.app.Activity;
 import android.net.Uri;
@@ -7,18 +7,20 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
+
+import com.nirma.varunraval.nuconnect.R;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link InformExtraLectureFragment.OnFragmentInformExtralectureInteractionListener} interface
+ * {@link RetryLoginFragment.OnFragmentRetryInteractionListener} interface
  * to handle interaction events.
- * Use the {@link InformExtraLectureFragment#newInstance} factory method to
+ * Use the {@link RetryLoginFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class InformExtraLectureFragment extends Fragment {
+public class RetryLoginFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -28,7 +30,7 @@ public class InformExtraLectureFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInformExtralectureInteractionListener mListener;
+    private OnFragmentRetryInteractionListener mListener;
 
     /**
      * Use this factory method to create a new instance of
@@ -36,11 +38,11 @@ public class InformExtraLectureFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment InformExtraLectureFragment.
+     * @return A new instance of fragment RetryLoginFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static InformExtraLectureFragment newInstance(String param1, String param2) {
-        InformExtraLectureFragment fragment = new InformExtraLectureFragment();
+    public static RetryLoginFragment newInstance(String param1, String param2) {
+        RetryLoginFragment fragment = new RetryLoginFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -48,8 +50,8 @@ public class InformExtraLectureFragment extends Fragment {
         return fragment;
     }
 
-    public InformExtraLectureFragment() {
-        // Required empty public constructor
+    public RetryLoginFragment(){
+
     }
 
     @Override
@@ -65,24 +67,29 @@ public class InformExtraLectureFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_inform_extra_lecture, container, false);
 
-        Button informExtraLectureButton = (Button)view.findViewById(R.id.buttonExtralecture);
+        View view = inflater.inflate(R.layout.fragment_retry_login, container, false);
 
-        informExtraLectureButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton retryButton = (ImageButton)view.findViewById(R.id.retryButton);
+        retryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onButtonPressed();
+                mListener.onFragmentRetryInteraction();
             }
         });
 
         return view;
     }
 
+    public void onActivityCreated(Bundle savedState){
+        super.onActivityCreated(savedState);
+
+    }
+
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed() {
+    public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInformExtralectureInteraction();
+            mListener.onFragmentRetryInteraction();
         }
     }
 
@@ -90,7 +97,7 @@ public class InformExtraLectureFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mListener = (OnFragmentInformExtralectureInteractionListener) activity;
+            mListener = (OnFragmentRetryInteractionListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -113,9 +120,9 @@ public class InformExtraLectureFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInformExtralectureInteractionListener {
+    public interface OnFragmentRetryInteractionListener {
         // TODO: Update argument type and name
-        public void onFragmentInformExtralectureInteraction();
+        public void onFragmentRetryInteraction();
     }
 
 }

@@ -1,48 +1,44 @@
-package com.nirma.varunraval.nuconnect;
+package com.nirma.varunraval.nuconnect.Body;
 
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.os.Bundle;
-import android.support.v4.app.ActionBarDrawerToggle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ListView;
+import android.widget.TableLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.nirma.varunraval.nuconnect.BodyFragmentHome;
+import com.nirma.varunraval.nuconnect.BodyFragmentInform;
+import com.nirma.varunraval.nuconnect.InformExtraLectureFragment;
+import com.nirma.varunraval.nuconnect.LoginActivity;
+import com.nirma.varunraval.nuconnect.MainActivity;
+import com.nirma.varunraval.nuconnect.R;
+import com.nirma.varunraval.nuconnect.SelectReceipentFragment;
+import com.nirma.varunraval.nuconnect.SendIDToServer;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +47,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class BodyActivity extends Activity implements BodyFragmentInform.OnFragmentInformInteractionListener,
         InformExtraLectureFragment.OnFragmentInformExtralectureInteractionListener,
-        SelectReceipentFragment.OnReceipentFragmentInteractionListener{
+        SelectReceipentFragment.OnReceipentFragmentInteractionListener {
 
     private String[] listTitlesStudent, listTitlesFaculty, selectedTypeList;
     private DrawerLayout drawerLayout;
@@ -66,6 +62,8 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
     AtomicInteger messageID = new AtomicInteger(1);
     GoogleCloudMessaging gcm;
     Bundle data;
+
+    static int countRecInd=1, countRecGrp=101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -242,8 +240,39 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
 
 
     @Override
-    public void onReceipentFragmentInteraction(Uri uri) {
+    public void onReceipentFragmentInteraction(String type, String fragmentType) {
 
+        if(fragmentType=="AutoCompleteTextViewInd" && SelectReceipentFragment.canAddIndividual()){
+
+            TableLayout tableLayout = (TableLayout) findViewById(R.id.tableLayoutIndividual);
+            while(findViewById(countRecInd)!=null){
+                countRecInd++;
+            }
+            LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
+            View rowView = inflater.inflate(R.layout.select_receipent_row, tableLayout);
+
+            AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView)rowView.findViewById(R.id.autoCompleteViewIndReceipent);
+
+            autoCompleteTextView.setId(countRecInd);
+
+            SelectReceipentFragment.receipentIndividualList.add(countRecInd);
+        }
+        else if(fragmentType=="AutoCompleteTextViewGrp" && SelectReceipentFragment.canAddIndividual()){
+
+            TableLayout tableLayout = (TableLayout)findViewById(R.id.tableLayoutGroup);
+
+            LayoutInflater layoutInflater = LayoutInflater.from(getApplicationContext());
+            View rowView = layoutInflater.inflate(R.layout.select_receipent_row, tableLayout);
+
+            AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView)rowView.findViewById(R.id.autoCompleteViewIndReceipent);
+
+            while(findViewById(countRecGrp)!=null){
+                countRecGrp++;
+            }
+            autoCompleteTextView.setId(countRecGrp);
+
+            SelectReceipentFragment.receipentGroupList.add(countRecGrp);
+        }
     }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
@@ -330,6 +359,7 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
 
     public class SignOutServer extends AsyncTask<Void, Void, Void> {
 
+        String value;
         @Override
         protected Void doInBackground(Void... params) {
 
@@ -340,37 +370,14 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
                 List<NameValuePair> list = new ArrayList<>();
                 list.add(new BasicNameValuePair("email", email));
 
-                HttpClient httpClient = new DefaultHttpClient();
-                HttpPost httpPost = new HttpPost(url.toURI());
+                SendIDToServer sendIDToServer = new SendIDToServer(url, list);
+                value = sendIDToServer.sendToken();
 
-                httpPost.setEntity(new UrlEncodedFormEntity(list));
-
-                HttpResponse httpResponse = httpClient.execute(httpPost);
-
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpResponse.getEntity().getContent()));
-
-                String line;
-                StringBuffer value = new StringBuffer();
-
-                while((line=bufferedReader.readLine())!=null){
-                    value.append(line);
-                }
-
-                Log.i("On sign Out", value.toString());
+                Log.i("On sign Out", value);
             }
             catch (MalformedURLException e) {
                 e.printStackTrace();
-            }catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            } catch (ClientProtocolException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
             }
-
-
 
             return null;
         }
