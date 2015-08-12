@@ -28,12 +28,9 @@ import com.google.android.gms.auth.UserRecoverableAuthException;
 import com.google.android.gms.common.AccountPicker;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.nirma.varunraval.nuconnect.Body.BodyActivity;
-import com.nirma.varunraval.nuconnect.NextFragment;
 import com.nirma.varunraval.nuconnect.R;
-import com.nirma.varunraval.nuconnect.RegisterDeviceService;
-import com.nirma.varunraval.nuconnect.RetryLoginFragment;
+import com.nirma.varunraval.nuconnect.GCMToken.RegisterDeviceService;
 import com.nirma.varunraval.nuconnect.SendIDToServer;
-import com.nirma.varunraval.nuconnect.SpinnerFragment;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -71,16 +68,17 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
     private static final ScheduledExecutorService worker =
             Executors.newSingleThreadScheduledExecutor();
     FragmentManager fragmentManager;
-    static String nuconnect_accessToken;
+    public static String nuconnect_accessToken;
     static String login_type = null;
     static int serverConnected=0;
 
-    public static String serverURL = "192.168.1.11:9000";
+//    public static String serverURL = "192.168.1.11:9000";
 
 
     public void setAccessToken(String accessToken){
         nuconnect_accessToken = accessToken;
     }
+
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -308,13 +306,13 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
 
                     List<NameValuePair> nameValuePairs = new ArrayList<>();
                     nameValuePairs.add(new BasicNameValuePair("access_token", nuconnect_accessToken));
-                    nameValuePairs.add(new BasicNameValuePair("email", email));
-                    URL url = new URL("http://" + serverURL + "/nuconnect/setaccesstoken.php");
+//                    nameValuePairs.add(new BasicNameValuePair("email", email));
+                    URL url = new URL(getResources().getString(R.string.server_url) + "/checkServerConnection.php");
 
                     SendIDToServer sendIDToServer = new SendIDToServer(url, nameValuePairs);
                     value = sendIDToServer.sendToken();
 
-                    Log.i("In SendToenToServerJson", value.toString());
+                    Log.i("InSendTokenToServerJson", value.toString());
                     JSONObject reader = new JSONObject(value.toString());
 
                     serverConnected = reader.getInt("success");
@@ -340,9 +338,6 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
                 doOnUIInflate("retry", new IOException());
         }
 
-        void sendTokenToServer(String email) {
-            Log.i("In", "send Token To Server method");
-        }
     }
 
     void validateAndGo(Bundle arg) {

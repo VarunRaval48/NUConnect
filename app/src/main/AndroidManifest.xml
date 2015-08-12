@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".Login.LoginActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/login_name" >
 
@@ -46,7 +46,7 @@
             android:label="@string/title_activity_welcome" >
         </activity>
         <activity
-            android:name=".BodyActivity"
+            android:name=".Body.BodyActivity"
             android:label="@string/title_activity_body" >
         </activity>
         
@@ -60,17 +60,17 @@
             </intent-filter>
         </receiver>
 
-        <service android:name="com.nirma.varunraval.nuconnect.RegisterDeviceService"
+        <service android:name=".GCMToken.RegisterDeviceService"
             android:exported="false"></service>
 
-        <service android:name="com.nirma.varunraval.nuconnect.HandleMessagesGCMListenerService"
+        <service android:name=".Message.HandleMessagesGCMListenerService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.receive" />
             </intent-filter>
         </service>
 
-        <service android:name="com.nirma.varunraval.nuconnect.CustomInstanceIDListenerService"
+        <service android:name=".GCMToken.CustomInstanceIDListenerService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.android.iis.InstanceID" />

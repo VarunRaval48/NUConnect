@@ -32,13 +32,14 @@ public class RegisterDeviceService extends IntentService {
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
      *
-     * @param name Used to name the worker thread, important only for debugging.
+     *  Used to name the worker thread, important only for debugging.
      */
+
+    static String token = null;
 
     @Override
     protected void onHandleIntent(Intent intent) {
 
-        String token = null;
         String value;
 
         String email = intent.getStringExtra("email");
@@ -46,7 +47,6 @@ public class RegisterDeviceService extends IntentService {
 
         InstanceID instanceID = InstanceID.getInstance(this);
         try {
-
             token = instanceID.getToken(getString(R.string.sender_id), GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
         }
         catch (IOException e) {
@@ -61,8 +61,9 @@ public class RegisterDeviceService extends IntentService {
                 List<NameValuePair> list = new ArrayList<>();
                 list.add(new BasicNameValuePair("reg_id", token));
                 list.add(new BasicNameValuePair("email", email));
+                list.add(new BasicNameValuePair("access_token", LoginActivity.nuconnect_accessToken));
 
-                URL url = new URL("http://" + LoginActivity.serverURL + "/nuconnect/setRegistrationID.php");
+                URL url = new URL(getResources().getString(R.string.server_url)+ "/setRegistrationID.php");
 
                 SendIDToServer sendIDToServer = new SendIDToServer(url, list);
                 value = sendIDToServer.sendToken();

@@ -1,8 +1,11 @@
 package com.nirma.varunraval.nuconnect.Body;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -24,14 +27,12 @@ import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.Toast;
 
+import com.google.android.gms.appindexing.AndroidAppUri;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.nirma.varunraval.nuconnect.BodyFragmentHome;
-import com.nirma.varunraval.nuconnect.BodyFragmentInform;
-import com.nirma.varunraval.nuconnect.InformExtraLectureFragment;
-import com.nirma.varunraval.nuconnect.LoginActivity;
+import com.nirma.varunraval.nuconnect.Login.LoginActivity;
 import com.nirma.varunraval.nuconnect.MainActivity;
+import com.nirma.varunraval.nuconnect.Message.sendUpstreamMessage;
 import com.nirma.varunraval.nuconnect.R;
-import com.nirma.varunraval.nuconnect.SelectReceipentFragment;
 import com.nirma.varunraval.nuconnect.SendIDToServer;
 
 import org.apache.http.NameValuePair;
@@ -87,7 +88,7 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         listView = (ListView) findViewById(R.id.left_drawer);
 
-        drawerLayout.setDrawerShadow(R.drawable.ic_drawer, GravityCompat.START);
+        drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
         if(login_type.equals("Student"))
             selectedTypeList = listTitlesStudent;
@@ -134,6 +135,10 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
 
     public boolean onPrepareOptionsMenu(Menu menu){
         return super.onPrepareOptionsMenu(menu);
+    }
+
+    Context getContext(){
+        return getApplicationContext();
     }
 
 
@@ -191,52 +196,68 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
     }
 
     @Override
-    public void onFragmentInformExtralectureInteraction() {
-        Log.i("Receipents", SelectReceipentFragment.receipentIndividualList.toString());
+    public void onFragmentInformExtralectureInteraction(ArrayList<Integer> reciepentListID) {
+        Log.i("Reciepents", reciepentListID.toString());
 
-        for(int i: SelectReceipentFragment.receipentIndividualList){
+        int flag = 0;
+        ArrayList<String> reciepentList = new ArrayList<>();
+        for(int i: reciepentListID){
+            Log.d("List View", Integer.toString(i));
             AutoCompleteTextView textView = (AutoCompleteTextView)findViewById(i);
-            if(textView!=null){
+            if(textView.getText()!=null){
                 Log.i(""+i+":", textView.getText().toString());
-
+                reciepentList.add(textView.getText().toString());
                 textView.setText("");
+                flag = 1;
             }
         }
+//        sendMessage("ECHO", "EXTRA_LECTURE");
 
-        sendMessage("ECHO", "EXTRA_LECTURE");
-
-        Toast.makeText(getApplicationContext(), "Message Sent", Toast.LENGTH_SHORT).show();
-
-    }
-
-    void sendMessage(String action, String message_type){
-
-        data = new Bundle();
-        data.putString("ACTION", action);
-        data.putString("MESSAGE_TYPE", message_type);
-
-        sendTask = new AsyncTask<Void, Void, String>() {
-            @Override
-            protected String doInBackground(Void... params) {
-
-                String id = Integer.toString(messageID.incrementAndGet());
-
-                Log.d("MessageID", id);
-
-                try{
-                    gcm.send(R.string.sender_id+"@gcm.googleapis.com", id, data);
-                    Log.d("After GCM send message", "SUCCEssful");
-                }
-                catch (IOException e) {
-                    Log.d("BodyActivity", "Sending Unsuccessful");
-                    e.printStackTrace();
-                }
-
-
-                return null;
+        if(flag==1) {
+            try {
+                Log.i("BodyActivity", "Sending Message");
+                sendUpstreamMessage sendUpstreamMessage = new sendUpstreamMessage(reciepentList, "Extra Lecture",
+                        new URL(getResources().getString(R.string.server_tom_url) + "/sendUpstreamMessage"));
+                sendUpstreamMessage.execute();
+                Toast.makeText(getApplicationContext(), "Message Sent", Toast.LENGTH_SHORT).show();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
             }
-        };
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "Enter Reciepents", Toast.LENGTH_SHORT).show();
+        }
     }
+
+//TODO during implementation of XAMPP
+//    void sendMessage(String action, String message_type){
+//
+//        data = new Bundle();
+//        data.putString("ACTION", action);
+//        data.putString("MESSAGE_TYPE", message_type);
+//
+//        sendTask = new AsyncTask<Void, Void, String>() {
+//            @Override
+//            protected String doInBackground(Void... params) {
+//
+//                String id = Integer.toString(messageID.incrementAndGet());
+//
+//                Log.d("MessageID", id);
+//
+//                try{
+//                    gcm.send(R.string.sender_id+"@gcm.googleapis.com", id, data);
+//                    Log.d("After GCM send message", "SUCCEssful");
+//                }
+//                catch (IOException e) {
+//                    Log.d("BodyActivity", "Sending Unsuccessful");
+//                    e.printStackTrace();
+//                }
+//
+//
+//                return null;
+//            }
+//        };
+//    }
 
 
     @Override
@@ -255,7 +276,7 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
 
             autoCompleteTextView.setId(countRecInd);
 
-            SelectReceipentFragment.receipentIndividualList.add(countRecInd);
+            SelectReceipentFragment.reciepentListID[SelectReceipentFragment.msg_type].add(countRecInd);
         }
         else if(fragmentType=="AutoCompleteTextViewGrp" && SelectReceipentFragment.canAddIndividual()){
 
@@ -271,7 +292,7 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
             }
             autoCompleteTextView.setId(countRecGrp);
 
-            SelectReceipentFragment.receipentGroupList.add(countRecGrp);
+            SelectReceipentFragment.reciepentListID[SelectReceipentFragment.msg_type].add(countRecGrp);
         }
     }
 
@@ -338,23 +359,38 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
     }
 
     void wantSignOut(){
-        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
+        final SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
 
         //TODO Call server that session is finished
-        new SignOutServer().execute();
+        new AlertDialog.Builder(this)
+                .setTitle("Sign Out?")
+                .setMessage("Are you sure you want to sign out?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        new SignOutServer().execute();
+                        editor.remove("NUConnect_username");
+                        editor.remove("NUConnect_email");
+                        editor.remove("NUConnect_accesstoken");
+                        editor.remove("NUConnect_login_type");
+                        editor.commit();
 
-        editor.remove("NUConnect_username");
-        editor.remove("NUConnect_email");
-        editor.remove("NUConnect_accesstoken");
-        editor.remove("NUConnect_login_type");
-        editor.commit();
+                        Intent in = new Intent(BodyActivity.this, MainActivity.class);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        Intent in = new Intent(BodyActivity.this, MainActivity.class);
-        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(in);
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
-        startActivity(in);
-        finish();
+                    }
+                })
+                .setIcon(android.R.drawable.alert_light_frame)
+                .show();
     }
 
     public class SignOutServer extends AsyncTask<Void, Void, Void> {
@@ -365,7 +401,7 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
 
             URL url = null;
             try {
-                url = new URL("http://"+ LoginActivity.serverURL+"/nuconnect/signout.php");
+                url = new URL(getResources().getString(R.string.server_url)+"/signout.php");
 
                 List<NameValuePair> list = new ArrayList<>();
                 list.add(new BasicNameValuePair("email", email));

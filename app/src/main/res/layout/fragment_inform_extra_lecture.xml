@@ -1,7 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.nirma.varunraval.nuconnect.InformExtraLectureFragment">
+    tools:context="com.nirma.varunraval.nuconnect.Body.InformExtraLectureFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -9,6 +9,6 @@
         android:layout_width="200dp" android:layout_height="wrap_content"
         android:text="Inform" android:id="@+id/buttonExtralecture"
         android:layout_gravity="center" android:textStyle="bold"
-        android:typeface="serif" android:background="@android:color/white"
-        android:layout_marginBottom="10dp"/>
+        android:typeface="serif" android:background="@android:drawable/alert_light_frame"
+        android:layout_marginBottom="10dp" android:shadowRadius="100"/>
 </FrameLayout>

@@ -1,16 +1,27 @@
 package com.nirma.varunraval.nuconnect;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.google.android.gms.auth.GoogleAuthException;
+import com.google.android.gms.auth.GoogleAuthUtil;
+import com.google.android.gms.auth.GooglePlayServicesAvailabilityException;
+import com.google.android.gms.auth.UserRecoverableAuthException;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.nirma.varunraval.nuconnect.Body.BodyActivity;
+
+import java.io.IOException;
 
 
 public class MainActivity extends Activity {
@@ -19,6 +30,9 @@ public class MainActivity extends Activity {
     static int logInReqestCode = 99;
     FragmentManager mFragmentManager;
     FragmentTransaction mFragmentTransaction;
+    static String email, nuconnect_accesstoken, username, login_type;
+    boolean handling = false;
+    int REQUEST_AUTHORIZATION = 998, REQUEST_CODE_RECOVER_FROM_PLAY_SERVICES_ERROR = 997;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +44,10 @@ public class MainActivity extends Activity {
         //fetch isSignedIn from memory or cache
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        String username = sharedPreferences.getString("NUConnect_username", null);
-        String email = sharedPreferences.getString("NUConnect_email", null);
-        String login_type = sharedPreferences.getString("NUConnect_login_type", null);
+        username = sharedPreferences.getString("NUConnect_username", null);
+        email = sharedPreferences.getString("NUConnect_email", null);
+        nuconnect_accesstoken = sharedPreferences.getString("NUConnect_accesstoken", null);
+        login_type = sharedPreferences.getString("NUConnect_login_type", null);
 
         Log.i("Check", "Going to check username");
         if(username!=null){
@@ -65,6 +80,23 @@ public class MainActivity extends Activity {
         }
     }
 
+    void giveResult(boolean update){
+        if(update){
+            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
+            editor.remove("NUConnect_accesstoken");
+            editor.putString("NUConnect_accesstoken", nuconnect_accesstoken);
+            editor.commit();
+        }
+        Bundle arg = new Bundle();
+        arg.putString("name", username);
+        arg.putString("email", email);
+        arg.putString("login_type", login_type);
+
+        Intent in = new Intent(MainActivity.this, BodyActivity.class);
+        in.putExtra("user_info", arg);
+        startActivity(in);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -85,5 +117,77 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void handleException(final Exception e) {
+        handling = true;
+        runOnUiThread(new Runnable() {
+            public void run() {
+                if (e instanceof GooglePlayServicesAvailabilityException) {
+                    int statusCode = ((GooglePlayServicesAvailabilityException) e)
+                            .getConnectionStatusCode();
+                    Dialog dialog = GooglePlayServicesUtil.getErrorDialog(statusCode,
+                            MainActivity.this, REQUEST_CODE_RECOVER_FROM_PLAY_SERVICES_ERROR);
+                    Log.i("Check First", "Going to handle");
+                    dialog.show();
+                } else if (e instanceof UserRecoverableAuthException) {
+                    Intent intent = ((UserRecoverableAuthException) e).getIntent();
+                    startActivityForResult(intent, REQUEST_AUTHORIZATION);
+                }
+            }
+        });
+        handling = false;
+//        notify();
+    }
+
+    public class FetchToken extends AsyncTask<Object, Void, Void>{
+
+        String oAuthscopes = "oauth2:" + "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/plus.login";
+        String access_token="";
+        boolean update = false;
+//        MainActivity man;
+//        String email;
+
+        FetchToken(MainActivity man, String email){
+//            this.man = man;
+//            this.email = email;
+        }
+
+        @Override
+        protected Void doInBackground(Object... params) {
+
+            try {
+                access_token = fetchAccessToken();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        protected void onPostExecute(Void params){
+            if(!access_token.equals(MainActivity.nuconnect_accesstoken)){
+                nuconnect_accesstoken = access_token;
+                update = true;
+            }
+            giveResult(update);
+        }
+
+        protected String fetchAccessToken() throws IOException {
+            try {
+                return GoogleAuthUtil.getToken(getApplicationContext(), email, oAuthscopes);
+            } catch (GooglePlayServicesAvailabilityException e) {
+                handling = true;
+                Log.i("Before", "Before calling handle Exception gPlay " + handling);
+                handleException(e);
+            } catch (UserRecoverableAuthException e) {
+                handling = true;
+                Log.i("Before", "Before calling handle Exception recoverable");
+                handleException(e);
+            } catch (GoogleAuthException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
     }
 }

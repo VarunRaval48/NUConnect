@@ -27,7 +27,7 @@ import java.util.ArrayList;
  * Use the {@link SelectReceipentFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SelectReceipentFragment extends Fragment implements View.OnClickListener {
+public class SelectReceipentFragment extends Fragment{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -41,8 +41,8 @@ public class SelectReceipentFragment extends Fragment implements View.OnClickLis
 
     Context context;
 
-    public static ArrayList<Integer> receipentIndividualList = new ArrayList<>();
-    public static ArrayList<Integer> receipentGroupList = new ArrayList<>();
+    public static ArrayList<Integer>[] reciepentListID = new ArrayList[2];
+    public static int msg_type=0; // 0 for Indivisual 1 for group
     static int countRecInd=1, countRecGrp=101;
 
     private OnReceipentFragmentInteractionListener mListener;
@@ -74,6 +74,10 @@ public class SelectReceipentFragment extends Fragment implements View.OnClickLis
             mParam1type = getArguments().getString(ARG_PARAM1);
         }
 
+        for(int i=0; i<2; i++){
+            reciepentListID[i] = new ArrayList<>();
+        }
+
         context = getActivity().getApplicationContext();
     }
 
@@ -87,7 +91,8 @@ public class SelectReceipentFragment extends Fragment implements View.OnClickLis
         if(mParam1type.equals("Individual")) {
             view = inflater.inflate(R.layout.fragment_select_receipent_individual, container, false);
 
-            receipentIndividualList.add(R.id.autoCompleteTextViewIndv1);
+            reciepentListID[0].add(R.id.autoCompleteTextViewIndv1);
+            msg_type = 0;
             Button addReceipentIndButton = (Button)view.findViewById(R.id.buttonAddIndv);
 
             addReceipentIndButton.setOnClickListener(new View.OnClickListener() {
@@ -111,7 +116,8 @@ public class SelectReceipentFragment extends Fragment implements View.OnClickLis
             arrayAdapterDivision.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
             spinnerInformDivision.setAdapter(arrayAdapterDivision);
 
-            receipentGroupList.add(R.id.autoCompleteTextViewGroup);
+            reciepentListID[1].add(R.id.autoCompleteTextViewGroup);
+            msg_type = 1;
 
             Button addReceipentGrpButton = (Button)view.findViewById(R.id.buttonAddGroup);
 
@@ -150,7 +156,8 @@ public class SelectReceipentFragment extends Fragment implements View.OnClickLis
         super.onDetach();
         mListener = null;
 
-        receipentIndividualList.removeAll(receipentIndividualList);
+        reciepentListID[0].removeAll(reciepentListID[0]);
+        reciepentListID[1].removeAll(reciepentListID[1]);
     }
 
     /**
@@ -166,71 +173,6 @@ public class SelectReceipentFragment extends Fragment implements View.OnClickLis
     public interface OnReceipentFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onReceipentFragmentInteraction(String type, String fragmentType);
-    }
-
-    @Override
-    public void onClick(View v) {
-
-        Log.i("onButtonPress", ""+v.getId());
-
-        if(v.getId() == R.id.buttonAddIndv && canAddIndividual()){
-
-            Log.i("onButtonPress", "In "+v.getId());
-
-//            Resources res = context.getResources();
-//            XmlPullParser parser = res.getXml()
-//            AttributeSet attributeSet = res.getXml(R.);
-
-            TableLayout tableLayout = (TableLayout)view.findViewById(R.id.tableLayoutIndividual);
-//            TableRow newRow = new TableRow(context);
-//            TableLayout.LayoutParams tableLayoutParams = new TableLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//
-//            newRow.setLayoutParams(tableLayoutParams);
-//
-//            TableRow.LayoutParams rowLayoutParams = new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//
-//            AutoCompleteTextView autoCompleteTextView = new AutoCompleteTextView(context);
-//            autoCompleteTextView.setLayoutParams(rowLayoutParams);
-//            autoCompleteTextView.setTextColor(getResources().getColor(R.color.wallet_holo_blue_light));
-//            autoCompleteTextView.setId();
-
-//            newRow.addView(autoCompleteTextView);
-//
-//            tableLayout.addView(newRow);
-
-            LayoutInflater inflater = LayoutInflater.from(context);
-            View rowView = inflater.inflate(R.layout.select_receipent_row, tableLayout);
-
-            AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView)rowView.findViewById(R.id.autoCompleteViewIndReceipent);
-
-            //TODO Add id randomly checking if view at there is present or not, and add all of them to database to retrieve
-            //noinspection ResourceType
-            while(view.findViewById(countRecInd)!=null){
-                countRecInd++;
-            }
-            //noinspection ResourceType
-            autoCompleteTextView.setId(countRecInd);
-
-            receipentIndividualList.add(countRecInd);
-        }
-        else if(v.getId() == R.id.buttonAddGroup && canAddIndividual()){
-
-            Log.i("onButtonPress", "In "+v.getId());
-
-            TableLayout tableLayout = (TableLayout)view.findViewById(R.id.tableLayoutGroup);
-
-            LayoutInflater layoutInflater = LayoutInflater.from(context);
-            View rowView = layoutInflater.inflate(R.layout.select_receipent_row, tableLayout);
-
-            AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView)rowView.findViewById(R.id.autoCompleteViewIndReceipent);
-
-            while(view.findViewById(countRecGrp)!=null){
-                countRecGrp++;
-            }
-            autoCompleteTextView.setId(countRecGrp);
-
-            receipentGroupList.add(countRecGrp);
-        }
     }
 
     static boolean canAddIndividual(){

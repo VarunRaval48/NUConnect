@@ -10,6 +10,8 @@ import android.widget.Button;
 
 import com.nirma.varunraval.nuconnect.R;
 
+import java.util.ArrayList;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -83,7 +85,7 @@ public class InformExtraLectureFragment extends Fragment {
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed() {
         if (mListener != null) {
-            mListener.onFragmentInformExtralectureInteraction();
+            mListener.onFragmentInformExtralectureInteraction(SelectReceipentFragment.reciepentListID[SelectReceipentFragment.msg_type]);
         }
     }
 
@@ -116,7 +118,7 @@ public class InformExtraLectureFragment extends Fragment {
      */
     public interface OnFragmentInformExtralectureInteractionListener {
         // TODO: Update argument type and name
-        public void onFragmentInformExtralectureInteraction();
+        public void onFragmentInformExtralectureInteraction(ArrayList<Integer> receipentListID);
     }
 
 }

@@ -18,11 +18,15 @@
     <string name="drawer_close">Close Drawer</string>
 
     <string name="sender_id">611036220045</string>
-    <string name="api_key">AIzaSyBO1EeoxA7GqZ8iRvQZEdeX2rtL9266Lts</string>
+    <string name="api_key_server">AIzaSyBO1EeoxA7GqZ8iRvQZEdeX2rtL9266Lts</string>
+
+    <string name="server_url">http://172.20.10.3:9000/nuconnect</string>
+    <string name="server_tom_url">http://172.20.10.3:8080/examples</string>
 
     <string-array name="list_drawer_student">
         <item>Home</item>
         <item>Set Location</item>
+        <item>Inform</item>
         <item>Sign Out</item>
     </string-array>
 
