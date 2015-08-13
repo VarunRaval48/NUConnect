@@ -359,9 +359,10 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
             Intent in = new Intent(LoginActivity.this, BodyActivity.class);
             in.putExtra("user_info", arg);
 
-            Intent serviceIntent = new Intent(this, RegisterDeviceService.class);
-            serviceIntent.putExtra("email", arg.getString("email"));
-            startService(serviceIntent);
+            RegisterDeviceService.handleNew(this, email);
+//            Intent serviceIntent = new Intent(this, RegisterDeviceService.class);
+//            serviceIntent.putExtra("email", arg.getString("email"));
+//            startService(serviceIntent);
 
             startActivity(in);
         }

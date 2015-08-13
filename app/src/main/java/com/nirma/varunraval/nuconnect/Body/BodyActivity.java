@@ -9,6 +9,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -358,6 +360,15 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
         fragmentManager.executePendingTransactions();
     }
 
+    boolean isDeviceOnline() {
+        ConnectivityManager comMng = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        final NetworkInfo netInfo = comMng.getActiveNetworkInfo();
+
+        if (netInfo != null && netInfo.isConnected())
+            return true;
+        return false;
+    }
+
     void wantSignOut(){
         final SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
 
@@ -368,7 +379,8 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        new SignOutServer().execute();
+                        if(isDeviceOnline())
+                            new SignOutServer().execute();
                         editor.remove("NUConnect_username");
                         editor.remove("NUConnect_email");
                         editor.remove("NUConnect_accesstoken");

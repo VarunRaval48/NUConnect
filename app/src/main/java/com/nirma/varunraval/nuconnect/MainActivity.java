@@ -20,6 +20,7 @@ import com.google.android.gms.auth.GooglePlayServicesAvailabilityException;
 import com.google.android.gms.auth.UserRecoverableAuthException;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.nirma.varunraval.nuconnect.Body.BodyActivity;
+import com.nirma.varunraval.nuconnect.GCMToken.RegisterDeviceService;
 
 import java.io.IOException;
 
@@ -58,20 +59,21 @@ public class MainActivity extends Activity {
             isSignedIn = false;
         }
 
-        mFragmentManager = getFragmentManager();
-        mFragmentTransaction = mFragmentManager.beginTransaction();
+//        mFragmentManager = getFragmentManager();
+//        mFragmentTransaction = mFragmentManager.beginTransaction();
 
         Bundle arg = new Bundle();
 
         //TODO check access token with server
         if(isSignedIn){
-            arg.putString("name", username);
-            arg.putString("email", email);
-            arg.putString("login_type", login_type);
-
-            Intent in = new Intent(MainActivity.this, BodyActivity.class);
-            in.putExtra("user_info", arg);
-            startActivity(in);
+//            arg.putString("name", username);
+//            arg.putString("email", email);
+//            arg.putString("login_type", login_type);
+//
+//            Intent in = new Intent(MainActivity.this, BodyActivity.class);
+//            in.putExtra("user_info", arg);
+//            startActivity(in);
+            new FetchToken().execute();
         }
         else{
             Intent in = new Intent(MainActivity.this, WelcomeActivity.class);
@@ -82,10 +84,16 @@ public class MainActivity extends Activity {
 
     void giveResult(boolean update){
         if(update){
-            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
-            editor.remove("NUConnect_accesstoken");
-            editor.putString("NUConnect_accesstoken", nuconnect_accesstoken);
-            editor.commit();
+//            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
+//            editor.remove("NUConnect_accesstoken");
+//            editor.putString("NUConnect_accesstoken", nuconnect_accesstoken);
+//            editor.commit();
+            RegisterDeviceService.handleUpdate(getApplicationContext(), email, nuconnect_accesstoken);
+//            ConnectServer connectServer = new ConnectServer();
+//            connectServer.initialize(getApplicationContext(), nuconnect_accesstoken, email);
+        }
+        else{
+            RegisterDeviceService.handleConnect(getApplicationContext(), email);
         }
         Bundle arg = new Bundle();
         arg.putString("name", username);
@@ -148,7 +156,7 @@ public class MainActivity extends Activity {
 //        MainActivity man;
 //        String email;
 
-        FetchToken(MainActivity man, String email){
+        FetchToken(){
 //            this.man = man;
 //            this.email = email;
         }
