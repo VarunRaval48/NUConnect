@@ -1,4 +1,4 @@
-package com.nirma.varunraval.nuconnect.GCMToken;
+package com.nirma.varunraval.nuconnect.gcmtoken;
 
 
 import android.app.IntentService;
@@ -10,7 +10,7 @@ import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.iid.InstanceID;
-import com.nirma.varunraval.nuconnect.Login.LoginActivity;
+import com.nirma.varunraval.nuconnect.login.LoginActivity;
 import com.nirma.varunraval.nuconnect.R;
 import com.nirma.varunraval.nuconnect.SendIDToServer;
 

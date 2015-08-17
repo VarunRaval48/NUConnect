@@ -34,7 +34,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Login.LoginActivity"
+            android:name=".login.LoginActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/login_name" >
 
@@ -48,34 +48,35 @@
             android:label="@string/title_activity_welcome" >
         </activity>
         <activity
-            android:name=".Body.BodyActivity"
+            android:name=".body.BodyActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/title_activity_body" >
         </activity>
 
         <receiver
+            android:enabled="true"
             android:name="com.google.android.gms.gcm.GcmReceiver"
             android:exported="true"
             android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-
                 <category android:name="com.nirma.varunraval.nuconnect" />
             </intent-filter>
         </receiver>
 
         <service
-            android:name=".GCMToken.RegisterDeviceService"
+            android:name=".gcmtoken.RegisterDeviceService"
             android:exported="false" />
         <service
-            android:name=".Message.HandleMessagesGCMListenerService"
+            android:name=".message.HandleMessagesGCMListenerService"
             android:exported="false" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.receive" />
             </intent-filter>
         </service>
         <service
-            android:name=".GCMToken.CustomInstanceIDListenerService"
+            android:name=".gcmtoken.CustomInstanceIDListenerService"
             android:exported="false" >
             <intent-filter>
                 <action android:name="com.google.android.iis.InstanceID" />
@@ -86,5 +87,4 @@
             android:exported="false" >
         </service>
     </application>
-
 </manifest>

@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -13,14 +12,16 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.GoogleAuthException;
 import com.google.android.gms.auth.GoogleAuthUtil;
 import com.google.android.gms.auth.GooglePlayServicesAvailabilityException;
 import com.google.android.gms.auth.UserRecoverableAuthException;
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.nirma.varunraval.nuconnect.Body.BodyActivity;
-import com.nirma.varunraval.nuconnect.GCMToken.RegisterDeviceService;
+import com.nirma.varunraval.nuconnect.body.BodyActivity;
+import com.nirma.varunraval.nuconnect.gcmtoken.RegisterDeviceService;
 
 import java.io.IOException;
 
@@ -34,7 +35,7 @@ public class MainActivity extends Activity {
     static String email, nuconnect_accesstoken, username, login_type;
     boolean handling = false;
     int REQUEST_AUTHORIZATION = 998, REQUEST_CODE_RECOVER_FROM_PLAY_SERVICES_ERROR = 997;
-
+    final int PLAY_SERVICES_RESOLUTION_REQUEST=990;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +44,9 @@ public class MainActivity extends Activity {
         Log.i("MainAc", "Calling LoginClass");
 
         //fetch isSignedIn from memory or cache
+
+        boolean check = checkPlayServices();
+        Log.i("GooglePlayServices", ""+check);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         username = sharedPreferences.getString("NUConnect_username", null);
@@ -80,6 +84,37 @@ public class MainActivity extends Activity {
 //            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(in);
         }
+    }
+
+    public void onResume(){
+        super.onResume();
+        boolean check = checkPlayServices();
+        Log.i("GooglePlayServices", "" + check);
+    }
+    private boolean checkPlayServices() {
+        int resultCode = GooglePlayServicesUtil
+                .isGooglePlayServicesAvailable(this);
+        // When Play services not found in device
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
+                // Show Error dialog to install Play services
+                GooglePlayServicesUtil.getErrorDialog(resultCode, this,
+                        PLAY_SERVICES_RESOLUTION_REQUEST).show();
+            } else {
+                Toast.makeText(
+                        getApplicationContext(),
+                        "This device doesn't support Play services, App will not work normally",
+                        Toast.LENGTH_LONG).show();
+                finish();
+            }
+            return false;
+        } else {
+            Toast.makeText(
+                    getApplicationContext(),
+                    "This device supports Play services, App will work normally",
+                    Toast.LENGTH_LONG).show();
+        }
+        return true;
     }
 
     void giveResult(boolean update){

@@ -1,4 +1,4 @@
-package com.nirma.varunraval.nuconnect.Body;
+package com.nirma.varunraval.nuconnect.body;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,10 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TableLayout;
 
 import com.nirma.varunraval.nuconnect.R;
 
@@ -105,6 +103,11 @@ public class SelectReceipentFragment extends Fragment{
         }//TODO Correct layout of group receipent (row size)
         else if(mParam1type.equals("Group")){
             view = inflater.inflate(R.layout.fragment_select_receipent_group, container, false);
+
+            Spinner spinnerInformWhoToYear = (Spinner)view.findViewById(R.id.spinnerInformWhoToYear);
+            ArrayAdapter<CharSequence> arrayAdapterWhoToYear = ArrayAdapter.createFromResource(context, R.array.inform_who_to_year, R.layout.spinner_item);
+            arrayAdapterWhoToYear.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
+            spinnerInformWhoToYear.setAdapter(arrayAdapterWhoToYear);
 
             Spinner spinnerInformWhoTo = (Spinner)view.findViewById(R.id.spinnerInformWhoTo);
             ArrayAdapter<CharSequence> arrayAdapterWhoTo = ArrayAdapter.createFromResource(context, R.array.inform_who_to, R.layout.spinner_item);

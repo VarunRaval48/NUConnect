@@ -1,7 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.nirma.varunraval.nuconnect.Body.SelectReceipentFragment">
+    tools:context="com.nirma.varunraval.nuconnect.body.SelectReceipentFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -19,7 +19,23 @@
                 <TextView
                     android:layout_width="wrap_content" android:layout_height="wrap_content"
                     android:textSize="21sp"
-                    android:text="Inform to : " android:id="@+id/textViewInformWhoTo" android:paddingTop="30dp"/>
+                    android:text="Year : " android:id="@+id/textViewInformWhoToYear" android:paddingTop="30dp"/>
+
+                <Spinner
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:id="@+id/spinnerInformWhoToYear"
+                    android:layout_column="11"/>
+                <!--android:theme="@style/Widget.AppCompat.TextView.SpinnerItem"/>-->
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textSize="21sp"
+                    android:text="Branch : " android:id="@+id/textViewInformWhoTo" android:paddingTop="30dp"/>
 
                 <Spinner
                     android:layout_width="match_parent" android:layout_height="wrap_content"
@@ -57,7 +73,7 @@
                 <AutoCompleteTextView
                     android:layout_width="match_parent" android:layout_height="wrap_content"
                     android:text="" android:id="@+id/autoCompleteTextViewGroup"
-                    android:layout_column="11" android:textColor="@android:color/white"
+                    android:layout_column="11" android:textColor="@android:color/holo_blue_bright"
                     android:hint="Enter Username" android:layout_marginTop="18dp"
                     android:layout_marginLeft="10dp"/>
             </TableRow>

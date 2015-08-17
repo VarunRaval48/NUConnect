@@ -1,4 +1,4 @@
-package com.nirma.varunraval.nuconnect.Login;
+package com.nirma.varunraval.nuconnect.login;
 
 import android.accounts.AccountManager;
 import android.app.Activity;
@@ -27,9 +27,9 @@ import com.google.android.gms.auth.GooglePlayServicesAvailabilityException;
 import com.google.android.gms.auth.UserRecoverableAuthException;
 import com.google.android.gms.common.AccountPicker;
 import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.nirma.varunraval.nuconnect.Body.BodyActivity;
+import com.nirma.varunraval.nuconnect.body.BodyActivity;
 import com.nirma.varunraval.nuconnect.R;
-import com.nirma.varunraval.nuconnect.GCMToken.RegisterDeviceService;
+import com.nirma.varunraval.nuconnect.gcmtoken.RegisterDeviceService;
 import com.nirma.varunraval.nuconnect.SendIDToServer;
 
 import org.apache.http.NameValuePair;
@@ -89,7 +89,6 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
 
         scope = "audience:server:client_id:611036220045-sjstaa7r37ufc1t4q0iotb1otng8ktj2.apps.googleusercontent.com";
         oAuthscopes = "oauth2:" + "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/plus.login";
-
 
         Spinner spinner = (Spinner)findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(this, R.array.login_type, android.R.layout.simple_spinner_item);

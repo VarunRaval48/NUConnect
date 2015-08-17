@@ -1,9 +1,13 @@
-package com.nirma.varunraval.nuconnect.Body;
+package com.nirma.varunraval.nuconnect.body;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,32 +29,35 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.TableLayout;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.google.android.gms.appindexing.AndroidAppUri;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.nirma.varunraval.nuconnect.Login.LoginActivity;
 import com.nirma.varunraval.nuconnect.MainActivity;
-import com.nirma.varunraval.nuconnect.Message.sendUpstreamMessage;
+import com.nirma.varunraval.nuconnect.message.sendUpstreamMessage;
 import com.nirma.varunraval.nuconnect.R;
 import com.nirma.varunraval.nuconnect.SendIDToServer;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class BodyActivity extends Activity implements BodyFragmentInform.OnFragmentInformInteractionListener,
         InformExtraLectureFragment.OnFragmentInformExtralectureInteractionListener,
-        SelectReceipentFragment.OnReceipentFragmentInteractionListener {
+        SelectReceipentFragment.OnReceipentFragmentInteractionListener{
 
     private String[] listTitlesStudent, listTitlesFaculty, selectedTypeList;
     private DrawerLayout drawerLayout;
@@ -58,6 +65,8 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
     private ActionBarDrawerToggle drawerToggle;
     private CharSequence title, drawerTitle;
     static String selectedItem;
+
+    final int PLAY_SERVICES_RESOLUTION_REQUEST=990;
 
     static String email, name, login_type;
 
@@ -128,6 +137,121 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
         }
     }
 
+    protected void onResume(){
+        super.onResume();
+    }
+
+    private boolean checkPlayServices() {
+        int resultCode = GooglePlayServicesUtil
+                .isGooglePlayServicesAvailable(this);
+        // When Play services not found in device
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
+                // Show Error dialog to install Play services
+                GooglePlayServicesUtil.getErrorDialog(resultCode, this,
+                        PLAY_SERVICES_RESOLUTION_REQUEST).show();
+            } else {
+                Toast.makeText(
+                        getApplicationContext(),
+                        "This device doesn't support Play services, App will not work normally",
+                        Toast.LENGTH_LONG).show();
+                finish();
+            }
+            return false;
+        } else {
+            Toast.makeText(
+                    getApplicationContext(),
+                    "This device supports Play services, App will work normally",
+                    Toast.LENGTH_LONG).show();
+        }
+        return true;
+    }
+
+    public static class DatePickerFragment extends DialogFragment
+            implements DatePickerDialog.OnDateSetListener{
+
+        Calendar c;
+        BodyActivity bodyActivity;
+        public DatePickerFragment(){
+            c = Calendar.getInstance();
+        }
+
+        public void onAttach(Activity activity){
+            super.onAttach(activity);
+            bodyActivity = (BodyActivity)activity;
+        }
+
+        public Dialog onCreateDialog(Bundle savedInstanceState){
+            return new DatePickerDialog(getActivity(), this, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+        }
+
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            bodyActivity.useDate(year, monthOfYear, dayOfMonth);
+        }
+    }
+
+    public static class TimePickerFragment extends DialogFragment
+            implements TimePickerDialog.OnTimeSetListener{
+
+        BodyActivity bodyActivity;
+        Bundle arg;
+        public TimePickerFragment(){
+        }
+
+        public void onAttach(Activity activity){
+            super.onAttach(activity);
+            bodyActivity = (BodyActivity)activity;
+        }
+
+        public Dialog onCreateDialog(Bundle savedInstanceState){
+            arg = getArguments();
+            return new TimePickerDialog(getActivity(), this, Calendar.HOUR_OF_DAY, Calendar.MINUTE, false);
+        }
+
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            bodyActivity.useTime(hourOfDay, minute, arg.getString("type"));
+        }
+    }
+
+    Calendar c = Calendar.getInstance();
+    public void showDatePickerDialog(View v){
+        DatePickerFragment datePickerFragment = new DatePickerFragment();
+        datePickerFragment.show(getFragmentManager(), "datepicker");
+    }
+
+    public void showTimePickerDialogFrom(View v){
+        TimePickerFragment timePickerFragment = new TimePickerFragment();
+        Bundle arg = new Bundle();
+        arg.putString("type", "from");
+        timePickerFragment.setArguments(arg);
+        timePickerFragment.show(getFragmentManager(), "timePicker");
+    }
+
+    public void showTimePickerDialogTo(View v){
+        TimePickerFragment timePickerFragment = new TimePickerFragment();
+        Bundle arg = new Bundle();
+        arg.putString("type", "to");
+        timePickerFragment.setArguments(arg);
+        timePickerFragment.show(getFragmentManager(), "timePicker");
+    }
+
+    void useDate(int y, int m, int d){
+        Button dateButton = (Button)findViewById(R.id.buttonDate);
+        dateButton.setText(d + "-" + m + "-" + y);
+    }
+
+    void useTime(int h, int m, String type){
+        Button timeButton=null;
+        if(type.equals("from")){
+            timeButton = (Button)findViewById(R.id.buttonTimeFrom);
+        }
+        else{
+            timeButton = (Button)findViewById(R.id.buttonTimeTo);
+        }
+        timeButton.setText(type+" "+h+":"+m);
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -219,7 +343,7 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
             try {
                 Log.i("BodyActivity", "Sending Message");
                 sendUpstreamMessage sendUpstreamMessage = new sendUpstreamMessage(reciepentList, "Extra Lecture",
-                        new URL(getResources().getString(R.string.server_tom_url) + "/sendUpstreamMessage"));
+                        new URL(getResources().getString(R.string.server_tom_url) + "sendUpstreamMessage"));
                 sendUpstreamMessage.execute();
                 Toast.makeText(getApplicationContext(), "Message Sent", Toast.LENGTH_SHORT).show();
             } catch (MalformedURLException e) {

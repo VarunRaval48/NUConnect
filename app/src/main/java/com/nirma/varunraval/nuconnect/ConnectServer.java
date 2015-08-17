@@ -4,11 +4,9 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.preference.PreferenceManager;
 
-import com.nirma.varunraval.nuconnect.Body.BodyActivity;
-import com.nirma.varunraval.nuconnect.Login.LoginActivity;
+import com.nirma.varunraval.nuconnect.login.LoginActivity;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -25,8 +23,6 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.xml.namespace.NamespaceContext;
 
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in

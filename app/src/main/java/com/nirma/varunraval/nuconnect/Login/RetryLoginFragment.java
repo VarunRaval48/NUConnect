@@ -1,4 +1,4 @@
-package com.nirma.varunraval.nuconnect.Login;
+package com.nirma.varunraval.nuconnect.login;
 
 import android.app.Activity;
 import android.net.Uri;

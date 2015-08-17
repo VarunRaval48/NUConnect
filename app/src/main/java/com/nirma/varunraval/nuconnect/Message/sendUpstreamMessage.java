@@ -1,19 +1,16 @@
-package com.nirma.varunraval.nuconnect.Message;
+package com.nirma.varunraval.nuconnect.message;
 
 import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.nirma.varunraval.nuconnect.Body.BodyActivity;
-import com.nirma.varunraval.nuconnect.R;
-
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -22,7 +19,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -63,13 +59,14 @@ public class sendUpstreamMessage extends AsyncTask<Object, Void, Void>{
         Log.i("In do in background", "");
         HttpClient httpClient = new DefaultHttpClient();
 
+        JSONArray jsonArray = new JSONArray(reciepentList);
         try {
             Log.i("SendUpstream", "before httpPost");
             HttpPost httpPost = new HttpPost(url.toURI());
 
             String json;
             JSONObject jsonObject = new JSONObject();
-            jsonObject.accumulate("ids", reciepentList.toArray());
+            jsonObject.accumulate("ids", jsonArray);
             jsonObject.accumulate("data", data);
             jsonObject.accumulate("action", data);
 

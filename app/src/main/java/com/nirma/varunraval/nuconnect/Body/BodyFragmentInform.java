@@ -1,4 +1,4 @@
-package com.nirma.varunraval.nuconnect.Body;
+package com.nirma.varunraval.nuconnect.body;
 
 import android.app.Activity;
 import android.content.Context;

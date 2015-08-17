@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-import com.nirma.varunraval.nuconnect.Login.LoginActivity;
+import com.nirma.varunraval.nuconnect.login.LoginActivity;
 
 
 public class WelcomeActivity extends Activity{
