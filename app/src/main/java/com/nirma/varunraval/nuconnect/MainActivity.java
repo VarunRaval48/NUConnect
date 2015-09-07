@@ -51,6 +51,7 @@ public class MainActivity extends Activity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         username = sharedPreferences.getString("NUConnect_username", null);
         email = sharedPreferences.getString("NUConnect_email", null);
+        Log.i("Main Activity", email+" ");
         nuconnect_accesstoken = sharedPreferences.getString("NUConnect_accesstoken", null);
         login_type = sharedPreferences.getString("NUConnect_login_type", null);
 
@@ -136,6 +137,7 @@ public class MainActivity extends Activity {
         arg.putString("login_type", login_type);
 
         Intent in = new Intent(MainActivity.this, BodyActivity.class);
+        in.putExtra("intent_type", "resuming");
         in.putExtra("user_info", arg);
         startActivity(in);
     }
@@ -218,7 +220,7 @@ public class MainActivity extends Activity {
 
         protected String fetchAccessToken() throws IOException {
             try {
-                return GoogleAuthUtil.getToken(getApplicationContext(), email, oAuthscopes);
+                return GoogleAuthUtil.getToken(getApplicationContext(), email+"@nirmauni.ac.in", oAuthscopes);
             } catch (GooglePlayServicesAvailabilityException e) {
                 handling = true;
                 Log.i("Before", "Before calling handle Exception gPlay " + handling);

@@ -4,8 +4,19 @@
     tools:context="com.nirma.varunraval.nuconnect.body.BodyFragmentHome">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView android:id="@+id/default_message"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+    <!--<TextView android:id="@+id/default_message"-->
+        <!--android:layout_width="wrap_content" android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"/>-->
 
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal|top">
+
+        <ListView
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:id="@+id/listView_notificaions" android:layout_gravity="center_horizontal" />
+    </LinearLayout>
 </FrameLayout>

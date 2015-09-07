@@ -70,9 +70,9 @@
             android:exported="false" />
         <service
             android:name=".message.HandleMessagesGCMListenerService"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
-                <action android:name="com.google.android.c2dm.intent.receive" />
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
         </service>
         <service

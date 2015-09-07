@@ -21,12 +21,29 @@
                 <TextView
                     android:layout_width="wrap_content" android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Subject:" android:id="@+id/textView9" android:paddingTop="30dp"
+                    android:layout_gravity="left|top" android:layout_column="0" />
+
+                <AutoCompleteTextView
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="" android:id="@+id/autoCompleteTextView_Subject"
+                    android:layout_column="2" android:textColor="@android:color/holo_blue_bright"
+                    android:hint="Enter Subject" android:freezesText="true"/>
+
+            </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Enter Venue:" android:id="@+id/textView5" android:paddingTop="30dp"
                     android:layout_gravity="left|top" android:layout_column="0" />
 
                 <AutoCompleteTextView
                     android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:text="" android:id="@+id/autoCompleteTextViewVenue"
+                    android:text="" android:id="@+id/autoCompleteTextView_Venue"
                     android:layout_column="2" android:textColor="@android:color/holo_blue_bright"
                     android:hint="Venue" android:freezesText="true"/>
 
@@ -58,31 +75,53 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Enter Time:" android:id="@+id/textView7" android:paddingTop="30dp"
                     android:layout_gravity="left|top" android:layout_column="0" />
-                <Button
-                    android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="From"
-                    android:id="@+id/buttonTimeFrom" android:layout_column="2" android:minWidth="120dp"
-                    android:textColor="@android:color/holo_blue_dark"
-                    android:onClick="showTimePickerDialogFrom" android:width="10px"/>
+                <!--<Button-->
+                    <!--android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="From"-->
+                    <!--android:id="@+id/buttonTimeFrom" android:layout_column="2" android:minWidth="120dp"-->
+                    <!--android:textColor="@android:color/holo_blue_dark"-->
+                    <!--android:onClick="showTimePickerDialogFrom" android:width="10px"/>-->
+                <TextView
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textSize="30px" android:padding="20px"
+                    android:text="Select FROM" android:id="@+id/textView_time_from"
+                    android:layout_column="2" android:onClick="showTimePickerDialogFrom"
+                    android:background="@color/background_floating_material_light"/>
+
             </TableRow>
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <Button
-                    android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="To"
-                    android:id="@+id/buttonTimeTo" android:layout_column="2" android:minWidth="120dp"
-                    android:textColor="@android:color/holo_blue_dark"
-                    android:onClick="showTimePickerDialogTo" android:width="10px"/>
+
+                <!--<Button-->
+                    <!--android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="To"-->
+                    <!--android:id="@+id/buttonTimeTo" android:layout_column="2" android:minWidth="120dp"-->
+                    <!--android:textColor="@android:color/holo_blue_dark"-->
+                    <!--android:onClick="showTimePickerDialogTo" android:width="10px"/>-->
+                <TextView
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textSize="30px" android:padding="20px"
+                    android:text="Select TO" android:id="@+id/textView_time_to"
+                    android:layout_column="2" android:onClick="showTimePickerDialogTo"
+                    android:backgroundTint="@android:color/holo_blue_light"/>
+
             </TableRow>
         </TableLayout>
+
+        <EditText
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:id="@+id/editText_optional_message" android:hint="Enter Message here(Optional)" android:textSize="30px"
+            android:drawableBottom="@android:color/holo_blue_bright" android:layout_marginTop="20dp"
+            android:layout_below="@+id/tableLayoutPickDateTime" />
 
         <Button
             android:layout_width="200dp" android:layout_height="wrap_content"
             android:text="Inform" android:id="@+id/buttonExtralecture"
             android:layout_gravity="center" android:textStyle="bold"
             android:typeface="serif" android:shadowRadius="100" style="@style/inform_button"
-            android:layout_below="@+id/tableLayoutPickDateTime" android:layout_centerHorizontal="true"
+            android:layout_below="@+id/editText_optional_message" android:layout_centerHorizontal="true"
             android:layout_marginTop="40dp" />
+
 
     </RelativeLayout>
 

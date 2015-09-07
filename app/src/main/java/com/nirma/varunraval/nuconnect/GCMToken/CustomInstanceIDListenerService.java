@@ -12,7 +12,7 @@ public class CustomInstanceIDListenerService extends InstanceIDListenerService{
 
     public void onTokenRefresh(){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        RegisterDeviceService.handleRefresh(getApplicationContext(), sharedPreferences.getString("email", null));
+        RegisterDeviceService.handleRefresh(getApplicationContext(), sharedPreferences.getString("NUConnect_email", null));
 //        Intent intent = new Intent(this, RegisterDeviceService.class);
 //        startService(intent);
     }

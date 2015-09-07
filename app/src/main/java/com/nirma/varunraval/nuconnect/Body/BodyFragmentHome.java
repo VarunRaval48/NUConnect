@@ -7,6 +7,8 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.nirma.varunraval.nuconnect.R;
@@ -69,8 +71,8 @@ public class BodyFragmentHome extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_body_home, container, false);
 
-        TextView textView = (TextView)view.findViewById(R.id.default_message);
-        textView.setText("You have no New Notifications");
+//        TextView textView = (TextView)view.findViewById(R.id.default_message);
+//        textView.setText("You have no New Notifications");
 
         return view;
     }
@@ -87,12 +89,17 @@ public class BodyFragmentHome extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-//        try {
-//            mListener = (OnFragmentInteractionListener) activity;
-//        } catch (ClassCastException e) {
-//            throw new ClassCastException(activity.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
+        try {
+            mListener = (OnFragmentInteractionListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+
+        ListView listView = (ListView)activity.findViewById(R.id.listView_notificaions);
+
+//        listView.setAdapter(new ArrayAdapter<>());
+
     }
 
     @Override

@@ -4,6 +4,9 @@ import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.nirma.varunraval.nuconnect.body.BodyActivity;
+import com.nirma.varunraval.nuconnect.login.LoginActivity;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
@@ -29,7 +32,7 @@ import java.util.ArrayList;
 public class sendUpstreamMessage extends AsyncTask<Object, Void, Void>{
 
     ArrayList<String> reciepentList;
-    String data;
+    JSONObject data;
     URL url;
     Resources resources;
 
@@ -37,7 +40,7 @@ public class sendUpstreamMessage extends AsyncTask<Object, Void, Void>{
 
     }
 
-    public sendUpstreamMessage(ArrayList<String> reciepentList, String data, URL url){
+    public sendUpstreamMessage(ArrayList<String> reciepentList, JSONObject data, URL url){
         this.reciepentList = new ArrayList<>();
         this.reciepentList = reciepentList;
         this.data = data;
@@ -68,7 +71,9 @@ public class sendUpstreamMessage extends AsyncTask<Object, Void, Void>{
             JSONObject jsonObject = new JSONObject();
             jsonObject.accumulate("ids", jsonArray);
             jsonObject.accumulate("data", data);
-            jsonObject.accumulate("action", data);
+            jsonObject.accumulate("action", "Instruct");
+            jsonObject.accumulate("id", LoginActivity.email_initials);
+            jsonObject.accumulate("name", LoginActivity.name);
 
             json = jsonObject.toString();
 

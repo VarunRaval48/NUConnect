@@ -15,6 +15,7 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -31,8 +32,11 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TableLayout;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -40,12 +44,15 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.nirma.varunraval.nuconnect.MainActivity;
+import com.nirma.varunraval.nuconnect.login.LoginActivity;
 import com.nirma.varunraval.nuconnect.message.sendUpstreamMessage;
 import com.nirma.varunraval.nuconnect.R;
 import com.nirma.varunraval.nuconnect.SendIDToServer;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -57,7 +64,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class BodyActivity extends Activity implements BodyFragmentInform.OnFragmentInformInteractionListener,
         InformExtraLectureFragment.OnFragmentInformExtralectureInteractionListener,
-        SelectReceipentFragment.OnReceipentFragmentInteractionListener{
+        SelectReceipentFragment.OnReceipentFragmentInteractionListener, BodyFragmentHome.OnFragmentInteractionListener{
 
     private String[] listTitlesStudent, listTitlesFaculty, selectedTypeList;
     private DrawerLayout drawerLayout;
@@ -77,6 +84,10 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
 
     static int countRecInd=1, countRecGrp=101;
 
+    Button dateButton;
+    AutoCompleteTextView textView_venue, textView_Subject;
+    TextView textView_time_to=null, textView_time_from=null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,11 +96,19 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
         gcm = GoogleCloudMessaging.getInstance(this);
 
         Intent recIntent = getIntent();
-        Bundle bundle = recIntent.getBundleExtra("user_info");
+        Bundle bundle = null;
+
+        //In case of some extra things
+        if(recIntent.getStringExtra("intent_type").equals("new_login")) {
+        }
+        else if(recIntent.getStringExtra("intent_type").equals("notification")) {
+        }
+
+        bundle = recIntent.getBundleExtra("user_info");
         email = bundle.getString("email");
         name = bundle.getString("name");
         login_type = bundle.getString("login_type");
-        Log.i("Name", name+" "+login_type);
+        Log.i("Name", name + " " + login_type);
 
         title = getTitle();
         drawerTitle = name;
@@ -135,6 +154,8 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
         if(savedInstanceState == null){
             selectItem(0);
         }
+
+
     }
 
     protected void onResume(){
@@ -165,6 +186,11 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
                     Toast.LENGTH_LONG).show();
         }
         return true;
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 
     public static class DatePickerFragment extends DialogFragment
@@ -224,33 +250,35 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
     public void showTimePickerDialogFrom(View v){
         TimePickerFragment timePickerFragment = new TimePickerFragment();
         Bundle arg = new Bundle();
-        arg.putString("type", "from");
+        arg.putString("type", "From");
         timePickerFragment.setArguments(arg);
         timePickerFragment.show(getFragmentManager(), "timePicker");
     }
 
     public void showTimePickerDialogTo(View v){
+        Log.i("BodyActivity", (v.getId()==R.id.textView_time_to)+"");
         TimePickerFragment timePickerFragment = new TimePickerFragment();
         Bundle arg = new Bundle();
-        arg.putString("type", "to");
+        arg.putString("type", "To");
         timePickerFragment.setArguments(arg);
         timePickerFragment.show(getFragmentManager(), "timePicker");
     }
 
     void useDate(int y, int m, int d){
-        Button dateButton = (Button)findViewById(R.id.buttonDate);
+        dateButton = (Button)findViewById(R.id.buttonDate);
         dateButton.setText(d + "-" + m + "-" + y);
     }
 
     void useTime(int h, int m, String type){
-        Button timeButton=null;
-        if(type.equals("from")){
-            timeButton = (Button)findViewById(R.id.buttonTimeFrom);
+//        timeButton_to = (Button)findViewById(R.id.buttonTimeTo);
+        textView_time_to = (TextView)findViewById(R.id.textView_time_to);
+        textView_time_from = (TextView)findViewById(R.id.textView_time_from);
+        if(type.equals("From")){
+            textView_time_from.setText(type+" "+h+":"+m);
         }
         else{
-            timeButton = (Button)findViewById(R.id.buttonTimeTo);
+            textView_time_to.setText(type+" "+h+":"+m);
         }
-        timeButton.setText(type+" "+h+":"+m);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -321,15 +349,23 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
         }
     }
 
+    Spinner spinner_informWhatTo;
+    EditText editText_message_optional;
+
     @Override
     public void onFragmentInformExtralectureInteraction(ArrayList<Integer> reciepentListID) {
         Log.i("Reciepents", reciepentListID.toString());
 
         int flag = 0;
         ArrayList<String> reciepentList = new ArrayList<>();
+        textView_venue = (AutoCompleteTextView)findViewById(R.id.autoCompleteTextView_Venue);
+        textView_Subject = (AutoCompleteTextView)findViewById(R.id.autoCompleteTextView_Subject);
+        editText_message_optional = (EditText)findViewById(R.id.editText_optional_message);
+
+        AutoCompleteTextView textView;
         for(int i: reciepentListID){
             Log.d("List View", Integer.toString(i));
-            AutoCompleteTextView textView = (AutoCompleteTextView)findViewById(i);
+            textView = (AutoCompleteTextView)findViewById(i);
             if(textView.getText()!=null){
                 Log.i(""+i+":", textView.getText().toString());
                 reciepentList.add(textView.getText().toString());
@@ -339,14 +375,28 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
         }
 //        sendMessage("ECHO", "EXTRA_LECTURE");
 
-        if(flag==1) {
+        String venue = textView_venue.getText().toString(), subject = textView_Subject.getText().toString(),
+                message_optional = editText_message_optional.getText().toString();
+        if(flag==1 && !venue.equals(null)) {
             try {
+                spinner_informWhatTo = (Spinner)findViewById(R.id.spinnerInformWhatTo);
+                JSONObject jsonObject_data = new JSONObject();
+                jsonObject_data.accumulate("msg_type", spinner_informWhatTo.getSelectedItem());
+                jsonObject_data.accumulate("msg_optional", message_optional);
+                jsonObject_data.accumulate("date", dateButton.getText());
+                jsonObject_data.accumulate("time_from", textView_time_from.getText());
+                jsonObject_data.accumulate("time_to", textView_time_to.getText());
+                jsonObject_data.accumulate("venue", venue);
+                jsonObject_data.accumulate("subject", subject);
+
                 Log.i("BodyActivity", "Sending Message");
-                sendUpstreamMessage sendUpstreamMessage = new sendUpstreamMessage(reciepentList, "Extra Lecture",
-                        new URL(getResources().getString(R.string.server_tom_url) + "sendUpstreamMessage"));
+                sendUpstreamMessage sendUpstreamMessage = new sendUpstreamMessage(reciepentList, jsonObject_data,
+                        new URL(getResources().getString(R.string.server_url) + "sendUpstreamMessage.php"));
                 sendUpstreamMessage.execute();
                 Toast.makeText(getApplicationContext(), "Message Sent", Toast.LENGTH_SHORT).show();
             } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
@@ -537,11 +587,12 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
 
             URL url = null;
             try {
-                url = new URL(getResources().getString(R.string.server_url)+"/signout.php");
+                url = new URL(getResources().getString(R.string.server_url)+"signout.php");
 
                 List<NameValuePair> list = new ArrayList<>();
-                list.add(new BasicNameValuePair("email", email));
+                list.add(new BasicNameValuePair("email", LoginActivity.email_initials));
 
+                Log.i("Body Activity", LoginActivity.email_initials);
                 SendIDToServer sendIDToServer = new SendIDToServer(url, list);
                 value = sendIDToServer.sendToken();
 

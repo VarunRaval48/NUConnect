@@ -59,6 +59,7 @@ import java.util.concurrent.ScheduledExecutorService;
 public class LoginActivity extends Activity implements RetryLoginFragment.OnFragmentRetryInteractionListener,
         NextFragment.OnNextFragmentInteractionListener {
 
+    public static String email_initials, name;
     static final int REQUEST_CODE_PICK_ACCOUNT = 999;
     String email;
     String scope;
@@ -68,8 +69,7 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
     private static final ScheduledExecutorService worker =
             Executors.newSingleThreadScheduledExecutor();
     FragmentManager fragmentManager;
-    public static String nuconnect_accessToken;
-    static String login_type = null;
+    public static String nuconnect_accessToken, login_type = null;
     static int serverConnected=0;
 
 //    public static String serverURL = "192.168.1.11:9000";
@@ -198,7 +198,7 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
             if (resultCode == RESULT_OK) {
                 email = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
 
-                if (!email.endsWith("nirmauni.ac.in")) {
+                if (!email.endsWith("nirmauni.ac.in") && false) {
                     Log.i("Toast", "Wrong Account");
                     Toast.makeText(this, "You must chose nirmauni account", Toast.LENGTH_SHORT).show();
                     inflateRetry();
@@ -284,6 +284,7 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
     }
 
 
+    //To check access token and weather device is connected to server or not
     public class SendTokenToServerClass extends AsyncTask<Object, Void, Void> {
 
         String email;
@@ -306,7 +307,7 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
                     List<NameValuePair> nameValuePairs = new ArrayList<>();
                     nameValuePairs.add(new BasicNameValuePair("access_token", nuconnect_accessToken));
 //                    nameValuePairs.add(new BasicNameValuePair("email", email));
-                    URL url = new URL(getResources().getString(R.string.server_url) + "/checkServerConnection.php");
+                    URL url = new URL(getResources().getString(R.string.server_url) + "checkServerConnection.php");
 
                     SendIDToServer sendIDToServer = new SendIDToServer(url, nameValuePairs);
                     value = sendIDToServer.sendToken();
@@ -343,9 +344,10 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
 
         if (arg.getBoolean("verified")) {
 
+            email_initials = arg.getString("email").split("@")[0];
             SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
             editor.putString("NUConnect_username", arg.getString("name"));
-            editor.putString("NUConnect_email", arg.getString("email"));
+            editor.putString("NUConnect_email", email_initials);
             editor.putString("NUConnect_accesstoken", nuconnect_accessToken);
             editor.putString("NUConnect_login_type", login_type);
             editor.commit();
@@ -357,8 +359,9 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
             arg.putString("login_type", login_type);
             Intent in = new Intent(LoginActivity.this, BodyActivity.class);
             in.putExtra("user_info", arg);
+            in.putExtra("intent_type", "new_login");
 
-            RegisterDeviceService.handleNew(this, email);
+            RegisterDeviceService.handleNew(this, email_initials);
 //            Intent serviceIntent = new Intent(this, RegisterDeviceService.class);
 //            serviceIntent.putExtra("email", arg.getString("email"));
 //            startService(serviceIntent);
@@ -468,8 +471,9 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
                     reader = new JSONObject(val.toString());
                     //            reader = jArray.getJSONObject(0);
 
+                    name= (String) reader.get("name");
                     values.putString("email", (String) reader.get("email"));
-                    values.putString("name", (String) reader.get("name"));
+                    values.putString("name", name);
 
 //                    reader = new JSONObject(valVerify.toString());
                     //            reader = jArray.getJSONObject(1);

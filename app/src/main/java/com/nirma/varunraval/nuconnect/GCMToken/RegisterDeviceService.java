@@ -92,7 +92,7 @@ public class RegisterDeviceService extends IntentService {
                 Log.i("Registration Id", token);
                 list.add(new BasicNameValuePair("reg_id", token));
                 list.add(new BasicNameValuePair("access_token", LoginActivity.nuconnect_accessToken));
-                url = new URL(getResources().getString(R.string.server_url) + "/setRegistrationID.php");
+                url = new URL(getResources().getString(R.string.server_url) + "setRegistrationID.php");
                 if (token != null) {
                     sendToken(list, url);
                 } else {
@@ -104,7 +104,7 @@ public class RegisterDeviceService extends IntentService {
                 token = instanceID.getToken(getString(R.string.sender_id), GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
                 Log.i("Registration Id", token);
                 list.add(new BasicNameValuePair("reg_id", token));
-                url = new URL(getResources().getString(R.string.server_url) + "/setRegistrationIDonly.php");
+                url = new URL(getResources().getString(R.string.server_url) + "setRegistrationIDonly.php");
                 if (token != null) {
                     sendToken(list, url);
                 } else {
@@ -113,7 +113,7 @@ public class RegisterDeviceService extends IntentService {
             }//during login
             else if (action.equals("update")) {
                 list.add(new BasicNameValuePair("access_token", LoginActivity.nuconnect_accessToken));
-                url = new URL(getResources().getString(R.string.server_url) + "/setaccesstoken.php");
+                url = new URL(getResources().getString(R.string.server_url) + "setaccesstoken.php");
 
                 String nuconnect_accesstoken = intent.getStringExtra("access");
                 LoginActivity.nuconnect_accessToken = nuconnect_accesstoken;
@@ -126,7 +126,7 @@ public class RegisterDeviceService extends IntentService {
                 sendToken(list, url);
             }//simple connect
             else if (action.equals("connect")) {
-                url = new URL(getResources().getString(R.string.server_url) + "/setLoginTime.php");
+                url = new URL(getResources().getString(R.string.server_url) + "setLoginTime.php");
                 sendToken(list, url);
             }
             //TODO Send Registrtion id to server
