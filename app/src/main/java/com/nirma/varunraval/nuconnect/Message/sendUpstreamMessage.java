@@ -1,7 +1,10 @@
 package com.nirma.varunraval.nuconnect.message;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.nirma.varunraval.nuconnect.body.BodyActivity;
@@ -35,18 +38,20 @@ public class sendUpstreamMessage extends AsyncTask<Object, Void, Void>{
     JSONObject data;
     URL url;
     Resources resources;
+    Context context;
 
     sendUpstreamMessage(){
 
     }
 
-    public sendUpstreamMessage(ArrayList<String> reciepentList, JSONObject data, URL url){
+    public sendUpstreamMessage(ArrayList<String> reciepentList, JSONObject data, URL url, Context context){
         this.reciepentList = new ArrayList<>();
         this.reciepentList = reciepentList;
         this.data = data;
         this.url = url;
         resources = Resources.getSystem();
         Log.i("Upstream", "In constructor");
+        this.context = context;
     }
 
 //    public void sendUpstream(){
@@ -67,13 +72,15 @@ public class sendUpstreamMessage extends AsyncTask<Object, Void, Void>{
             Log.i("SendUpstream", "before httpPost");
             HttpPost httpPost = new HttpPost(url.toURI());
 
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+
             String json;
             JSONObject jsonObject = new JSONObject();
             jsonObject.accumulate("ids", jsonArray);
             jsonObject.accumulate("data", data);
             jsonObject.accumulate("action", "Instruct");
-            jsonObject.accumulate("id", LoginActivity.email_initials);
-            jsonObject.accumulate("name", LoginActivity.name);
+            jsonObject.accumulate("id", sharedPreferences.getString("NUConnect_email", null));
+            jsonObject.accumulate("name", sharedPreferences.getString("NUConnect_username", null));
 
             json = jsonObject.toString();
 

@@ -266,7 +266,7 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
 
     void useDate(int y, int m, int d){
         dateButton = (Button)findViewById(R.id.buttonDate);
-        dateButton.setText(d + "-" + m + "-" + y);
+        dateButton.setText(d + "-" + (m+1) + "-" + y);
     }
 
     void useTime(int h, int m, String type){
@@ -294,7 +294,6 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
     Context getContext(){
         return getApplicationContext();
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -384,14 +383,14 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
                 jsonObject_data.accumulate("msg_type", spinner_informWhatTo.getSelectedItem());
                 jsonObject_data.accumulate("msg_optional", message_optional);
                 jsonObject_data.accumulate("date", dateButton.getText());
-                jsonObject_data.accumulate("time_from", textView_time_from.getText());
-                jsonObject_data.accumulate("time_to", textView_time_to.getText());
+                jsonObject_data.accumulate("time_from", textView_time_from.getText().toString().split(" ")[1]);
+                jsonObject_data.accumulate("time_to", textView_time_to.getText().toString().split(" ")[1]);
                 jsonObject_data.accumulate("venue", venue);
                 jsonObject_data.accumulate("subject", subject);
 
                 Log.i("BodyActivity", "Sending Message");
                 sendUpstreamMessage sendUpstreamMessage = new sendUpstreamMessage(reciepentList, jsonObject_data,
-                        new URL(getResources().getString(R.string.server_url) + "sendUpstreamMessage.php"));
+                        new URL(getResources().getString(R.string.server_url) + "sendUpstreamMessage.php"), getApplicationContext());
                 sendUpstreamMessage.execute();
                 Toast.makeText(getApplicationContext(), "Message Sent", Toast.LENGTH_SHORT).show();
             } catch (MalformedURLException e) {

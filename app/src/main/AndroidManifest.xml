@@ -54,13 +54,14 @@
         </activity>
 
         <receiver
-            android:enabled="true"
             android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:enabled="true"
             android:exported="true"
             android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
                 <category android:name="com.nirma.varunraval.nuconnect" />
             </intent-filter>
         </receiver>
@@ -70,7 +71,7 @@
             android:exported="false" />
         <service
             android:name=".message.HandleMessagesGCMListenerService"
-            android:exported="false">
+            android:exported="false" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
@@ -86,5 +87,11 @@
             android:name=".ConnectServer"
             android:exported="false" >
         </service>
+
+        <activity
+            android:name=".login_slider.main_slider"
+            android:label="@string/title_activity_main_slider" >
+        </activity>
     </application>
+
 </manifest>

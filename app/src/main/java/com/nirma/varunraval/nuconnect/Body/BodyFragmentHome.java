@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.nirma.varunraval.nuconnect.R;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 
 /**
@@ -32,7 +39,10 @@ public class BodyFragmentHome extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    Chat_ExtraLecture_ArrayAdapter arrayAdapter;
     private OnFragmentInteractionListener mListener;
+
+    ListView listView;
 
     /**
      * Use this factory method to create a new instance of
@@ -74,6 +84,12 @@ public class BodyFragmentHome extends Fragment {
 //        TextView textView = (TextView)view.findViewById(R.id.default_message);
 //        textView.setText("You have no New Notifications");
 
+        listView = (ListView)view.findViewById(R.id.listView_notifications_extralecture);
+
+        Log.i("BodyFragmentHome", "ArrayAdapter NULL "+(arrayAdapter==null));
+        Log.i("BodyFragmentHome", "ListView NULL "+(listView==null));
+        listView.setAdapter(arrayAdapter);
+
         return view;
     }
 
@@ -83,7 +99,6 @@ public class BodyFragmentHome extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
-
 
     //TODO Remember to enable before use
     @Override
@@ -96,16 +111,40 @@ public class BodyFragmentHome extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }
 
-        ListView listView = (ListView)activity.findViewById(R.id.listView_notificaions);
+        arrayAdapter = new Chat_ExtraLecture_ArrayAdapter(activity.getApplicationContext());
 
-//        listView.setAdapter(new ArrayAdapter<>());
+        if(arrayAdapter.getCount()==0){
+            loadItems(activity);
+        }
+    }
 
+    private void loadItems(Activity activity){
+        String data="";
+        int c;
+        try {
+            FileInputStream fin = activity.openFileInput("NUConnect_chats_extralecture");
+            while((c=fin.read())!=-1){
+                data += String.valueOf((char)c);
+            }
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Log.i("BodyFragmentHome", data);
+
+        String temp[] = data.split(",,");
+        ArrayList<String> extra_lecture_list = new ArrayList<>(Arrays.asList(temp));
+
+        arrayAdapter.addAll(extra_lecture_list);
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-//        mListener = null;
+        mListener = null;
     }
 
     /**
