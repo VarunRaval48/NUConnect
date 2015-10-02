@@ -1,10 +1,10 @@
 package com.nirma.varunraval.nuconnect.login;
 
 import android.accounts.AccountManager;
-import android.app.Activity;
+
+import android.app.ActivityOptions;
+import android.support.v4.app.FragmentActivity;
 import android.app.Dialog;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +13,8 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -56,7 +58,7 @@ import java.util.concurrent.ScheduledExecutorService;
 //TODO Allow only nirmauni.ac.in accounts
 //TODO Remember signed in activity
 
-public class LoginActivity extends Activity implements RetryLoginFragment.OnFragmentRetryInteractionListener,
+public class LoginActivity extends FragmentActivity implements RetryLoginFragment.OnFragmentRetryInteractionListener,
         NextFragment.OnNextFragmentInteractionListener {
 
     public static String email_initials, name;
@@ -176,9 +178,10 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
         }
     }
 
+    //TODO on cancel activity stopped
     protected void inflateRetry() {
         Fragment retryFragment = new RetryLoginFragment();
-        fragmentManager = getFragmentManager();
+        fragmentManager = getSupportFragmentManager();
 
         fragmentManager.beginTransaction().replace(R.id.frameLaoyoutSpin, retryFragment).commit();
         fragmentManager.executePendingTransactions();
@@ -186,12 +189,13 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
 
     protected void inflateNext(){
         Fragment nextFragment = new NextFragment();
-        fragmentManager = getFragmentManager();
+        fragmentManager = getSupportFragmentManager();
 
         fragmentManager.beginTransaction().replace(R.id.frameLaoyoutSpin, nextFragment).commit();
         fragmentManager.executePendingTransactions();
     }
 
+    boolean inflate_retry = false;
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.i("Activity Result", "Request Code " + requestCode + " Result Code " + resultCode);
         if (requestCode == REQUEST_CODE_PICK_ACCOUNT) {
@@ -201,16 +205,19 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
                 if (!email.endsWith("nirmauni.ac.in") && false) {
                     Log.i("Toast", "Wrong Account");
                     Toast.makeText(this, "You must chose nirmauni account", Toast.LENGTH_SHORT).show();
-                    inflateRetry();
+//                    inflateRetry();
+                    inflate_retry = true;
                 } else if (isDeviceOnline()) {
                     new GetUsername(LoginActivity.this, email, scope, oAuthscopes).execute();
                 } else {
                     Toast.makeText(getApplicationContext(), "Network is not accessible. Please recheck.", Toast.LENGTH_SHORT).show();
-                    inflateRetry();
+//                    inflateRetry();
+                    inflate_retry = true;
                 }
             } else if (resultCode == RESULT_CANCELED) {
                 Toast.makeText(this, "You must chose an account to Login", Toast.LENGTH_SHORT).show();
-                inflateRetry();
+//                inflateRetry();
+                inflate_retry = true;
             }
         }
         else if(requestCode == REQUEST_AUTHORIZATION){
@@ -218,12 +225,25 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
                 new GetUsername(LoginActivity.this, email, scope, oAuthscopes).execute();
             }
             else{
-                inflateRetry();
+//                inflateRetry();
+                inflate_retry = true;
             }
         }
         else if(resultCode == REQUEST_CODE_RECOVER_FROM_PLAY_SERVICES_ERROR){
             //called when returning from GooglePlayServices Exception
+//            inflateRetry();
+            inflate_retry = true;
+        }
+    }
+
+    protected void onPostResume(){
+        super.onPostResume();
+
+        if(inflate_retry){
             inflateRetry();
+        }
+        if(inflate_spinner){
+            showSpinner();
         }
     }
 
@@ -257,18 +277,21 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
 //        notify();
     }
 
+    boolean inflate_spinner = false;
     public void showSpinner(){
-        runOnUiThread(new Runnable() {
-            public void run() {
+//        runOnUiThread(new Runnable() {
+//            public void run() {
+
+                inflate_spinner = true;
                 Fragment fragment = new SpinnerFragment();
 
-                FragmentManager fragmentManager = getFragmentManager();
+                FragmentManager fragmentManager = getSupportFragmentManager();
 
-                fragmentManager.beginTransaction().replace(R.id.frameLaoyoutSpin, fragment).commit();
+                fragmentManager.beginTransaction().replace(R.id.frameLaoyoutSpin, fragment).commitAllowingStateLoss();
 
                 fragmentManager.executePendingTransactions();
-            }
-        });
+//            }
+//        });
     }
 
     public void setUsername(Bundle arg){
@@ -366,7 +389,7 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
 //            serviceIntent.putExtra("email", arg.getString("email"));
 //            startService(serviceIntent);
 
-            startActivity(in);
+            startActivity(in, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
         }
 
     }
@@ -471,7 +494,7 @@ public class LoginActivity extends Activity implements RetryLoginFragment.OnFrag
                     reader = new JSONObject(val.toString());
                     //            reader = jArray.getJSONObject(0);
 
-                    name= (String) reader.get("name");
+                    name = (String) reader.get("name");
                     values.putString("email", (String) reader.get("email"));
                     values.putString("name", name);
 

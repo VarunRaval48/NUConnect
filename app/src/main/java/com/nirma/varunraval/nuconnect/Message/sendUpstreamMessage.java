@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -44,11 +45,12 @@ public class sendUpstreamMessage extends AsyncTask<Object, Void, Void>{
 
     }
 
-    public sendUpstreamMessage(ArrayList<String> reciepentList, JSONObject data, URL url, Context context){
+    public sendUpstreamMessage(ArrayList<String> reciepentList, JSONObject data, String url, Context context) throws MalformedURLException{
         this.reciepentList = new ArrayList<>();
         this.reciepentList = reciepentList;
         this.data = data;
-        this.url = url;
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        this.url = new URL("http://"+sharedPreferences.getString("NUConnect_ip", "192.168.1.6")+url);
         resources = Resources.getSystem();
         Log.i("Upstream", "In constructor");
         this.context = context;
@@ -94,7 +96,7 @@ public class sendUpstreamMessage extends AsyncTask<Object, Void, Void>{
 
             InputStream inputStream = httpResponse.getEntity().getContent();
             BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
-            String line;StringBuffer result= new StringBuffer();
+            String line;StringBuffer result = new StringBuffer();
 
             Log.i("SendUpstream", "Before reading");
             while((line=br.readLine())!=null){

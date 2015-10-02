@@ -265,14 +265,14 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
     }
 
     void useDate(int y, int m, int d){
-        dateButton = (Button)findViewById(R.id.buttonDate);
+//        dateButton = (Button)findViewById(R.id.buttonDate);
         dateButton.setText(d + "-" + (m+1) + "-" + y);
     }
 
     void useTime(int h, int m, String type){
 //        timeButton_to = (Button)findViewById(R.id.buttonTimeTo);
-        textView_time_to = (TextView)findViewById(R.id.textView_time_to);
-        textView_time_from = (TextView)findViewById(R.id.textView_time_from);
+//        textView_time_to = (TextView)findViewById(R.id.textView_time_to);
+//        textView_time_from = (TextView)findViewById(R.id.textView_time_from);
         if(type.equals("From")){
             textView_time_from.setText(type+" "+h+":"+m);
         }
@@ -309,7 +309,9 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent in = new Intent(BodyActivity.this, Settings.class);
+            startActivity(in);
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -326,6 +328,10 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
                         .commit();
 
                 fragmentManager.executePendingTransactions();
+                textView_time_to = (TextView)findViewById(R.id.textView_time_to);
+                textView_time_from = (TextView)findViewById(R.id.textView_time_from);
+                dateButton = (Button)findViewById(R.id.buttonDate);
+
             }
             else if(fragmentType.equals("Individual")){
                 SelectReceipentFragment selectReceipentFragment = SelectReceipentFragment.newInstance("Individual");
@@ -375,22 +381,30 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
 //        sendMessage("ECHO", "EXTRA_LECTURE");
 
         String venue = textView_venue.getText().toString(), subject = textView_Subject.getText().toString(),
-                message_optional = editText_message_optional.getText().toString();
-        if(flag==1 && !venue.equals(null)) {
+                message_optional = editText_message_optional.getText().toString(), date_button = dateButton.getText().toString(),
+                    time_from = textView_time_from.getText().toString().split(" ")[1], time_to = textView_time_to.getText().toString().split(" ")[1];
+        if(flag!=1 || venue.equals(null) || subject.equals(null) || date_button.equals("Date")
+                || time_from.equals("Select FROM") || time_to.equals("Select TO")) {
+            Toast.makeText(getApplicationContext(), "Enter Reciepents", Toast.LENGTH_SHORT).show();
+        }
+        else{
             try {
                 spinner_informWhatTo = (Spinner)findViewById(R.id.spinnerInformWhatTo);
                 JSONObject jsonObject_data = new JSONObject();
                 jsonObject_data.accumulate("msg_type", spinner_informWhatTo.getSelectedItem());
+                if(message_optional.equals(null))
+                    message_optional = "NO Message";
+                Log.i("BodyActivity", message_optional);
                 jsonObject_data.accumulate("msg_optional", message_optional);
-                jsonObject_data.accumulate("date", dateButton.getText());
-                jsonObject_data.accumulate("time_from", textView_time_from.getText().toString().split(" ")[1]);
-                jsonObject_data.accumulate("time_to", textView_time_to.getText().toString().split(" ")[1]);
+                jsonObject_data.accumulate("date", date_button);
+                jsonObject_data.accumulate("time_from", time_from);
+                jsonObject_data.accumulate("time_to", time_to);
                 jsonObject_data.accumulate("venue", venue);
                 jsonObject_data.accumulate("subject", subject);
 
                 Log.i("BodyActivity", "Sending Message");
                 sendUpstreamMessage sendUpstreamMessage = new sendUpstreamMessage(reciepentList, jsonObject_data,
-                        new URL(getResources().getString(R.string.server_url) + "sendUpstreamMessage.php"), getApplicationContext());
+                        (getResources().getString(R.string.server_url) + "sendUpstreamMessage.php"), getApplicationContext());
                 sendUpstreamMessage.execute();
                 Toast.makeText(getApplicationContext(), "Message Sent", Toast.LENGTH_SHORT).show();
             } catch (MalformedURLException e) {
@@ -398,9 +412,6 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }
-        else{
-            Toast.makeText(getApplicationContext(), "Enter Reciepents", Toast.LENGTH_SHORT).show();
         }
     }
 

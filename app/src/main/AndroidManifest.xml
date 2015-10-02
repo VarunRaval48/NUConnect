@@ -89,8 +89,13 @@
         </service>
 
         <activity
-            android:name=".login_slider.main_slider"
+            android:name=".login_slider.MainSlider"
             android:label="@string/title_activity_main_slider" >
+        </activity>
+        <activity
+            android:name=".body.Settings"
+            android:label="@string/title_activity_settings"
+            android:configChanges="keyboardHidden|keyboard|orientation|screenSize">
         </activity>
     </application>
 

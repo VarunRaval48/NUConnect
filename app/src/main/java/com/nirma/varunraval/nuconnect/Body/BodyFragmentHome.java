@@ -21,14 +21,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link BodyFragmentHome.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link BodyFragmentHome#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class BodyFragmentHome extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -39,19 +31,12 @@ public class BodyFragmentHome extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    Chat_ExtraLecture_ArrayAdapter arrayAdapter;
+    static Chat_ExtraLecture_ArrayAdapter arrayAdapter;
     private OnFragmentInteractionListener mListener;
+    public static boolean fragmentAttached = false;
 
-    ListView listView;
+    static ListView listView;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment BodyFragmentHome.
-     */
     // TODO: Rename and change types and number of parameters
     public static BodyFragmentHome newInstance(String param1, String param2) {
         BodyFragmentHome fragment = new BodyFragmentHome();
@@ -116,6 +101,13 @@ public class BodyFragmentHome extends Fragment {
         if(arrayAdapter.getCount()==0){
             loadItems(activity);
         }
+
+
+        fragmentAttached = true;
+    }
+
+    public static void move_at_last(){
+        listView.setSelection(0);
     }
 
     private void loadItems(Activity activity){
@@ -145,6 +137,7 @@ public class BodyFragmentHome extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+        fragmentAttached = false;
     }
 
     /**

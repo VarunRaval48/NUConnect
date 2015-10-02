@@ -16,6 +16,7 @@ import android.util.Log;
 import com.google.android.gms.gcm.GcmListenerService;
 import com.nirma.varunraval.nuconnect.R;
 import com.nirma.varunraval.nuconnect.body.BodyActivity;
+import com.nirma.varunraval.nuconnect.body.BodyFragmentHome;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -70,6 +71,7 @@ public class HandleMessagesGCMListenerService extends GcmListenerService{
 
         JSONObject jsonObject = new JSONObject();
 
+        Log.i("HandleGCM", data.toString());
         try {
             if(inform_type.equals("Extra Lecture")){
                 String subject = data.getString("subject");
@@ -80,8 +82,9 @@ public class HandleMessagesGCMListenerService extends GcmListenerService{
                 String from_id = data.getString("from_id");
                 String name = data.getString("from_name");
                 String message = data.getString("msg_optional");
+                Log.i("HandleGCM", "Message "+message);
 
-                jsonObject.accumulate("subject",subject);
+                jsonObject.accumulate("subject", subject);
                 jsonObject.accumulate("date", date);
                 jsonObject.accumulate("time_from", time_from);
                 jsonObject.accumulate("time_to", time_to);
@@ -100,7 +103,7 @@ public class HandleMessagesGCMListenerService extends GcmListenerService{
         }
 
         String json_data = jsonObject.toString()+",,";
-
+        Log.i("HandleGCM", json_data);
         try {
             File f = new File(getFilesDir()+"/"+"NUConnect_chats_extralecture");
             FileOutputStream fos;
@@ -119,19 +122,26 @@ public class HandleMessagesGCMListenerService extends GcmListenerService{
             e.printStackTrace();
         }
 
-        Notification.Builder notificationBuilder = new Notification.Builder(getApplicationContext())
-                .setTicker(tickerText)
-                .setContentIntent(pendingIntent)
-                .setContentText(contentText)
-                .setSmallIcon(R.drawable.ic_launcher)
-                .setContentTitle(contentTitle)
-                .setAutoCancel(true)
-                .setAutoCancel(true)
-                .setStyle(new Notification.BigTextStyle().bigText(contentText));
+        if(BodyFragmentHome.fragmentAttached){
+            Log.i("HandleMessage", "Activity is on");
+            BodyFragmentHome.move_at_last();
+        }
+        else {
+            Log.i("HandleMessage", "Activity is off");
+            Notification.Builder notificationBuilder = new Notification.Builder(getApplicationContext())
+                    .setTicker(tickerText)
+                    .setContentIntent(pendingIntent)
+                    .setContentText(contentText)
+                    .setSmallIcon(R.drawable.ic_launcher)
+                    .setContentTitle(contentTitle)
+                    .setAutoCancel(true)
+                    .setAutoCancel(true)
+                    .setStyle(new Notification.BigTextStyle().bigText(contentText));
 
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        notificationManager.notify(notificationID, notificationBuilder.build());
-        Log.i("HandleGCMListener", "Notification Sent");
+            notificationManager.notify(notificationID, notificationBuilder.build());
+            Log.i("HandleGCMListener", "Notification Sent");
+        }
     }
 }

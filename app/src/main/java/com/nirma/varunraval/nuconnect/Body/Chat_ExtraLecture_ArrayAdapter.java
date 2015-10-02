@@ -60,7 +60,7 @@ public class Chat_ExtraLecture_ArrayAdapter extends BaseAdapter {
 
     public View getView(int position, View convertView, ViewGroup parent){
 
-        String jsondata = notification_list.get(position);
+        String jsondata = notification_list.get(getCount() - position - 1);
         JSONObject jsonObject = null;
         LinearLayout itemLayout = null;
         try {
@@ -95,7 +95,8 @@ public class Chat_ExtraLecture_ArrayAdapter extends BaseAdapter {
             Log.i("Chat_ArrayAdapter", notification_list.get(position));
         }
         catch (JSONException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+            Log.e("ChatExtra", "org.json.Exception");
         }
         return itemLayout;
     }
