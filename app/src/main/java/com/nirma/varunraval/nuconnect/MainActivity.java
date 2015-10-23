@@ -21,7 +21,9 @@ import com.google.android.gms.auth.UserRecoverableAuthException;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.nirma.varunraval.nuconnect.body.BodyActivity;
+import com.nirma.varunraval.nuconnect.body.Settings;
 import com.nirma.varunraval.nuconnect.gcmtoken.RegisterDeviceService;
+import com.nirma.varunraval.nuconnect.login_slider.MainSlider;
 
 import java.io.IOException;
 
@@ -81,7 +83,7 @@ public class MainActivity extends Activity {
             new FetchToken().execute();
         }
         else{
-            Intent in = new Intent(MainActivity.this, WelcomeActivity.class);
+            Intent in = new Intent(MainActivity.this, MainSlider.class);
 //            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(in);
         }
@@ -158,6 +160,8 @@ public class MainActivity extends Activity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent in = new Intent(this, Settings.class);
+            startActivity(in);
             return true;
         }
 

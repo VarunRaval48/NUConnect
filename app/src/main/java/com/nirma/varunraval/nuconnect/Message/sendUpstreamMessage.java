@@ -28,27 +28,30 @@ import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Varun on 8/6/2015.
  */
 public class sendUpstreamMessage extends AsyncTask<Object, Void, Void>{
 
-    ArrayList<String> reciepentList;
+    ArrayList<String> reciepentList[];
     JSONObject data;
     URL url;
     Resources resources;
     Context context;
-
+    String msg_type;
     sendUpstreamMessage(){
 
     }
 
-    public sendUpstreamMessage(ArrayList<String> reciepentList, JSONObject data, String url, Context context) throws MalformedURLException{
-        this.reciepentList = new ArrayList<>();
+    public sendUpstreamMessage(ArrayList<String> reciepentList[], String msg_type, JSONObject data, String url, Context context) throws MalformedURLException{
+//        this.reciepentList = new ArrayList<>();
         this.reciepentList = reciepentList;
         this.data = data;
+        this.msg_type = msg_type;
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         this.url = new URL("http://"+sharedPreferences.getString("NUConnect_ip", "192.168.1.6")+url);
         resources = Resources.getSystem();
@@ -69,20 +72,28 @@ public class sendUpstreamMessage extends AsyncTask<Object, Void, Void>{
         Log.i("In do in background", "");
         HttpClient httpClient = new DefaultHttpClient();
 
-        JSONArray jsonArray = new JSONArray(reciepentList);
+        JSONArray jsonArray = new JSONArray(reciepentList[0]);
+        JSONArray jsonArray_group = new JSONArray(reciepentList[1]);
         try {
             Log.i("SendUpstream", "before httpPost");
             HttpPost httpPost = new HttpPost(url.toURI());
 
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
+            Date date = new Date();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String date_sent_on = simpleDateFormat.format(date);
+
             String json;
             JSONObject jsonObject = new JSONObject();
+            jsonObject.accumulate("msg_type", msg_type);
             jsonObject.accumulate("ids", jsonArray);
+            jsonObject.accumulate("ids_group", jsonArray_group);
             jsonObject.accumulate("data", data);
             jsonObject.accumulate("action", "Instruct");
             jsonObject.accumulate("id", sharedPreferences.getString("NUConnect_email", null));
             jsonObject.accumulate("name", sharedPreferences.getString("NUConnect_username", null));
+            jsonObject.accumulate("date_sent_on", date_sent_on);
 
             json = jsonObject.toString();
 

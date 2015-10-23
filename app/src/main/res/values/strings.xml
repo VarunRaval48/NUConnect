@@ -7,6 +7,7 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="action_refresh">Refresh</string>
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="initial_fragment">Hello Initial Fragment</string>
@@ -57,6 +58,7 @@
     </string-array>
 
     <string-array name="inform_who_to">
+        <item>None</item>
         <item>Mechenical</item>
         <item>Computer</item>
         <item>Information Technology</item>
@@ -66,6 +68,7 @@
     </string-array>
 
     <string-array name="inform_who_to_year">
+        <item>None</item>
         <item>12</item>
         <item>13</item>
         <item>14</item>

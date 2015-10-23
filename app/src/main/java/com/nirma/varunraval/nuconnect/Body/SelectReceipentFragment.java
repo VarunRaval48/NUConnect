@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -40,11 +41,15 @@ public class SelectReceipentFragment extends Fragment{
     Context context;
 
     public static ArrayList<Integer>[] reciepentListID = new ArrayList[2];
+    public static ArrayList<String> group_info= new ArrayList();
+    //TODO Multiple groups
+    public static ArrayList<String[]> group = new ArrayList<>();
+
     public static int msg_type=0; // 0 for Indivisual 1 for group
     static int countRecInd=1, countRecGrp=101;
 
     private OnReceipentFragmentInteractionListener mListener;
-
+    ArrayAdapter<CharSequence> arrayAdapterWhoToYear, arrayAdapterWhoTo, arrayAdapterDivision;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -105,17 +110,18 @@ public class SelectReceipentFragment extends Fragment{
             view = inflater.inflate(R.layout.fragment_select_receipent_group, container, false);
 
             Spinner spinnerInformWhoToYear = (Spinner)view.findViewById(R.id.spinnerInformWhoToYear);
-            ArrayAdapter<CharSequence> arrayAdapterWhoToYear = ArrayAdapter.createFromResource(context, R.array.inform_who_to_year, R.layout.spinner_item);
+            arrayAdapterWhoToYear = ArrayAdapter.createFromResource(context, R.array.inform_who_to_year, R.layout.spinner_item);
             arrayAdapterWhoToYear.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
             spinnerInformWhoToYear.setAdapter(arrayAdapterWhoToYear);
+            spinnerInformWhoToYear.setOnItemSelectedListener(new spinner_selection());
 
             Spinner spinnerInformWhoTo = (Spinner)view.findViewById(R.id.spinnerInformWhoTo);
-            ArrayAdapter<CharSequence> arrayAdapterWhoTo = ArrayAdapter.createFromResource(context, R.array.inform_who_to, R.layout.spinner_item);
+            arrayAdapterWhoTo = ArrayAdapter.createFromResource(context, R.array.inform_who_to, R.layout.spinner_item);
             arrayAdapterWhoTo.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
             spinnerInformWhoTo.setAdapter(arrayAdapterWhoTo);
 
             Spinner spinnerInformDivision = (Spinner)view.findViewById(R.id.spinnerInformDivision);
-            ArrayAdapter<CharSequence> arrayAdapterDivision = ArrayAdapter.createFromResource(context, R.array.inform_division, R.layout.spinner_item);
+            arrayAdapterDivision = ArrayAdapter.createFromResource(context, R.array.inform_division, R.layout.spinner_item);
             arrayAdapterDivision.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
             spinnerInformDivision.setAdapter(arrayAdapterDivision);
 
@@ -133,6 +139,29 @@ public class SelectReceipentFragment extends Fragment{
         }
 
         return view;
+    }
+
+    class spinner_selection implements AdapterView.OnItemSelectedListener{
+
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            String temp="";
+            if(parent.equals(arrayAdapterWhoToYear)){
+                temp += parent.getSelectedItem().toString()+"-";
+            }
+            else if(parent.equals(arrayAdapterWhoTo)){
+                temp += parent.getSelectedItem().toString()+"-";
+            }
+            else if(parent.equals(arrayAdapterDivision)){
+                temp += parent.getSelectedItem().toString();
+            }
+            group_info.add(temp);
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event

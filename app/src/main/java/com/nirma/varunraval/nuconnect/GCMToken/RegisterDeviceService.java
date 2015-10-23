@@ -10,7 +10,6 @@ import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.iid.InstanceID;
-import com.nirma.varunraval.nuconnect.login.LoginActivity;
 import com.nirma.varunraval.nuconnect.R;
 import com.nirma.varunraval.nuconnect.SendIDToServer;
 
@@ -83,16 +82,20 @@ public class RegisterDeviceService extends IntentService {
             List<NameValuePair> list = new ArrayList<>();
             list.add(new BasicNameValuePair("email", email));
 
-            URL url = null;
+            String url = null;
             InstanceID instanceID = InstanceID.getInstance(this);
 
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            //TODO Handle null value of nuconnect_accesstoken
+            String nuconnect_accesstoken = sharedPreferences.getString("NUConnect_accesstoken", "");
+            Log.i("RegisterDeviceService", sharedPreferences.getString("NUConnect_email", ""));
             //update access token
             if (action.equals("new")) {
                 token = instanceID.getToken(getString(R.string.sender_id), GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
                 Log.i("Registration Id", token);
                 list.add(new BasicNameValuePair("reg_id", token));
-                list.add(new BasicNameValuePair("access_token", LoginActivity.nuconnect_accessToken));
-                url = new URL(getResources().getString(R.string.server_url) + "setRegistrationID.php");
+                list.add(new BasicNameValuePair("access_token", nuconnect_accesstoken));
+                url = (getResources().getString(R.string.server_url) + "setRegistrationID.php");
                 if (token != null) {
                     sendToken(list, url);
                 } else {
@@ -104,7 +107,7 @@ public class RegisterDeviceService extends IntentService {
                 token = instanceID.getToken(getString(R.string.sender_id), GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
                 Log.i("Registration Id", token);
                 list.add(new BasicNameValuePair("reg_id", token));
-                url = new URL(getResources().getString(R.string.server_url) + "setRegistrationIDonly.php");
+                url = (getResources().getString(R.string.server_url) + "setRegistrationIDonly.php");
                 if (token != null) {
                     sendToken(list, url);
                 } else {
@@ -112,21 +115,22 @@ public class RegisterDeviceService extends IntentService {
                 }
             }//during login
             else if (action.equals("update")) {
-                list.add(new BasicNameValuePair("access_token", LoginActivity.nuconnect_accessToken));
-                url = new URL(getResources().getString(R.string.server_url) + "setaccesstoken.php");
+                url = (getResources().getString(R.string.server_url) + "setaccesstoken.php");
 
-                String nuconnect_accesstoken = intent.getStringExtra("access");
-                LoginActivity.nuconnect_accessToken = nuconnect_accesstoken;
+                String accesstoken = intent.getStringExtra("access");
+
+                list.add(new BasicNameValuePair("access_token", accesstoken));
 
                 SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
                 editor.remove("NUConnect_accesstoken");
-                editor.putString("NUConnect_accesstoken", nuconnect_accesstoken);
+                editor.putString("NUConnect_accesstoken", accesstoken);
                 editor.commit();
 
                 sendToken(list, url);
-            }//simple connect
+            }
+            //simple connect
             else if (action.equals("connect")) {
-                url = new URL(getResources().getString(R.string.server_url) + "setLoginTime.php");
+                url = (getResources().getString(R.string.server_url) + "setLoginTime.php");
                 sendToken(list, url);
             }
             //TODO Send Registrtion id to server
@@ -137,10 +141,10 @@ public class RegisterDeviceService extends IntentService {
         }
     }
 
-    void sendToken(List<NameValuePair> list, URL url){
+    void sendToken(List<NameValuePair> list, String url) throws MalformedURLException{
         String value;
 
-        SendIDToServer sendIDToServer = new SendIDToServer(url, list);
+        SendIDToServer sendIDToServer = new SendIDToServer(url, list, getApplicationContext());
         value = sendIDToServer.sendToken();
 
         Log.i("Response from Server", value);

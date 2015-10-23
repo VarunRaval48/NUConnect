@@ -70,6 +70,7 @@ public class HandleMessagesGCMListenerService extends GcmListenerService{
         String inform_type = data.getString("inform_type");
 
         JSONObject jsonObject = new JSONObject();
+        JSONObject jsonObject_cover = new JSONObject();
 
         Log.i("HandleGCM", data.toString());
         try {
@@ -82,17 +83,20 @@ public class HandleMessagesGCMListenerService extends GcmListenerService{
                 String from_id = data.getString("from_id");
                 String name = data.getString("from_name");
                 String message = data.getString("msg_optional");
-                Log.i("HandleGCM", "Message "+message);
+                String date_sent_on = data.getString("date_sent_on");
+                Log.i("HandleGCM", "Message " + message);
 
                 jsonObject.accumulate("subject", subject);
                 jsonObject.accumulate("date", date);
                 jsonObject.accumulate("time_from", time_from);
                 jsonObject.accumulate("time_to", time_to);
                 jsonObject.accumulate("venue", venue);
-                jsonObject.accumulate("id", from_id);
-                jsonObject.accumulate("name", name);
                 jsonObject.accumulate("message", message);
-
+                jsonObject_cover.accumulate("data", jsonObject);
+                jsonObject_cover.accumulate("msg_type", inform_type);
+                jsonObject_cover.accumulate("id", from_id);
+                jsonObject_cover.accumulate("name", name);
+                jsonObject_cover.accumulate("date_sent_on", date_sent_on);
                 tickerText = "You have an Extra Lecture";
                 contentText = "Extra Lecture of "+subject+" on "+date+" "+time_from+" "+time_to
                                 +" at "+venue+" Click to see more";
@@ -102,7 +106,7 @@ public class HandleMessagesGCMListenerService extends GcmListenerService{
             e.printStackTrace();
         }
 
-        String json_data = jsonObject.toString()+",,";
+        String json_data = jsonObject_cover.toString()+",,";
         Log.i("HandleGCM", json_data);
         try {
             File f = new File(getFilesDir()+"/"+"NUConnect_chats_extralecture");

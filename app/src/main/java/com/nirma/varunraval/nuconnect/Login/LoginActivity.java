@@ -330,9 +330,11 @@ public class LoginActivity extends FragmentActivity implements RetryLoginFragmen
                     List<NameValuePair> nameValuePairs = new ArrayList<>();
                     nameValuePairs.add(new BasicNameValuePair("access_token", nuconnect_accessToken));
 //                    nameValuePairs.add(new BasicNameValuePair("email", email));
-                    URL url = new URL(getResources().getString(R.string.server_url) + "checkServerConnection.php");
+                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-                    SendIDToServer sendIDToServer = new SendIDToServer(url, nameValuePairs);
+                    String url = getResources().getString(R.string.server_url) + "checkServerConnection.php";
+
+                    SendIDToServer sendIDToServer = new SendIDToServer(url, nameValuePairs, getApplicationContext());
                     value = sendIDToServer.sendToken();
 
                     Log.i("InSendTokenToServerJson", value.toString());

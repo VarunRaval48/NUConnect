@@ -1,5 +1,9 @@
 package com.nirma.varunraval.nuconnect;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -14,6 +18,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
@@ -27,8 +32,9 @@ public class SendIDToServer {
     public List<NameValuePair> list;
     StringBuffer value;
 
-    public SendIDToServer(URL url, List<NameValuePair> list){
-        this.url = url;
+    public SendIDToServer(String url, List<NameValuePair> list, Context context) throws MalformedURLException{
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        this.url = new URL("http://"+sharedPreferences.getString("NUConnect_ip", "192.168.1.6")+url);
         this.list = list;
         value = new StringBuffer();
     }

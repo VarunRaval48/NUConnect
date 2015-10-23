@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -25,7 +26,7 @@ import com.nirma.varunraval.nuconnect.login.RetryLoginFragment;
 
 public class Login_Fragment extends Fragment {
 
-    private String scope, oAuthscopes, login_type;
+    public static String login_type;
     Spinner spinner;
     FragmentManager fragmentManager;
     static Activity main_slider_activity;
@@ -67,13 +68,12 @@ public class Login_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_login_, container, false);
+        View view = inflater.inflate(R.layout.fragment_login_main_slider, container, false);
 
         Log.i("View", "After setting view");
 
-        scope = "audience:server:client_id:611036220045-sjstaa7r37ufc1t4q0iotb1otng8ktj2.apps.googleusercontent.com";
-        oAuthscopes = "oauth2:" + "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/plus.login";
 
+        Log.i("LoginFragment", "initialized spinner");
         spinner = (Spinner)view.findViewById(R.id.spinner);
 
         Button nextTempButton = (Button)view.findViewById(R.id.buttonTempNext);
@@ -83,6 +83,11 @@ public class Login_Fragment extends Fragment {
                 onButtonPressed("temp_next");
             }
         });
+
+        ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(main_slider_activity.getApplicationContext(), R.array.login_type, R.layout.spinner_item);
+        arrayAdapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
+        Log.i("LoginFragment", "Setting spinner");
+        spinner.setAdapter(arrayAdapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -96,8 +101,16 @@ public class Login_Fragment extends Fragment {
             }
         });
 
-        inflateNext();
+        ImageButton pick_next = (ImageButton)view.findViewById(R.id.button_next);
+        pick_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onFragmentLogINInteraction("pickUser");
+            }
+        });
 
+//        mListener.onFragmentLogINInteraction("inflate_next");
+//        inflateNext();
 
         return view;
     }
@@ -117,10 +130,6 @@ public class Login_Fragment extends Fragment {
 
             main_slider_activity = activity;
 
-            ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(activity.getApplicationContext(), R.array.login_type, android.R.layout.simple_spinner_item);
-            arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinner.setAdapter(arrayAdapter);
-
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -138,10 +147,9 @@ public class Login_Fragment extends Fragment {
         public void onFragmentLogINInteraction(String name);
     }
 
-
     protected void inflateNext(){
         Fragment nextFragment = new NextFragment();
-        fragmentManager = getFragmentManager();
+        fragmentManager = getChildFragmentManager();
 
         fragmentManager.beginTransaction().replace(R.id.frameLaoyoutSpin, nextFragment).commit();
         fragmentManager.executePendingTransactions();

@@ -17,6 +17,8 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.GoogleAuthException;
@@ -50,7 +52,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainSlider extends FragmentActivity implements Login_Fragment.OnFragmentLogINInteractionListener,
-        NextFragment.OnNextFragmentInteractionListener{
+        NextFragment.OnNextFragmentInteractionListener, RetryLoginFragment.OnFragmentRetryInteractionListener{
 
     private static final int MAX_PAGES = 2;
     FragmentManager fragmentManager;
@@ -68,19 +70,40 @@ public class MainSlider extends FragmentActivity implements Login_Fragment.OnFra
 
         mpager = (ViewPager) findViewById(R.id.view_pager);
         mPagerAdapter = new ScreenSlidePageAdapter(getSupportFragmentManager());
+        scope = "audience:server:client_id:611036220045-sjstaa7r37ufc1t4q0iotb1otng8ktj2.apps.googleusercontent.com";
+        oAuthscopes = "oauth2:" + "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/plus.login";
+
         mpager.setAdapter(mPagerAdapter);
+//        new setAdapterTask().execute();
 
         //TODO add setOnPageChangeListener
 
     }
 
+    private class setAdapterTask extends AsyncTask<Void, Void, Void>{
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            return null;
+        }
+
+        protected  void onPostExecute(Void result){
+            mpager.setAdapter(mPagerAdapter);
+        }
+    }
+
+
     protected void onPostResume(){
         super.onPostResume();
 
-        if(inflate_fragment.equals("inflateRetry")){
+        if(inflate_retry){
             inflateRetry();
         }
-        inflate_fragment = null;
+        if(inflate_spinner){
+            showSpinner();
+        }
+        inflate_spinner = false;
+        inflate_retry = false;
     }
 
     @Override
@@ -101,6 +124,20 @@ public class MainSlider extends FragmentActivity implements Login_Fragment.OnFra
 
             finish();
         }
+//        else if(name.equals("inflate_next")){
+//            inflateNext();
+//        }
+        else if(name.equals("pickUser")){
+            pickUserAccount();
+        }
+    }
+
+    protected void inflateNext(){
+        Fragment nextFragment = new NextFragment();
+        fragmentManager = getSupportFragmentManager();
+
+        fragmentManager.beginTransaction().replace(R.id.frameLaoyoutSpin, nextFragment).commit();
+        fragmentManager.executePendingTransactions();
     }
 
     @Override
@@ -125,13 +162,14 @@ public class MainSlider extends FragmentActivity implements Login_Fragment.OnFra
 
     protected void inflateRetry() {
         Fragment retryFragment = new RetryLoginFragment();
-        fragmentManager = getSupportFragmentManager();
+        fragmentManager = this.getSupportFragmentManager();
 
         fragmentManager.beginTransaction().replace(R.id.frameLaoyoutSpin, retryFragment).commit();
         fragmentManager.executePendingTransactions();
     }
 
-    private String inflate_fragment;
+    boolean inflate_retry = false;
+    boolean inflate_spinner = false;
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.i("Activity Result", "Request Code " + requestCode + " Result Code " + resultCode);
         if (requestCode == REQUEST_CODE_PICK_ACCOUNT) {
@@ -142,18 +180,18 @@ public class MainSlider extends FragmentActivity implements Login_Fragment.OnFra
                     Log.i("Toast", "Wrong Account");
                     Toast.makeText(this, "You must chose nirmauni account", Toast.LENGTH_SHORT).show();
 //                    inflateRetry();
-                    inflate_fragment = "inflateRetry";
+                    inflate_retry = true;
                 } else if (isDeviceOnline()) {
                     new GetUsername(MainSlider.this, email, scope, oAuthscopes).execute();
                 } else {
                     Toast.makeText(getApplicationContext(), "Network is not accessible. Please recheck.", Toast.LENGTH_SHORT).show();
 //                    inflateRetry();
-                    inflate_fragment = "inflateRetry";
+                    inflate_retry = true;
                 }
             } else if (resultCode == RESULT_CANCELED) {
                 Toast.makeText(this, "You must chose an account to Login", Toast.LENGTH_SHORT).show();
 //                inflateRetry();
-                inflate_fragment = "inflateRetry";
+                inflate_retry = true;
             }
         }
         else if(requestCode == REQUEST_AUTHORIZATION){
@@ -162,23 +200,14 @@ public class MainSlider extends FragmentActivity implements Login_Fragment.OnFra
             }
             else{
 //                inflateRetry();
-                inflate_fragment = "inflateRetry";
+                inflate_retry = true;
             }
         }
         else if(resultCode == REQUEST_CODE_RECOVER_FROM_PLAY_SERVICES_ERROR){
             //called when returning from GooglePlayServices Exception
 //            inflateRetry();
-            inflate_fragment = "inflateRetry";
+            inflate_retry = true;
         }
-    }
-
-    public boolean isDeviceOnline() {
-        ConnectivityManager comMng = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        final NetworkInfo netInfo = comMng.getActiveNetworkInfo();
-
-        if (netInfo != null && netInfo.isConnected())
-            return true;
-        return false;
     }
 
     private class ScreenSlidePageAdapter extends FragmentStatePagerAdapter {
@@ -188,10 +217,13 @@ public class MainSlider extends FragmentActivity implements Login_Fragment.OnFra
         }
 
         public Fragment getItem(int position){
-            if(position==1){
+            Log.i("MainSlider", "Position: "+position);
+            if(position==0){
                 return new Welcome_Fragment();
             }
-            return new Login_Fragment();
+            else {
+                return new Login_Fragment();
+            }
         }
 
         public int getCount(){
@@ -202,15 +234,29 @@ public class MainSlider extends FragmentActivity implements Login_Fragment.OnFra
     public void showSpinner(){
         runOnUiThread(new Runnable() {
             public void run() {
+                inflate_spinner = true;
                 Fragment fragment = new SpinnerFragment();
 
                 FragmentManager fragmentManager = getSupportFragmentManager();
 
-                fragmentManager.beginTransaction().replace(R.id.frameLaoyoutSpin, fragment).commit();
+                fragmentManager.beginTransaction().replace(R.id.frameLaoyoutSpin, fragment).commitAllowingStateLoss();
 
                 fragmentManager.executePendingTransactions();
             }
         });
+    }
+
+    @Override
+    public void onFragmentRetryInteraction() {
+        pickUserAccount();
+    }
+    public boolean isDeviceOnline() {
+        ConnectivityManager comMng = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        final NetworkInfo netInfo = comMng.getActiveNetworkInfo();
+
+        if (netInfo != null && netInfo.isConnected())
+            return true;
+        return false;
     }
 
     public void doOnUIInflate(final String typeOfFragment,final Exception exceptionType){
@@ -257,9 +303,9 @@ public class MainSlider extends FragmentActivity implements Login_Fragment.OnFra
                     List<NameValuePair> nameValuePairs = new ArrayList<>();
                     nameValuePairs.add(new BasicNameValuePair("access_token", nuconnect_accessToken));
 //                    nameValuePairs.add(new BasicNameValuePair("email", email));
-                    URL url = new URL(getResources().getString(R.string.server_url) + "checkServerConnection.php");
+                    String url = (getResources().getString(R.string.server_url) + "checkServerConnection.php");
 
-                    SendIDToServer sendIDToServer = new SendIDToServer(url, nameValuePairs);
+                    SendIDToServer sendIDToServer = new SendIDToServer(url, nameValuePairs, getApplicationContext());
                     value = sendIDToServer.sendToken();
 
                     Log.i("InSendTokenToServerJson", value.toString());
@@ -293,6 +339,8 @@ public class MainSlider extends FragmentActivity implements Login_Fragment.OnFra
 
         if (arg.getBoolean("verified")) {
 
+            login_type = Login_Fragment.login_type;
+
             email_initials = arg.getString("email").split("@")[0];
             SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
             editor.putString("NUConnect_username", arg.getString("name"));
@@ -301,7 +349,7 @@ public class MainSlider extends FragmentActivity implements Login_Fragment.OnFra
             editor.putString("NUConnect_login_type", login_type);
             editor.commit();
 
-            Log.i("name", arg.getString("name"));
+            Log.i("MainSlider_name_email", arg.getString("name")+" "+email_initials);
 
 //            setUsername(getApplicationContext(), arg);
 
@@ -314,7 +362,7 @@ public class MainSlider extends FragmentActivity implements Login_Fragment.OnFra
 //            Intent serviceIntent = new Intent(this, RegisterDeviceService.class);
 //            serviceIntent.putExtra("email", arg.getString("email"));
 //            startService(serviceIntent);
-
+            Log.i("MainSlider", arg.toString());
             startActivity(in);
         }
 

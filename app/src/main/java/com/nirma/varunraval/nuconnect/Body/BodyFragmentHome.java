@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.nirma.varunraval.nuconnect.R;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -71,8 +72,6 @@ public class BodyFragmentHome extends Fragment {
 
         listView = (ListView)view.findViewById(R.id.listView_notifications_extralecture);
 
-        Log.i("BodyFragmentHome", "ArrayAdapter NULL "+(arrayAdapter==null));
-        Log.i("BodyFragmentHome", "ListView NULL "+(listView==null));
         listView.setAdapter(arrayAdapter);
 
         return view;
@@ -102,7 +101,6 @@ public class BodyFragmentHome extends Fragment {
             loadItems(activity);
         }
 
-
         fragmentAttached = true;
     }
 
@@ -114,9 +112,18 @@ public class BodyFragmentHome extends Fragment {
         String data="";
         int c;
         try {
-            FileInputStream fin = activity.openFileInput("NUConnect_chats_extralecture");
-            while((c=fin.read())!=-1){
-                data += String.valueOf((char)c);
+            File f = new File(activity.getFilesDir()+"/"+"NUConnect_chats_extralecture");
+            if(f.exists()){
+                FileInputStream fin = activity.openFileInput("NUConnect_chats_extralecture");
+                while((c=fin.read())!=-1){
+                    data += String.valueOf((char)c);
+                }
+                Log.i("BodyFragmentHome", data);
+
+                String temp[] = data.split(",,");
+                ArrayList<String> extra_lecture_list = new ArrayList<>(Arrays.asList(temp));
+
+                arrayAdapter.addAll(extra_lecture_list);
             }
         }
         catch (FileNotFoundException e) {
@@ -124,13 +131,6 @@ public class BodyFragmentHome extends Fragment {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        Log.i("BodyFragmentHome", data);
-
-        String temp[] = data.split(",,");
-        ArrayList<String> extra_lecture_list = new ArrayList<>(Arrays.asList(temp));
-
-        arrayAdapter.addAll(extra_lecture_list);
     }
 
     @Override

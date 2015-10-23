@@ -22,10 +22,10 @@
                 android:text="NUConnect" android:textSize="45dp" android:layout_gravity="center"
                 android:id="@+id/textView3" />
 
-            <ImageButton
-                android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:id="@+id/loginMainButton" android:src="@drawable/btn_gsignin_normal_copy"
-                android:layout_gravity="center"/>
+            <!--<ImageButton-->
+                <!--android:layout_width="wrap_content" android:layout_height="wrap_content"-->
+                <!--android:id="@+id/loginMainButton" android:src="@drawable/btn_gsignin_normal_copy"-->
+                <!--android:layout_gravity="center"/>-->
         </LinearLayout>
     </ScrollView>
 

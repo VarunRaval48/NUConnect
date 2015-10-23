@@ -85,7 +85,13 @@ public class InformExtraLectureFragment extends Fragment {
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed() {
         if (mListener != null) {
-            mListener.onFragmentInformExtralectureInteraction(SelectReceipentFragment.reciepentListID[SelectReceipentFragment.msg_type]);
+            int msg_type = SelectReceipentFragment.msg_type;
+            if(msg_type==0){
+                mListener.onFragmentInformExtralectureInteraction(SelectReceipentFragment.reciepentListID[msg_type]);
+            }
+            else{
+                mListener.onFragmentInformExtralectureInteraction(SelectReceipentFragment.reciepentListID[msg_type], SelectReceipentFragment.group_info);
+            }
         }
     }
 
@@ -119,6 +125,7 @@ public class InformExtraLectureFragment extends Fragment {
     public interface OnFragmentInformExtralectureInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInformExtralectureInteraction(ArrayList<Integer> receipentListID);
+        public void onFragmentInformExtralectureInteraction(ArrayList<Integer> receipentListID, ArrayList<String> group_info);
     }
 
 }

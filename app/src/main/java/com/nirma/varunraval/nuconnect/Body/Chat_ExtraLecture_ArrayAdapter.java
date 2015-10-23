@@ -55,16 +55,18 @@ public class Chat_ExtraLecture_ArrayAdapter extends BaseAdapter {
     public void addAll(ArrayList<String> temp){
         notification_list = new ArrayList<>(temp);
         notifyDataSetChanged();
-        Log.i("Chat_ARrayAdapter", ""+getCount());
+        Log.i("Chat_ArrayAdapter", ""+getCount());
     }
 
     public View getView(int position, View convertView, ViewGroup parent){
 
         String jsondata = notification_list.get(getCount() - position - 1);
         JSONObject jsonObject = null;
+        JSONObject jsonObject_cover = null;
         LinearLayout itemLayout = null;
         try {
-            jsonObject = new JSONObject(jsondata);
+            jsonObject_cover = new JSONObject(jsondata);
+            jsonObject = jsonObject_cover.getJSONObject("data");
             if(convertView == null){
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 itemLayout =(LinearLayout) inflater.inflate(R.layout.chat_extra_lecture_list_item, null);
@@ -75,9 +77,9 @@ public class Chat_ExtraLecture_ArrayAdapter extends BaseAdapter {
 
             Log.i("Chat_ExtraLecture", jsonObject.toString());
             textView_from_name = (TextView) itemLayout.findViewById(R.id.textView_chat_extraLecture_from_name);
-            textView_from_name.setText(jsonObject.getString("name"));
+            textView_from_name.setText(jsonObject_cover.getString("name"));
             textView_from_id = (TextView) itemLayout.findViewById(R.id.textView_chat_extraLecture_from_id);
-            textView_from_id.setText(jsonObject.getString("id"));
+            textView_from_id.setText(jsonObject_cover.getString("id"));
             textView_subject = (TextView) itemLayout.findViewById(R.id.textView_chat_extraLecture_subject_val);
             textView_subject.setText(jsonObject.getString("subject"));
             textView_venue = (TextView) itemLayout.findViewById(R.id.textView_chat_extraLecture_venue_val);
@@ -91,7 +93,7 @@ public class Chat_ExtraLecture_ArrayAdapter extends BaseAdapter {
             textView_message = (TextView) itemLayout.findViewById(R.id.textView_chat_extraLecture_totime_message);
             textView_message.setText(jsonObject.getString("message"));
 
-            Log.i("Chat", jsonObject.getString("name")+" "+jsonObject.getString("id"));
+            Log.i("Chat", jsonObject_cover.getString("name")+" "+jsonObject_cover.getString("id"));
             Log.i("Chat_ArrayAdapter", notification_list.get(position));
         }
         catch (JSONException e) {

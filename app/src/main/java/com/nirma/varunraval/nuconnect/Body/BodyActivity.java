@@ -44,7 +44,6 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.nirma.varunraval.nuconnect.MainActivity;
-import com.nirma.varunraval.nuconnect.login.LoginActivity;
 import com.nirma.varunraval.nuconnect.message.sendUpstreamMessage;
 import com.nirma.varunraval.nuconnect.R;
 import com.nirma.varunraval.nuconnect.SendIDToServer;
@@ -96,15 +95,18 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
         gcm = GoogleCloudMessaging.getInstance(this);
 
         Intent recIntent = getIntent();
-        Bundle bundle = null;
+        Bundle bundle = new Bundle();
 
         //In case of some extra things
+        Log.i("BodyActivity", recIntent.getStringExtra("intent_type"));
         if(recIntent.getStringExtra("intent_type").equals("new_login")) {
         }
         else if(recIntent.getStringExtra("intent_type").equals("notification")) {
         }
 
         bundle = recIntent.getBundleExtra("user_info");
+        Log.i("BodyActivity", bundle.toString());
+        Log.i("BodyActivity", bundle.getString("email")+" "+bundle.getString("name")+" "+bundle.getString("login_type"));
         email = bundle.getString("email");
         name = bundle.getString("name");
         login_type = bundle.getString("login_type");
@@ -280,6 +282,7 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
             textView_time_to.setText(type+" "+h+":"+m);
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -356,33 +359,62 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
 
     Spinner spinner_informWhatTo;
     EditText editText_message_optional;
+    ArrayList<String> receipentList[] = new ArrayList[2];
 
     @Override
-    public void onFragmentInformExtralectureInteraction(ArrayList<Integer> reciepentListID) {
-        Log.i("Reciepents", reciepentListID.toString());
+    public void onFragmentInformExtralectureInteraction(ArrayList<Integer> receipentListID) {
+        Log.i("Reciepents", receipentListID.toString());
 
-        int flag = 0;
-        ArrayList<String> reciepentList = new ArrayList<>();
+        for(int i=0; i<receipentList.length; i++){
+            receipentList[i] = new ArrayList<>();
+        }
+
         textView_venue = (AutoCompleteTextView)findViewById(R.id.autoCompleteTextView_Venue);
         textView_Subject = (AutoCompleteTextView)findViewById(R.id.autoCompleteTextView_Subject);
         editText_message_optional = (EditText)findViewById(R.id.editText_optional_message);
 
         AutoCompleteTextView textView;
-        for(int i: reciepentListID){
+        for(int i: receipentListID){
             Log.d("List View", Integer.toString(i));
             textView = (AutoCompleteTextView)findViewById(i);
             if(textView.getText()!=null){
                 Log.i(""+i+":", textView.getText().toString());
-                reciepentList.add(textView.getText().toString());
+                receipentList[0].add(textView.getText().toString());
                 textView.setText("");
                 flag = 1;
             }
         }
 //        sendMessage("ECHO", "EXTRA_LECTURE");
+        send_message_extra_lecture(receipentList);
+    }
 
+    int flag=0;
+    @Override
+    public void onFragmentInformExtralectureInteraction(ArrayList<Integer> receipentListID, ArrayList<String> group_info) {
+        AutoCompleteTextView textView;
+
+        for(int i=0; i<receipentList.length; i++){
+            receipentList[i] = new ArrayList<>();
+        }
+
+        for(int i: receipentListID){
+            Log.d("List View", Integer.toString(i));
+            textView = (AutoCompleteTextView)findViewById(i);
+            if(textView.getText()!=null){
+                Log.i(""+i+":", textView.getText().toString());
+                receipentList[0].add(textView.getText().toString());
+                textView.setText("");
+                flag = 1;
+            }
+        }
+        receipentList[1] = group_info;
+        send_message_extra_lecture(receipentList);
+    }
+
+    private void send_message_extra_lecture(ArrayList<String> receipentlist_final[]){
         String venue = textView_venue.getText().toString(), subject = textView_Subject.getText().toString(),
                 message_optional = editText_message_optional.getText().toString(), date_button = dateButton.getText().toString(),
-                    time_from = textView_time_from.getText().toString().split(" ")[1], time_to = textView_time_to.getText().toString().split(" ")[1];
+                time_from = textView_time_from.getText().toString().split(" ")[1], time_to = textView_time_to.getText().toString().split(" ")[1];
         if(flag!=1 || venue.equals(null) || subject.equals(null) || date_button.equals("Date")
                 || time_from.equals("Select FROM") || time_to.equals("Select TO")) {
             Toast.makeText(getApplicationContext(), "Enter Reciepents", Toast.LENGTH_SHORT).show();
@@ -391,19 +423,21 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
             try {
                 spinner_informWhatTo = (Spinner)findViewById(R.id.spinnerInformWhatTo);
                 JSONObject jsonObject_data = new JSONObject();
-                jsonObject_data.accumulate("msg_type", spinner_informWhatTo.getSelectedItem());
+
+                String msg_type = spinner_informWhatTo.getSelectedItem().toString();
+
                 if(message_optional.equals(null))
                     message_optional = "NO Message";
                 Log.i("BodyActivity", message_optional);
                 jsonObject_data.accumulate("msg_optional", message_optional);
-                jsonObject_data.accumulate("date", date_button);
-                jsonObject_data.accumulate("time_from", time_from);
-                jsonObject_data.accumulate("time_to", time_to);
-                jsonObject_data.accumulate("venue", venue);
-                jsonObject_data.accumulate("subject", subject);
+                jsonObject_data.accumulate("d", date_button);
+                jsonObject_data.accumulate("t_f", time_from);
+                jsonObject_data.accumulate("t_t", time_to);
+                jsonObject_data.accumulate("v", venue);
+                jsonObject_data.accumulate("s", subject);
 
                 Log.i("BodyActivity", "Sending Message");
-                sendUpstreamMessage sendUpstreamMessage = new sendUpstreamMessage(reciepentList, jsonObject_data,
+                sendUpstreamMessage sendUpstreamMessage = new sendUpstreamMessage(receipentlist_final, msg_type, jsonObject_data,
                         (getResources().getString(R.string.server_url) + "sendUpstreamMessage.php"), getApplicationContext());
                 sendUpstreamMessage.execute();
                 Toast.makeText(getApplicationContext(), "Message Sent", Toast.LENGTH_SHORT).show();
@@ -515,6 +549,9 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
             case "Inform":
                 wantInform();
                 break;
+            case "Sent Messages":
+                sentMessages();
+                break;
         }
 
         selectedItem = selectedTypeList[position];
@@ -544,6 +581,16 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
         fragmentManager.executePendingTransactions();
     }
 
+    void sentMessages(){
+        BodyFragmentSentMessages fragmentSentMessages= new BodyFragmentSentMessages();
+
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.content_frame, fragmentSentMessages)
+                .commit();
+        fragmentManager.executePendingTransactions();
+    }
+
     boolean isDeviceOnline() {
         ConnectivityManager comMng = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         final NetworkInfo netInfo = comMng.getActiveNetworkInfo();
@@ -563,8 +610,10 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        String email_initials = PreferenceManager.getDefaultSharedPreferences(getApplicationContext())
+                                .getString("NUConnect_email", "");
                         if(isDeviceOnline())
-                            new SignOutServer().execute();
+                            new SignOutServer(email_initials).execute();
                         editor.remove("NUConnect_username");
                         editor.remove("NUConnect_email");
                         editor.remove("NUConnect_accesstoken");
@@ -591,22 +640,29 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
 
     public class SignOutServer extends AsyncTask<Void, Void, Void> {
 
-        String value;
+        String value, email_initials;
+
+        public SignOutServer(String e){
+            email_initials = e;
+        }
+
         @Override
+
         protected Void doInBackground(Void... params) {
 
-            URL url = null;
             try {
-                url = new URL(getResources().getString(R.string.server_url)+"signout.php");
-
+                String url = (getResources().getString(R.string.server_url) + "signout.php");
                 List<NameValuePair> list = new ArrayList<>();
-                list.add(new BasicNameValuePair("email", LoginActivity.email_initials));
+                Log.i("BodyActivity", email_initials);
+                if(!email_initials.equals("")) {
+                    list.add(new BasicNameValuePair("email", email_initials));
 
-                Log.i("Body Activity", LoginActivity.email_initials);
-                SendIDToServer sendIDToServer = new SendIDToServer(url, list);
-                value = sendIDToServer.sendToken();
+                    Log.i("Body Activity", email_initials);
+                    SendIDToServer sendIDToServer = new SendIDToServer(url, list, getApplicationContext());
+                    value = sendIDToServer.sendToken();
 
-                Log.i("On sign Out", value);
+                    Log.i("On sign Out", value);
+                }
             }
             catch (MalformedURLException e) {
                 e.printStackTrace();
