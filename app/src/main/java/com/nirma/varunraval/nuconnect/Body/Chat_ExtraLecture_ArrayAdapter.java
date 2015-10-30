@@ -26,13 +26,14 @@ public class Chat_ExtraLecture_ArrayAdapter extends BaseAdapter {
     Context context;
     ArrayList<String> notification_list;
     TextView textView_subject, textView_venue, textView_date, textView_time_from, textView_time_to, textView_message, textView_from_name, textView_from_id;
+    String parentType;
 
-    public Chat_ExtraLecture_ArrayAdapter(Context context) {
+    public Chat_ExtraLecture_ArrayAdapter(Context context, String parentType) {
 
         this.context = context;
         notification_list = new ArrayList<>();
+        this.parentType = parentType;
     }
-
 
     public int getCount(){
         return notification_list.size();
@@ -48,12 +49,13 @@ public class Chat_ExtraLecture_ArrayAdapter extends BaseAdapter {
         return 0;
     }
 
-    public void add(Object temp){
-        notification_list.add((String)temp);
+    public void add(String temp){
+        notification_list.add(temp);
+        notifyDataSetChanged();
     }
 
     public void addAll(ArrayList<String> temp){
-        notification_list = new ArrayList<>(temp);
+        notification_list.addAll(temp);
         notifyDataSetChanged();
         Log.i("Chat_ArrayAdapter", ""+getCount());
     }
@@ -76,24 +78,30 @@ public class Chat_ExtraLecture_ArrayAdapter extends BaseAdapter {
             }
 
             Log.i("Chat_ExtraLecture", jsonObject.toString());
-            textView_from_name = (TextView) itemLayout.findViewById(R.id.textView_chat_extraLecture_from_name);
-            textView_from_name.setText(jsonObject_cover.getString("name"));
-            textView_from_id = (TextView) itemLayout.findViewById(R.id.textView_chat_extraLecture_from_id);
-            textView_from_id.setText(jsonObject_cover.getString("id"));
+            if(parentType.equals("Home")) {
+                textView_from_name = (TextView) itemLayout.findViewById(R.id.textView_chat_extraLecture_from_name);
+                textView_from_name.setText(jsonObject_cover.getString("from_name"));
+                textView_from_id = (TextView) itemLayout.findViewById(R.id.textView_chat_extraLecture_from_id);
+                textView_from_id.setText(jsonObject_cover.getString("from_id"));
+                Log.i("Chat", jsonObject_cover.getString("from_name") + " " + jsonObject_cover.getString("from_id"));
+            }
+            else if(parentType.equals("SentMessages")){
+                itemLayout.removeView(itemLayout.findViewById(R.id.textView_chat_extraLecture_from_id));
+                itemLayout.removeView(itemLayout.findViewById(R.id.textView_chat_extraLecture_from_name));
+            }
             textView_subject = (TextView) itemLayout.findViewById(R.id.textView_chat_extraLecture_subject_val);
-            textView_subject.setText(jsonObject.getString("subject"));
+            textView_subject.setText(jsonObject.getString("s"));
             textView_venue = (TextView) itemLayout.findViewById(R.id.textView_chat_extraLecture_venue_val);
-            textView_venue.setText(jsonObject.getString("venue"));
+            textView_venue.setText(jsonObject.getString("v"));
             textView_time_from = (TextView) itemLayout.findViewById(R.id.textView_chat_extraLecture_fromtime_val);
-            textView_time_from.setText(jsonObject.getString("time_from"));
+            textView_time_from.setText(jsonObject.getString("t_f"));
             textView_time_to = (TextView) itemLayout.findViewById(R.id.textView_chat_extraLecture_totime_val);
-            textView_time_to.setText(jsonObject.getString("time_to"));
+            textView_time_to.setText(jsonObject.getString("t_t"));
             textView_date = (TextView) itemLayout.findViewById(R.id.textView_chat_extraLecture_date_val);
-            textView_date.setText(jsonObject.getString("date"));
+            textView_date.setText(jsonObject.getString("d"));
             textView_message = (TextView) itemLayout.findViewById(R.id.textView_chat_extraLecture_totime_message);
-            textView_message.setText(jsonObject.getString("message"));
+            textView_message.setText(jsonObject.getString("msg_optional"));
 
-            Log.i("Chat", jsonObject_cover.getString("name")+" "+jsonObject_cover.getString("id"));
             Log.i("Chat_ArrayAdapter", notification_list.get(position));
         }
         catch (JSONException e) {

@@ -15,8 +15,15 @@
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal|top">
 
-        <ListView
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:id="@+id/listView_notifications_extralecture" android:layout_gravity="center_horizontal" />
+        <android.support.v4.widget.SwipeRefreshLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/swiperefresh_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ListView
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:id="@+id/listView_notifications_extralecture" android:layout_gravity="center_horizontal" />
+        </android.support.v4.widget.SwipeRefreshLayout>
     </LinearLayout>
 </FrameLayout>

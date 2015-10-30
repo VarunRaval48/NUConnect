@@ -15,11 +15,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.nirma.varunraval.nuconnect.Database.MessagesDatabasedbHelper;
 import com.nirma.varunraval.nuconnect.R;
 import com.nirma.varunraval.nuconnect.SendIDToServer;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -32,11 +36,16 @@ public class BodyFragmentSentMessages extends Fragment {
     SwipeRefreshLayout swipeRefreshLayout;
     ListView listView;
     Chat_ExtraLecture_ArrayAdapter chat_extraLecture_arrayAdapter;
+    MessagesDatabasedbHelper messagesDatabasedbHelper;
+
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
         context = getActivity().getApplicationContext();
+
+        messagesDatabasedbHelper = new MessagesDatabasedbHelper(context);
     }
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                             Bundle savedInstanceState){
 
@@ -44,12 +53,12 @@ public class BodyFragmentSentMessages extends Fragment {
         View view = inflater.inflate(R.layout.fragment_body_sent_messages, container, false);
         swipeRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.swiperefresh_sent_messages);
 
-        chat_extraLecture_arrayAdapter = new Chat_ExtraLecture_ArrayAdapter(context);
+        chat_extraLecture_arrayAdapter = new Chat_ExtraLecture_ArrayAdapter(context, "SentMessages");
         listView = (ListView)view.findViewById(R.id.listView_sent_messages);
         listView.setAdapter(chat_extraLecture_arrayAdapter);
 
         if(chat_extraLecture_arrayAdapter.getCount()==0){
-            loadItems();
+            loadItems_fromdatabase(null);
         }
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -69,6 +78,7 @@ public class BodyFragmentSentMessages extends Fragment {
 
     public void onDetach(){
         super.onDetach();
+        messagesDatabasedbHelper.close();
     }
 
     public void update_sent_message_fragment(){
@@ -76,21 +86,33 @@ public class BodyFragmentSentMessages extends Fragment {
         int last_sent_message;
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         last_sent_message = Integer.parseInt(sharedPreferences.getString("NUConnect_last_sent_message", "0"));
+        Log.i("update_sent", last_sent_message+"");
         new GetSentMessages().execute(last_sent_message);
     }
 
-    private void appendToDatabase(){
+    private void loadItems_fromdatabase(ArrayList newAdded){
 
+        Log.i("LoadItensFromData", "Loading");
+
+        new AsyncTask(){
+
+            @Override
+            protected ArrayList doInBackground(Object[] params) {
+                return messagesDatabasedbHelper.getRowsSent((ArrayList) params[0]);
+            }
+
+            @Override
+            protected void onPostExecute(Object o) {
+                super.onPostExecute(o);
+                chat_extraLecture_arrayAdapter.addAll((ArrayList)o);
+            }
+        }.execute(newAdded);
     }
 
-    private void loadItems(){
-
-    }
-
-    class GetSentMessages extends AsyncTask<Integer, Void, String>{
+    class GetSentMessages extends AsyncTask<Integer, Void, ArrayList>{
 
         @Override
-        protected String doInBackground(Integer... params) {
+        protected ArrayList doInBackground(Integer... params) {
 
             String result="";
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -109,14 +131,47 @@ public class BodyFragmentSentMessages extends Fragment {
                 e.printStackTrace();
             }
 
-            return result;
+            Log.i("BodyFragmentSentMessage", result);
+
+            if(!result.equals("0")) {
+//            ArrayList<Integer> msg_ids_obtained = new ArrayList<>();
+                ArrayList<String> msg_obtained = new ArrayList<>();
+                try {
+                    JSONArray jsonArray = new JSONArray(result);
+                    JSONObject jsonObject = null, data = null;
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        jsonObject = jsonArray.getJSONObject(i);
+                        data = jsonObject.getJSONObject("data");
+
+                        msg_obtained.add(jsonObject.toString());
+                        messagesDatabasedbHelper.insertRowSent(jsonObject.getInt("msg_id"), data.getString("s"), data.getString("d"),
+                                data.getString("t_f"), data.getString("t_t"), data.getString("v"),
+                                jsonObject.getString("msg_type"), data.getString("msg_optional"), jsonObject.getString("date_sent_on"));
+                    }
+                    if (jsonObject != null) {
+                        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
+                        editor.putString("NUConnect_last_sent_message", String.valueOf(jsonObject.getInt("msg_id")));
+                        editor.commit();
+                        Log.i("BodyFragment_lastMsg", jsonObject.getInt("msg_id") + "");
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                return msg_obtained;
+            }
+            else{
+                return null;
+            }
         }
 
         @Override
-        protected void onPostExecute(String result) {
+        protected void onPostExecute(ArrayList result) {
             super.onPostExecute(result);
 
-            Log.i("BodyFragmentSentMessage", result);
+            if(result!=null)
+                chat_extraLecture_arrayAdapter.addAll(result);
+//            loadItems_fromdatabase(result);
             swipeRefreshLayout.setRefreshing(false);
 
         }
