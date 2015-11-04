@@ -43,6 +43,8 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+import com.nirma.varunraval.nuconnect.Database.DatabaseContract;
+import com.nirma.varunraval.nuconnect.Database.MessagesDatabasedbHelper;
 import com.nirma.varunraval.nuconnect.MainActivity;
 import com.nirma.varunraval.nuconnect.message.sendUpstreamMessage;
 import com.nirma.varunraval.nuconnect.R;
@@ -369,15 +371,13 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
             receipentList[i] = new ArrayList<>();
         }
 
-        textView_venue = (AutoCompleteTextView)findViewById(R.id.autoCompleteTextView_Venue);
-        textView_Subject = (AutoCompleteTextView)findViewById(R.id.autoCompleteTextView_Subject);
-        editText_message_optional = (EditText)findViewById(R.id.editText_optional_message);
 
         AutoCompleteTextView textView;
         for(int i: receipentListID){
             Log.d("List View", Integer.toString(i));
             textView = (AutoCompleteTextView)findViewById(i);
-            if(textView.getText()!=null){
+            Log.i("BodyAct_IND", textView.getText().toString());
+            if(!textView.getText().equals("")){
                 Log.i(""+i+":", textView.getText().toString());
                 receipentList[0].add(textView.getText().toString());
                 textView.setText("");
@@ -389,6 +389,7 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
     }
 
     int flag=0;
+    //TODO no need of group_info
     @Override
     public void onFragmentInformExtralectureInteraction(ArrayList<Integer> receipentListID, ArrayList<String> group_info) {
         AutoCompleteTextView textView;
@@ -400,18 +401,34 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
         for(int i: receipentListID){
             Log.d("List View", Integer.toString(i));
             textView = (AutoCompleteTextView)findViewById(i);
-            if(textView.getText()!=null){
-                Log.i(""+i+":", textView.getText().toString());
+            if(textView.getText().length() != 0){
+                Log.i("__InGrpInd "+i+":", "textView "+textView.getText().toString());
                 receipentList[0].add(textView.getText().toString());
                 textView.setText("");
                 flag = 1;
             }
         }
-        receipentList[1] = group_info;
+
+        Spinner spinnerInformWhoToYear = (Spinner)findViewById(R.id.spinnerInformWhoToYear);
+        Spinner spinnerInformWhoTo = (Spinner)findViewById(R.id.spinnerInformWhoTo);
+        Spinner spinnerInformDivision = (Spinner)findViewById(R.id.spinnerInformDivision);
+        String temp;
+        temp = spinnerInformWhoToYear.getSelectedItem().toString().toLowerCase()+"b"+
+                spinnerInformWhoTo.getSelectedItem().toString().toLowerCase()+spinnerInformDivision.getSelectedItem().toString().toLowerCase();
+        if(!temp.contains("None")) {
+            receipentList[1].add(temp);
+            flag = 1;
+        }
+        Log.i("__InGrp_BodyAct", receipentList[1] + " " + receipentList[0]);
+
         send_message_extra_lecture(receipentList);
     }
 
     private void send_message_extra_lecture(ArrayList<String> receipentlist_final[]){
+        textView_venue = (AutoCompleteTextView)findViewById(R.id.autoCompleteTextView_Venue);
+        textView_Subject = (AutoCompleteTextView)findViewById(R.id.autoCompleteTextView_Subject);
+        editText_message_optional = (EditText)findViewById(R.id.editText_optional_message);
+
         String venue = textView_venue.getText().toString(), subject = textView_Subject.getText().toString(),
                 message_optional = editText_message_optional.getText().toString(), date_button = dateButton.getText().toString(),
                 time_from = textView_time_from.getText().toString().split(" ")[1], time_to = textView_time_to.getText().toString().split(" ")[1];
@@ -618,7 +635,13 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
                         editor.remove("NUConnect_email");
                         editor.remove("NUConnect_accesstoken");
                         editor.remove("NUConnect_login_type");
+                        editor.remove("NUConnect_last_sent_message");
+                        editor.remove("NUConnect_last_got_message");
                         editor.commit();
+
+                        MessagesDatabasedbHelper messagesDatabasedbHelper = new MessagesDatabasedbHelper(getApplicationContext());
+                        messagesDatabasedbHelper.close();
+                        getApplicationContext().deleteDatabase(MessagesDatabasedbHelper.DATABASE_NAME);
 
                         Intent in = new Intent(BodyActivity.this, MainActivity.class);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

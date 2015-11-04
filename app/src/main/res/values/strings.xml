@@ -59,9 +59,9 @@
 
     <string-array name="inform_who_to">
         <item>None</item>
-        <item>Mechenical</item>
-        <item>Computer</item>
-        <item>Information Technology</item>
+        <item>ME</item>
+        <item>CE</item>
+        <item>IT</item>
         <item>EC</item>
         <item>EE</item>
         <item>IC</item>
@@ -81,7 +81,7 @@
     </string-array>
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_main_slider">main_slider</string>
+    <string name="title_activity_main_slider">NUConnect</string>
     <string name="title_activity_settings">Settings</string>
 
 </resources>

@@ -33,7 +33,7 @@
                     <AutoCompleteTextView
                         android:layout_width="match_parent" android:layout_height="wrap_content"
                         android:text="" android:id="@+id/autoCompleteTextViewIndv1"
-                        android:layout_column="11" android:textColor="@android:color/holo_blue_bright"
+                        android:layout_column="11" android:textColor="#24248f"
                         android:hint="Enter username" android:layout_marginTop="18dp"
                         android:layout_marginLeft="10dp" android:freezesText="true"/>
                 </TableRow>

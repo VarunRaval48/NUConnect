@@ -20,6 +20,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.common.AccountPicker;
+import com.google.android.gms.common.SignInButton;
 import com.nirma.varunraval.nuconnect.R;
 import com.nirma.varunraval.nuconnect.login.NextFragment;
 import com.nirma.varunraval.nuconnect.login.RetryLoginFragment;
@@ -76,13 +77,13 @@ public class Login_Fragment extends Fragment {
         Log.i("LoginFragment", "initialized spinner");
         spinner = (Spinner)view.findViewById(R.id.spinner);
 
-        Button nextTempButton = (Button)view.findViewById(R.id.buttonTempNext);
-        nextTempButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onButtonPressed("temp_next");
-            }
-        });
+//        Button nextTempButton = (Button)view.findViewById(R.id.buttonTempNext);
+//        nextTempButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onButtonPressed("temp_next");
+//            }
+//        });
 
         ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(main_slider_activity.getApplicationContext(), R.array.login_type, R.layout.spinner_item);
         arrayAdapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
@@ -101,7 +102,7 @@ public class Login_Fragment extends Fragment {
             }
         });
 
-        ImageButton pick_next = (ImageButton)view.findViewById(R.id.button_next);
+        SignInButton pick_next = (SignInButton)view.findViewById(R.id.sign_in_button);
         pick_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

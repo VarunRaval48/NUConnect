@@ -105,7 +105,8 @@ public class SelectReceipentFragment extends Fragment{
                 }
             });
 
-        }//TODO Correct layout of group receipent (row size)
+        }
+        //TODO Correct layout of group receipent (row size)
         else if(mParam1type.equals("Group")){
             view = inflater.inflate(R.layout.fragment_select_receipent_group, container, false);
 
@@ -113,17 +114,19 @@ public class SelectReceipentFragment extends Fragment{
             arrayAdapterWhoToYear = ArrayAdapter.createFromResource(context, R.array.inform_who_to_year, R.layout.spinner_item);
             arrayAdapterWhoToYear.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
             spinnerInformWhoToYear.setAdapter(arrayAdapterWhoToYear);
-            spinnerInformWhoToYear.setOnItemSelectedListener(new spinner_selection());
+            spinnerInformWhoToYear.setOnItemSelectedListener(new SpinnerSelection());
 
             Spinner spinnerInformWhoTo = (Spinner)view.findViewById(R.id.spinnerInformWhoTo);
             arrayAdapterWhoTo = ArrayAdapter.createFromResource(context, R.array.inform_who_to, R.layout.spinner_item);
             arrayAdapterWhoTo.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
             spinnerInformWhoTo.setAdapter(arrayAdapterWhoTo);
+            spinnerInformWhoTo.setOnItemSelectedListener(new SpinnerSelection());
 
             Spinner spinnerInformDivision = (Spinner)view.findViewById(R.id.spinnerInformDivision);
             arrayAdapterDivision = ArrayAdapter.createFromResource(context, R.array.inform_division, R.layout.spinner_item);
             arrayAdapterDivision.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
             spinnerInformDivision.setAdapter(arrayAdapterDivision);
+            spinnerInformDivision.setOnItemSelectedListener(new SpinnerSelection());
 
             reciepentListID[1].add(R.id.autoCompleteTextViewGroup);
             msg_type = 1;
@@ -141,7 +144,8 @@ public class SelectReceipentFragment extends Fragment{
         return view;
     }
 
-    class spinner_selection implements AdapterView.OnItemSelectedListener{
+    //TODO add support for multiple groups
+    class SpinnerSelection implements AdapterView.OnItemSelectedListener{
 
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -150,10 +154,10 @@ public class SelectReceipentFragment extends Fragment{
                 temp += parent.getSelectedItem().toString()+"-";
             }
             else if(parent.equals(arrayAdapterWhoTo)){
-                temp += parent.getSelectedItem().toString()+"-";
+                temp += "b"+parent.getSelectedItem().toString().toLowerCase()+"-";
             }
             else if(parent.equals(arrayAdapterDivision)){
-                temp += parent.getSelectedItem().toString();
+                temp += parent.getSelectedItem().toString().toLowerCase();
             }
             group_info.add(temp);
         }

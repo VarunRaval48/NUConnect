@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:text="msg type"        android:id="@+id/textView_chat_extraLecture_msg_type"
-        android:textSize="25px" android:textColor="#73ABFA"
+        android:textSize="25px" android:textColor="@android:color/holo_purple"
         android:textAllCaps="true" android:gravity="center" android:elevation="2dp"
         android:layout_marginBottom="0dp" android:layout_gravity="center"
         android:layout_marginTop="12dp" android:background="@drawable/round_corners" />

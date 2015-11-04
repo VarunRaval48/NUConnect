@@ -2,6 +2,7 @@ package com.nirma.varunraval.nuconnect.login_slider;
 
 import android.accounts.AccountManager;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -153,7 +154,8 @@ public class MainSlider extends FragmentActivity implements Login_Fragment.OnFra
             Intent in = AccountPicker.newChooseAccountIntent(null, null, accountTypes, true, null, null, null, null);
 
             startActivityForResult(in, REQUEST_CODE_PICK_ACCOUNT);
-        } else {
+        }
+        else {
             Log.i("Network", "Not able to connect");
             Toast.makeText(getApplicationContext(), "Connect to a network to Log in", Toast.LENGTH_SHORT).show();
             inflateRetry();
@@ -161,7 +163,7 @@ public class MainSlider extends FragmentActivity implements Login_Fragment.OnFra
     }
 
     protected void inflateRetry() {
-        Fragment retryFragment = new RetryLoginFragment();
+        Fragment retryFragment = RetryLoginFragment.newInstance("retry");
         fragmentManager = this.getSupportFragmentManager();
 
         fragmentManager.beginTransaction().replace(R.id.frameLaoyoutSpin, retryFragment).commit();
@@ -175,7 +177,7 @@ public class MainSlider extends FragmentActivity implements Login_Fragment.OnFra
         if (requestCode == REQUEST_CODE_PICK_ACCOUNT) {
             if (resultCode == RESULT_OK) {
                 email = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
-
+                Log.i("MainSlider", email);
                 if (!email.endsWith("nirmauni.ac.in") && false) {
                     Log.i("Toast", "Wrong Account");
                     Toast.makeText(this, "You must chose nirmauni account", Toast.LENGTH_SHORT).show();
@@ -231,17 +233,25 @@ public class MainSlider extends FragmentActivity implements Login_Fragment.OnFra
         }
     }
 
+    ProgressDialog progressDialog;
     public void showSpinner(){
         runOnUiThread(new Runnable() {
             public void run() {
                 inflate_spinner = true;
-                Fragment fragment = new SpinnerFragment();
+                Fragment fragment = RetryLoginFragment.newInstance("spinner");
 
                 FragmentManager fragmentManager = getSupportFragmentManager();
 
                 fragmentManager.beginTransaction().replace(R.id.frameLaoyoutSpin, fragment).commitAllowingStateLoss();
 
                 fragmentManager.executePendingTransactions();
+
+//                progressDialog = new ProgressDialog(getApplicationContext());
+//                progressDialog.setTitle("Please Wait");
+//                progressDialog.setMessage("Wait");
+//                progressDialog.setCancelable(false);
+//                progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+//                progressDialog.show();
             }
         });
     }
@@ -328,6 +338,7 @@ public class MainSlider extends FragmentActivity implements Login_Fragment.OnFra
         }
 
         protected void onPostExecute(Void params){
+//            progressDialog.dismiss();
             if(serverConnected == 1)
                 validateAndGo(arg);
             else
@@ -403,7 +414,7 @@ public class MainSlider extends FragmentActivity implements Login_Fragment.OnFra
         @Override
         protected Bundle doInBackground(Object... params) {
 
-            Bundle values = new Bundle();
+            Bundle values = null;
 
             try {
 //                idToken = fetchIDToken();
@@ -430,6 +441,8 @@ public class MainSlider extends FragmentActivity implements Login_Fragment.OnFra
                     JSONObject reader;
                     reader = new JSONObject(val.toString());
                     //            reader = jArray.getJSONObject(0);
+
+                    values = new Bundle();
 
                     name = (String) reader.get("name");
                     values.putString("email", (String) reader.get("email"));
@@ -464,7 +477,8 @@ public class MainSlider extends FragmentActivity implements Login_Fragment.OnFra
 //        }
 //            inflateRetry();
 //            validateAndGo(result);
-            setUsername(result);
+            if(result!=null)
+                setUsername(result);
         }
 
         protected String fetchIDToken() throws IOException {
@@ -488,11 +502,11 @@ public class MainSlider extends FragmentActivity implements Login_Fragment.OnFra
             try {
                 return GoogleAuthUtil.getToken(act, email, oAuthscopes);
             } catch (GooglePlayServicesAvailabilityException e) {
-                act.handling = true;
-                Log.i("Before", "Before calling handle Exception gPlay " + act.handling);
+                handling = true;
+                Log.i("Before", "Before calling handle Exception gPlay " + handling);
                 act.handleException(e);
             } catch (UserRecoverableAuthException e) {
-                act.handling = true;
+                handling = true;
                 Log.i("Before", "Before calling handle Exception recoverable");
                 act.handleException(e);
             } catch (GoogleAuthException e) {

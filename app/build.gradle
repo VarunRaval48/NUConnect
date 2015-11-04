@@ -2,8 +2,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.2"
+    compileSdkVersion 23
+    buildToolsVersion '21.1.2'
+    useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
         applicationId "com.nirma.varunraval.nuconnect"
@@ -28,10 +29,12 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile fileTree(dir: 'libs/smackLibs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(include: ['*.jar'], dir: 'libs/smackLibs')
+    compile 'com.android.support:appcompat-v7:23.0.1'
     compile 'com.google.android.gms:play-services:7.8.0'
-    compile 'com.android.support:support-v4:22.2.0'
-
+    compile 'com.android.support:support-v4:23.0.1'
+    compile 'com.google.android.gms:play-services-ads:7.8.0'
+    compile 'com.google.android.gms:play-services-identity:7.8.0'
+    compile 'com.google.android.gms:play-services-gcm:7.8.0'
 }

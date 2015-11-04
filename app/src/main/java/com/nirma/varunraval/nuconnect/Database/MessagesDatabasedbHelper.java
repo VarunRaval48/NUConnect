@@ -73,7 +73,7 @@ public class MessagesDatabasedbHelper extends SQLiteOpenHelper{
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(SQL_DELETE_ENTRIES_SENT);
-        db.execSQL(SQL_CREATE_ENTRIES_ALL);
+        db.execSQL(SQL_DELETE_ENTRIES_ALL);
         onCreate(db);
     }
 

@@ -3,6 +3,7 @@ package com.nirma.varunraval.nuconnect.body;
 import android.app.Activity;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,6 +91,7 @@ public class InformExtraLectureFragment extends Fragment {
                 mListener.onFragmentInformExtralectureInteraction(SelectReceipentFragment.reciepentListID[msg_type]);
             }
             else{
+                Log.i("__InformExtra", SelectReceipentFragment.group_info+"");
                 mListener.onFragmentInformExtralectureInteraction(SelectReceipentFragment.reciepentListID[msg_type], SelectReceipentFragment.group_info);
             }
         }

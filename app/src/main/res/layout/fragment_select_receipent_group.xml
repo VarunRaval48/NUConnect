@@ -68,12 +68,14 @@
 
                 <Button
                     android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:text="Add \nRecepipent" android:id="@+id/buttonAddGroup" />
+                    android:text="Add \nRecepipent" android:id="@+id/buttonAddGroup"
+                    android:background="@drawable/roundbutton_addreceipent" android:textColor="@android:color/white"
+                    android:minWidth="50dp"/>
 
                 <AutoCompleteTextView
                     android:layout_width="match_parent" android:layout_height="wrap_content"
                     android:text="" android:id="@+id/autoCompleteTextViewGroup"
-                    android:layout_column="11" android:textColor="@android:color/holo_blue_bright"
+                    android:layout_column="11" android:textColor="#24248f"
                     android:hint="Enter Username" android:layout_marginTop="18dp"
                     android:layout_marginLeft="10dp"/>
             </TableRow>

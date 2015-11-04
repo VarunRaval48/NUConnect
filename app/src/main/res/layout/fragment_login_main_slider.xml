@@ -35,9 +35,14 @@
                     android:paddingTop="50dp">
                 </FrameLayout>
 
-                <ImageButton
+                <!--<ImageButton-->
+                    <!--android:layout_width="wrap_content" android:layout_height="wrap_content"-->
+                    <!--android:id="@+id/button_next" android:src="@drawable/btn_gsignin_normal_copy"-->
+                    <!--android:layout_gravity="center"/>-->
+
+                <com.google.android.gms.common.SignInButton
+                    android:id="@+id/sign_in_button"
                     android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:id="@+id/button_next" android:src="@drawable/btn_gsignin_normal_copy"
                     android:layout_gravity="center"/>
 
                 <!--<Button-->
@@ -45,17 +50,14 @@
                     <!--android:text="Next >>>" android:background="@android:color/transparent"-->
                     <!--android:id="@+id/button_next" android:layout_gravity="center" />-->
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Next" android:background="@android:color/darker_gray"
-                    android:id="@+id/buttonTempNext"
-                    android:layout_gravity="center_horizontal" />
+                <!--<Button-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="Next" android:background="@android:color/darker_gray"-->
+                    <!--android:id="@+id/buttonTempNext"-->
+                    <!--android:layout_gravity="center_horizontal" />-->
 
             </LinearLayout>
         </ScrollView>
-
-
     </LinearLayout>
-
 </FrameLayout>

@@ -135,7 +135,7 @@ public class BodyFragmentHome extends Fragment {
         }.execute(newAdded);
     }
 
-    void getAllMessages(){
+    public void getAllMessages(){
 
         int last_got_message;
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);

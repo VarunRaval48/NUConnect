@@ -96,7 +96,7 @@ public class sendUpstreamMessage extends AsyncTask<Object, Void, Void>{
             jsonObject.accumulate("date_sent_on", date_sent_on);
 
             json = jsonObject.toString();
-
+            Log.i("SendUpstreamMsg", json);
             httpPost.setEntity(new StringEntity(json));
 
             httpPost.setHeader("Accept", "application/json");

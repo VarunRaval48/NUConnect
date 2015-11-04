@@ -13,26 +13,49 @@
     </layouts>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="INFO" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d561b73b-aa2f-4556-ab8b-c31aa4499ef5" name="Default" comment="Updated sign out and Server Files">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/Database/MessagesDatabasedbHelper.java" />
-      <change type="DELETED" beforePath="D:\Users\AndroidstudioProjects\NUConnect\app\src\main\java\com\nirma\varunraval\nuconnect\Database\SentMessagesDatabasedbHelper.java" afterPath="" />
+    <list default="true" id="d561b73b-aa2f-4556-ab8b-c31aa4499ef5" name="Default" comment="Handled updates when notification arrives">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/org_apache_http_legacy_android_23.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/round_corners.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/roundbutton_addreceipent.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="D:\Users\AndroidstudioProjects\NUConnect\app\src\main\java\com\nirma\varunraval\nuconnect\body\BodyActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/BodyActivity.java" />
       <change type="MODIFICATION" beforePath="D:\Users\AndroidstudioProjects\NUConnect\app\src\main\java\com\nirma\varunraval\nuconnect\body\BodyFragmentHome.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/BodyFragmentHome.java" />
-      <change type="MODIFICATION" beforePath="D:\Users\AndroidstudioProjects\NUConnect\app\src\main\java\com\nirma\varunraval\nuconnect\body\BodyFragmentSentMessages.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/BodyFragmentSentMessages.java" />
       <change type="MODIFICATION" beforePath="D:\Users\AndroidstudioProjects\NUConnect\app\src\main\java\com\nirma\varunraval\nuconnect\body\Chat_ExtraLecture_ArrayAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/Chat_ExtraLecture_ArrayAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/Database/DatabaseContract.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/Database/DatabaseContract.java" />
-      <change type="MODIFICATION" beforePath="D:\Users\AndroidstudioProjects\NUConnect\app\src\main\java\com\nirma\varunraval\nuconnect\message\HandleMessagesGCMListenerService.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/message/HandleMessagesGCMListenerService.java" />
+      <change type="MODIFICATION" beforePath="D:\Users\AndroidstudioProjects\NUConnect\app\src\main\java\com\nirma\varunraval\nuconnect\body\InformExtraLectureFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/InformExtraLectureFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/login_slider/Login_Fragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/login_slider/Login_Fragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/login_slider/MainSlider.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/login_slider/MainSlider.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/Database/MessagesDatabasedbHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/Database/MessagesDatabasedbHelper.java" />
+      <change type="MODIFICATION" beforePath="D:\Users\AndroidstudioProjects\NUConnect\app\src\main\java\com\nirma\varunraval\nuconnect\login\RetryLoginFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/login/RetryLoginFragment.java" />
+      <change type="MODIFICATION" beforePath="D:\Users\AndroidstudioProjects\NUConnect\app\src\main\java\com\nirma\varunraval\nuconnect\body\SelectReceipentFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/SelectReceipentFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_body.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_body.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/build/intermediates/dex-cache/cache.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/chat_extra_lecture_list_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/chat_extra_lecture_list_item.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_body_home.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_body_home.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_inform_extra_lecture.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_inform_extra_lecture.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_login_main_slider.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_login_main_slider.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_retry_login.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_retry_login.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_select_receipent_group.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_select_receipent_group.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_select_receipent_individual.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_select_receipent_individual.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/list_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/list_item.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/drawable/roundbutton_inform.xml" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/roundbutton_inform.xml" />
+      <change type="MODIFICATION" beforePath="D:\Users\AndroidstudioProjects\NUConnect\app\src\main\java\com\nirma\varunraval\nuconnect\message\sendUpstreamMessage.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/message/sendUpstreamMessage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="D:\Users\AndroidstudioProjects\NUConnect\.idea\libraries\appcompat_v7_22_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_0_1.xml" />
+      <change type="MOVED" beforePath="D:\Users\AndroidstudioProjects\NUConnect\.idea\libraries\support_annotations_22_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_23_0_1.xml" />
+      <change type="MOVED" beforePath="D:\Users\AndroidstudioProjects\NUConnect\.idea\libraries\support_v4_22_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_23_0_1.xml" />
     </list>
     <ignored path="NUConnect.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -86,31 +109,49 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="BodyFragmentSentMessages.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/BodyFragmentSentMessages.java">
+      <file leaf-file-name="chat_extra_lecture_list_item.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/chat_extra_lecture_list_item.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="55" column="18" selection-start-line="55" selection-start-column="18" selection-end-line="55" selection-end-column="18" />
+            <state vertical-scroll-proportion="-5.862069">
+              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BodyFragmentHome.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/BodyFragmentHome.java">
+      <file leaf-file-name="HandleMessagesGCMListenerService.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/message/HandleMessagesGCMListenerService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.40930232">
+              <caret line="234" column="66" selection-start-line="234" selection-start-column="66" selection-end-line="234" selection-end-column="66" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="round_corners.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/round_corners.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Chat_ExtraLecture_ArrayAdapter.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/Chat_ExtraLecture_ArrayAdapter.java">
+      <file leaf-file-name="fragment_body_home.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_body_home.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.34056762">
-              <caret line="81" column="97" selection-start-line="81" selection-start-column="97" selection-end-line="81" selection-end-column="97" />
+            <state vertical-scroll-proportion="-6.172414">
+              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -121,8 +162,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="resourceFile" />
         <option value="Class" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
@@ -536,9 +577,9 @@
                 <option name="name" value="preReleaseUnitTestBuild" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Prepare com.android.support:appcompat-v7:22.2.0" />
+                <option name="description" value="Prepare com.android.support:appcompat-v7:23.0.1" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="prepareComAndroidSupportAppcompatV72220Library" />
+                <option name="name" value="prepareComAndroidSupportAppcompatV72301Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Prepare com.android.support:mediarouter-v7:22.2.0" />
@@ -546,9 +587,9 @@
                 <option name="name" value="prepareComAndroidSupportMediarouterV72220Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Prepare com.android.support:support-v4:22.2.0" />
+                <option name="description" value="Prepare com.android.support:support-v4:23.0.1" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$" />
-                <option name="name" value="prepareComAndroidSupportSupportV42220Library" />
+                <option name="name" value="prepareComAndroidSupportSupportV42301Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Prepare com.google.android.gms:play-services:7.8.0" />
@@ -1154,9 +1195,9 @@
                 <option name="name" value="preReleaseUnitTestBuild" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Prepare com.android.support:appcompat-v7:22.2.0" />
+                <option name="description" value="Prepare com.android.support:appcompat-v7:23.0.1" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="prepareComAndroidSupportAppcompatV72220Library" />
+                <option name="name" value="prepareComAndroidSupportAppcompatV72301Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Prepare com.android.support:mediarouter-v7:22.2.0" />
@@ -1164,9 +1205,9 @@
                 <option name="name" value="prepareComAndroidSupportMediarouterV72220Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Prepare com.android.support:support-v4:22.2.0" />
+                <option name="description" value="Prepare com.android.support:support-v4:23.0.1" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/app" />
-                <option name="name" value="prepareComAndroidSupportSupportV42220Library" />
+                <option name="name" value="prepareComAndroidSupportSupportV42301Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="description" value="Prepare com.google.android.gms:play-services:7.8.0" />
@@ -1411,7 +1452,7 @@
     <option name="modificationStamps">
       <map>
         <entry key="$PROJECT_DIR$" value="4298165564280" />
-        <entry key="D:\Users\AndroidstudioProjects\NUConnect" value="4309984763231" />
+        <entry key="D:\Users\AndroidstudioProjects\NUConnect" value="4316890352429" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -1597,10 +1638,12 @@
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/net/sf/proguard/proguard-gradle/5.2.1/proguard-gradle-5.2.1.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/net/sf/proguard/proguard-base/5.2.1/proguard-base-5.2.1-sources.jar" />
                             <option value="$APPLICATION_HOME_DIR$/gradle/m2repository/net/sf/proguard/proguard-base/5.2.1/proguard-base-5.2.1.jar" />
-                            <option value="D:/adt-bundle-windows-x86_64-20131030/sdk/extras/android/m2repository/com/android/support/appcompat-v7/22.2.0/appcompat-v7-22.2.0.aar" />
+                            <option value="D:/adt-bundle-windows-x86_64-20131030/sdk/extras/android/m2repository/com/android/support/appcompat-v7/23.0.1/appcompat-v7-23.0.1.aar" />
                             <option value="D:/adt-bundle-windows-x86_64-20131030/sdk/extras/google/m2repository/com/google/android/gms/play-services/7.8.0/play-services-7.8.0.aar" />
-                            <option value="D:/adt-bundle-windows-x86_64-20131030/sdk/extras/android/m2repository/com/android/support/support-v4/22.2.0/support-v4-22.2.0.aar" />
+                            <option value="D:/adt-bundle-windows-x86_64-20131030/sdk/extras/android/m2repository/com/android/support/support-v4/23.0.1/support-v4-23.0.1.aar" />
                             <option value="D:/adt-bundle-windows-x86_64-20131030/sdk/extras/google/m2repository/com/google/android/gms/play-services-ads/7.8.0/play-services-ads-7.8.0.aar" />
+                            <option value="D:/adt-bundle-windows-x86_64-20131030/sdk/extras/google/m2repository/com/google/android/gms/play-services-identity/7.8.0/play-services-identity-7.8.0.aar" />
+                            <option value="D:/adt-bundle-windows-x86_64-20131030/sdk/extras/google/m2repository/com/google/android/gms/play-services-gcm/7.8.0/play-services-gcm-7.8.0.aar" />
                             <option value="D:/adt-bundle-windows-x86_64-20131030/sdk/extras/google/m2repository/com/google/android/gms/play-services-analytics/7.8.0/play-services-analytics-7.8.0.aar" />
                             <option value="D:/adt-bundle-windows-x86_64-20131030/sdk/extras/google/m2repository/com/google/android/gms/play-services-appindexing/7.8.0/play-services-appindexing-7.8.0.aar" />
                             <option value="D:/adt-bundle-windows-x86_64-20131030/sdk/extras/google/m2repository/com/google/android/gms/play-services-appinvite/7.8.0/play-services-appinvite-7.8.0.aar" />
@@ -1610,8 +1653,6 @@
                             <option value="D:/adt-bundle-windows-x86_64-20131030/sdk/extras/google/m2repository/com/google/android/gms/play-services-drive/7.8.0/play-services-drive-7.8.0.aar" />
                             <option value="D:/adt-bundle-windows-x86_64-20131030/sdk/extras/google/m2repository/com/google/android/gms/play-services-fitness/7.8.0/play-services-fitness-7.8.0.aar" />
                             <option value="D:/adt-bundle-windows-x86_64-20131030/sdk/extras/google/m2repository/com/google/android/gms/play-services-games/7.8.0/play-services-games-7.8.0.aar" />
-                            <option value="D:/adt-bundle-windows-x86_64-20131030/sdk/extras/google/m2repository/com/google/android/gms/play-services-gcm/7.8.0/play-services-gcm-7.8.0.aar" />
-                            <option value="D:/adt-bundle-windows-x86_64-20131030/sdk/extras/google/m2repository/com/google/android/gms/play-services-identity/7.8.0/play-services-identity-7.8.0.aar" />
                             <option value="D:/adt-bundle-windows-x86_64-20131030/sdk/extras/google/m2repository/com/google/android/gms/play-services-location/7.8.0/play-services-location-7.8.0.aar" />
                             <option value="D:/adt-bundle-windows-x86_64-20131030/sdk/extras/google/m2repository/com/google/android/gms/play-services-maps/7.8.0/play-services-maps-7.8.0.aar" />
                             <option value="D:/adt-bundle-windows-x86_64-20131030/sdk/extras/google/m2repository/com/google/android/gms/play-services-nearby/7.8.0/play-services-nearby-7.8.0.aar" />
@@ -1621,7 +1662,7 @@
                             <option value="D:/adt-bundle-windows-x86_64-20131030/sdk/extras/google/m2repository/com/google/android/gms/play-services-vision/7.8.0/play-services-vision-7.8.0.aar" />
                             <option value="D:/adt-bundle-windows-x86_64-20131030/sdk/extras/google/m2repository/com/google/android/gms/play-services-wallet/7.8.0/play-services-wallet-7.8.0.aar" />
                             <option value="D:/adt-bundle-windows-x86_64-20131030/sdk/extras/google/m2repository/com/google/android/gms/play-services-wearable/7.8.0/play-services-wearable-7.8.0.aar" />
-                            <option value="D:/adt-bundle-windows-x86_64-20131030/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar" />
+                            <option value="D:/adt-bundle-windows-x86_64-20131030/sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar" />
                             <option value="D:/adt-bundle-windows-x86_64-20131030/sdk/extras/android/m2repository/com/android/support/mediarouter-v7/22.2.0/mediarouter-v7-22.2.0.aar" />
                           </list>
                         </option>
@@ -2061,57 +2102,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/Message/HandleMessagesGCMListenerService.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/select_receipent_row.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_body_inform.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/gcmtoken/CustomInstanceIDListenerService.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/Chat_ExtraLecture.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main_slider.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/login_slider/Welcome_Fragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_login_.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/login/NextFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/login/RetryLoginFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/login/SpinnerFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/login_slider/main_slider.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_settings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/Settings.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/chat_extra_lecture_list_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/list_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_body.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/spinner_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/roundbutton_inform.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_inform_extra_lecture.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/SendIDToServer.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/login/LoginActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/login_slider/MainSlider.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/gcmtoken/RegisterDeviceService.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/spinner_view.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/SelectReceipentFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/InformExtraLectureFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_welcome.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_login_main_slider.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/login_slider/Login_Fragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_body_fragment_sent_messages.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/menu_body.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_body_sent_messages.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/BodyActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/message/sendUpstreamMessage.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/Database/DatabasedbHelper.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_body_home.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/Database/AllMessageDatabasedbHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/Database/DatabaseContract.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/Database/AllMessagesDatabasedbHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/Database/SentMessagesDatabasedbHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/BodyFragmentSentMessages.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/Database/MessagesDatabasedbHelper.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/BodyFragmentHome.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/message/HandleMessagesGCMListenerService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/Chat_ExtraLecture_ArrayAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/login/RetryLoginFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_retry_login.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/login_slider/MainSlider.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/Database/MessagesDatabasedbHelper.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/login_slider/Login_Fragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/message/sendUpstreamMessage.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/InformExtraLectureFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/SelectReceipentFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/BodyFragmentHome.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_login_main_slider.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/roundbutton_inform.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/roundbutton_addreceipent.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_inform_extra_lecture.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_select_receipent_group.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_select_receipent_individual.xml" />
+        <option value="$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-v23/values-v23.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_body.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/BodyActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/SendIDToServer.java" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/list_item.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/round_corners.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_body_home.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/chat_extra_lecture_list_item.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/message/HandleMessagesGCMListenerService.java" />
       </list>
     </option>
   </component>
@@ -2160,9 +2201,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -2171,9 +2209,134 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NUConnect" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NUConnect" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NUConnect" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NUConnect" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nuconnect" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NUConnect" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nuconnect" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="message" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NUConnect" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nuconnect" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="body" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NUConnect" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manifests" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidManifestsGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2197,9 +2360,9 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Varun Raval/Varun Documents/Android/Zip Files/Android GCM Client" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager2.WIDTH" value="283" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/java" />
-    <property name="android.project.structure.last.selected" value="smackLibs" />
+    <property name="android.project.structure.last.selected" value="app" />
     <property name="android.project.structure.proportion" value="0.15" />
-    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://D:/Users/AndroidstudioProjects/NUConnect/app/src/main/java/com/nirma/varunraval/nuconnect/GCMToken/CustomInstanceIDListenerService.java" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://D:/Users/AndroidstudioProjects/NUConnect/app/src/main/java/com/nirma/varunraval/nuconnect/body/SelectReceipentFragment.java" />
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteToolWindowManager.SHOW" value="true" />
   </component>
   <component name="RecentsManager">
@@ -2456,6 +2619,9 @@
     </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="StructureViewFactory">
+    <option name="ACTIVE_ACTIONS" value=",SHOW_PROPERTIES,SHOW_FIELDS,SHOW_NON_PUBLIC" />
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -2466,6 +2632,13 @@
       <option name="number" value="Default" />
       <updated>1432029121317</updated>
     </task>
+    <task id="LOCAL-00001" summary="Updated Layout of messages">
+      <created>1446606396995</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1446606396996</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView" selected-index="3">
@@ -2482,24 +2655,25 @@
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32854864" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32695374" sideWeight="0.48033282" order="16" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.61244017" sideWeight="0.48033282" order="16" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962178" sideWeight="0.5145414" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32216907" sideWeight="0.5295008" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41148326" sideWeight="0.48108926" order="17" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.54864436" sideWeight="0.48108926" order="17" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18532526" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32695374" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32216907" sideWeight="0.47049925" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32695374" sideWeight="0.49092284" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32695374" sideWeight="0.51966715" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15204236" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962178" sideWeight="0.4854586" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.50558215" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6204147" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -2510,12 +2684,47 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" x="92" y="92" width="1182" height="584" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18532526" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32854864" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7432217" sideWeight="0.4742814" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Memory Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32695374" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32216907" sideWeight="0.5295008" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.54864436" sideWeight="0.48108926" order="17" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6204147" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32854864" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32695374" sideWeight="0.48033282" order="16" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" x="92" y="92" width="1182" height="584" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18532526" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32695374" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32216907" sideWeight="0.47049925" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32854864" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32695374" sideWeight="0.49092284" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32695374" sideWeight="0.51966715" order="13" side_tool="true" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7432217" sideWeight="0.4742814" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15204236" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Memory Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32695374" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -2530,7 +2739,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Updated sign out and Server Files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated sign out and Server Files" />
+    <MESSAGE value="Updated Layout of messages" />
+    <MESSAGE value="Handled updates when notification arrives" />
+    <option name="LAST_COMMIT_MESSAGE" value="Handled updates when notification arrives" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2539,245 +2750,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_body.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.448276">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/WelcomeActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36894825">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.965517">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/gcmtoken/CustomInstanceIDListenerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.312187">
-          <caret line="14" column="107" selection-start-line="14" selection-start-column="107" selection-end-line="14" selection-end-column="107" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/chat_extra_lecture_list_item.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="58" column="17" selection-start-line="58" selection-start-column="17" selection-end-line="58" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://D:/adt-bundle-windows-x86_64-20131030/sdk/platforms/android-21/data/res/layout/simple_spinner_item.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6561403">
-          <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_next.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17894737">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/select_receipent_row.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20877193">
-          <caret line="7" column="61" selection-start-line="7" selection-start-column="61" selection-end-line="7" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/simple_spinner_dropdown_item.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23287672">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/spinner_item.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.3448277">
-          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/list_item.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.862069">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_body_inform.xml">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="86" selection-start-line="25" selection-start-column="86" selection-end-line="25" selection-end-column="86" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/SelectReceipentFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.490818">
-          <caret line="144" column="0" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/InformExtraLectureFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.0217028">
-          <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_login_.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.35789475">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/login_slider/Welcome_Fragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6527546">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/login/RetryLoginFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3973289">
-          <caret line="92" column="38" selection-start-line="92" selection-start-column="38" selection-end-line="92" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_welcome.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6122807">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_welcome.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.86027396">
-          <caret line="26" column="52" selection-start-line="26" selection-start-column="52" selection-end-line="26" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_login_main_slider.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.7931035">
-          <caret line="40" column="53" selection-start-line="40" selection-start-column="53" selection-end-line="40" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/login/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6903553">
-          <caret line="122" column="0" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/login/NextFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33248731">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/login_slider/Login_Fragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37563452">
-          <caret line="104" column="0" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_welcome.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/BodyFragmentInform.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.4691153">
-          <caret line="136" column="0" selection-start-line="136" selection-start-column="0" selection-end-line="136" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_body.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.17028381">
@@ -2789,13 +2761,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2754591">
-          <caret line="139" column="0" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/Settings.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6903553">
@@ -2803,95 +2768,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25874126">
-          <caret line="24" column="48" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.53255427">
-          <caret line="50" column="31" selection-start-line="50" selection-start-column="31" selection-end-line="50" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/adt-bundle-windows-x86_64-20131030/sdk/sources/android-21/java/util/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33222038">
           <caret line="515" column="29" selection-start-line="515" selection-start-column="29" selection-end-line="515" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/BodyActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="439" column="0" selection-start-line="439" selection-start-column="0" selection-end-line="439" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/SendIDToServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33221477">
-          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/drawerlayout_item_view.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22818792">
-          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/roundbutton_inform.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22818792">
-          <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_body_sent_messages.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.50701755">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_inform_extra_lecture.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.55263156">
-          <caret line="124" column="12" selection-start-line="124" selection-start-column="12" selection-end-line="124" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_body_home.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.275862">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/login_slider/MainSlider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6357143">
-          <caret line="421" column="55" selection-start-line="421" selection-start-column="55" selection-end-line="421" selection-end-column="55" />
         </state>
       </provider>
     </entry>
@@ -2916,20 +2807,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/Database/DatabaseContract.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/Database/MessagesDatabasedbHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.058651">
-          <caret line="199" column="24" selection-start-line="199" selection-start-column="24" selection-end-line="199" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/adt-bundle-windows-x86_64-20131030/sdk/sources/android-21/android/os/AsyncTask.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.36560935">
@@ -2937,43 +2814,377 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/message/sendUpstreamMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
-        </state>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/message/HandleMessagesGCMListenerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.046744574">
-          <caret line="112" column="0" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/BodyFragmentHome.java">
-      <provider selected="true" editor-type-id="text-editor">
+      <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/login/SpinnerFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.9449082">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_retry_login.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4473684">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/login/RetryLoginFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.28380635">
+          <caret line="56" column="81" selection-start-line="56" selection-start-column="81" selection-end-line="56" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/Database/DatabaseContract.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/BodyFragmentSentMessages.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45409015">
+          <caret line="43" column="56" selection-start-line="43" selection-start-column="56" selection-end-line="43" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/login_slider/MainSlider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.6677797">
+          <caret line="486" column="65" selection-start-line="486" selection-start-column="65" selection-end-line="486" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/ic_launcher.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/ic_drawer.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/drawer_shadow.9.png">
+      <provider editor-type-id="images">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="ninepatcheditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/btn_gsignin_normal_copy.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.10350877">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/BodyFragmentInform.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9148581">
+          <caret line="107" column="43" selection-start-line="107" selection-start-column="43" selection-end-line="107" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_welcome.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33150685">
+          <caret line="29" column="67" selection-start-line="29" selection-start-column="67" selection-end-line="29" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5676127">
+          <caret line="226" column="33" selection-start-line="226" selection-start-column="33" selection-end-line="226" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/SelectReceipentFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5279503">
+          <caret line="124" column="0" selection-start-line="124" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/message/sendUpstreamMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42236024">
+          <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/InformExtraLectureFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.70186335">
+          <caret line="94" column="144" selection-start-line="94" selection-start-column="144" selection-end-line="94" selection-end-column="144" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/login_slider/Login_Fragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.50931674">
+          <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/Database/MessagesDatabasedbHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42570952">
+          <caret line="168" column="0" selection-start-line="168" selection-start-column="0" selection-end-line="168" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/BodyFragmentHome.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8297162">
+          <caret line="217" column="0" selection-start-line="217" selection-start-column="0" selection-end-line="217" selection-end-column="0" />
+          <folding>
+            <element signature="e#5385#5430#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_body_inform.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="55" column="18" selection-start-line="55" selection-start-column="18" selection-end-line="55" selection-end-column="18" />
+          <caret line="25" column="86" selection-start-line="25" selection-start-column="86" selection-end-line="25" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_login_main_slider.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.05964912">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/drawerlayout_item_view.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.11352254">
+          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_select_receipent_group.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.91052634">
+          <caret line="77" column="73" selection-start-line="77" selection-start-column="73" selection-end-line="77" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/roundbutton_inform.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.085141905">
+          <caret line="3" column="45" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_select_receipent_individual.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.55263156">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_inform_extra_lecture.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6263158">
+          <caret line="48" column="66" selection-start-line="48" selection-start-column="66" selection-end-line="48" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/res/values-v23/values-v23.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12477064">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_body.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.206897">
+          <caret line="14" column="69" selection-start-line="14" selection-start-column="69" selection-end-line="14" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/BodyActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12687813">
+          <caret line="52" column="37" selection-start-line="52" selection-start-column="37" selection-end-line="52" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/roundbutton_addreceipent.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.085141905">
+          <caret line="3" column="8" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.11352254">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/SendIDToServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.60267115">
+          <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/list_item.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.26842105">
+          <caret line="9" column="69" selection-start-line="9" selection-start-column="69" selection-end-line="9" selection-end-column="69" />
+          <folding>
+            <element signature="e#484#533#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7797203">
+          <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5676127">
+          <caret line="88" column="48" selection-start-line="88" selection-start-column="48" selection-end-line="88" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/round_corners.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_body_home.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.172414">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/body/Chat_ExtraLecture_ArrayAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34056762">
-          <caret line="81" column="97" selection-start-line="81" selection-start-column="97" selection-end-line="81" selection-end-column="97" />
+        <state vertical-scroll-proportion="0.7445743">
+          <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/chat_extra_lecture_list_item.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.862069">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nirma/varunraval/nuconnect/message/HandleMessagesGCMListenerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40930232">
+          <caret line="234" column="66" selection-start-line="234" selection-start-column="66" selection-end-line="234" selection-end-column="66" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="gradleExecuteTaskHistory">
+    <option value="" />
   </component>
 </project>

@@ -25,7 +25,8 @@ public class Chat_ExtraLecture_ArrayAdapter extends BaseAdapter {
 
     Context context;
     ArrayList<String> notification_list;
-    TextView textView_subject, textView_venue, textView_date, textView_time_from, textView_time_to, textView_message, textView_from_name, textView_from_id;
+    TextView textView_subject, textView_venue, textView_date, textView_time_from, textView_time_to,
+            textView_message, textView_from_name, textView_from_id, textView_msg_type, textView_date_sent_on;
     String parentType;
 
     public Chat_ExtraLecture_ArrayAdapter(Context context, String parentType) {
@@ -86,9 +87,13 @@ public class Chat_ExtraLecture_ArrayAdapter extends BaseAdapter {
                 Log.i("Chat", jsonObject_cover.getString("from_name") + " " + jsonObject_cover.getString("from_id"));
             }
             else if(parentType.equals("SentMessages")){
-                itemLayout.removeView(itemLayout.findViewById(R.id.textView_chat_extraLecture_from_id));
-                itemLayout.removeView(itemLayout.findViewById(R.id.textView_chat_extraLecture_from_name));
+                itemLayout.removeViewInLayout(itemLayout.findViewById(R.id.textView_chat_extraLecture_from_id));
+                itemLayout.removeViewInLayout(itemLayout.findViewById(R.id.textView_chat_extraLecture_from_name));
             }
+            textView_msg_type = (TextView) itemLayout.findViewById(R.id.textView_chat_extraLecture_msg_type);
+            textView_msg_type.setText(jsonObject_cover.getString("msg_type"));
+            textView_date_sent_on = (TextView) itemLayout.findViewById(R.id.textView_chat_extraLecture_date_sent_on);
+            textView_date_sent_on.setText(jsonObject_cover.getString("date_sent_on"));
             textView_subject = (TextView) itemLayout.findViewById(R.id.textView_chat_extraLecture_subject_val);
             textView_subject.setText(jsonObject.getString("s"));
             textView_venue = (TextView) itemLayout.findViewById(R.id.textView_chat_extraLecture_venue_val);
