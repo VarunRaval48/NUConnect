@@ -1,23 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical" android:paddingLeft="8dp" android:paddingRight="8dp"
+    android:clipToPadding="false">
+
+    <TextView
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="msg type"        android:id="@+id/textView_chat_extraLecture_msg_type"
+        android:textSize="25px" android:textColor="#73ABFA"
+        android:textAllCaps="true" android:gravity="center" android:elevation="2dp"
+        android:layout_marginBottom="0dp" android:layout_gravity="center"
+        android:layout_marginTop="12dp" android:background="@drawable/round_corners" />
+
+    <TextView
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="date_sent_on"     android:id="@+id/textView_chat_extraLecture_date_sent_on"
+        android:textSize="22px" android:textColor="@android:color/darker_gray"
+        android:layout_marginTop="5px" android:layout_gravity="right" />
 
     <RelativeLayout
         android:layout_width="match_parent" android:id="@+id/relativeLayout_chat_extraLecture"
-        android:layout_height="wrap_content" android:layout_gravity="center">
+        android:layout_height="wrap_content" android:layout_gravity="center"
+        android:elevation="10dp" android:background="@drawable/round_corners"
+        android:layout_marginBottom="12dp">
 
         <TextView
             android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="From_name" android:id="@+id/textView_chat_extraLecture_from_name"
-            android:textSize="25px" android:textColor="@android:color/black" />
+            android:text="From_name"        android:id="@+id/textView_chat_extraLecture_from_name"
+            android:textSize="25px" android:textColor="@android:color/black" android:layout_marginTop="5px" />
 
         <TextView
             android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="From_id" android:id="@+id/textView_chat_extraLecture_from_id"
-            android:textSize="25px" android:textColor="@android:color/black"
-            android:layout_alignParentTop="true" android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"/>
+            android:text="From_id"          android:id="@+id/textView_chat_extraLecture_from_id"
+            android:textSize="22px" android:textColor="@android:color/darker_gray" android:layout_marginLeft="10px"
+            android:layout_alignTop="@+id/textView_chat_extraLecture_from_name"
+            android:layout_toRightOf="@+id/textView_chat_extraLecture_from_name"
+            android:layout_toEndOf="@+id/textView_chat_extraLecture_from_name" />
         <TextView
             android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:text="Subject: " android:id="@+id/textView_chat_extraLecture_subject"
@@ -54,7 +72,7 @@
             android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:text="Date"       android:id="@+id/textView_chat_extraLecture_date"
             android:textSize="20px" android:textColor="@android:color/holo_blue_dark"
-            android:layout_below="@+id/textView_chat_extraLecture_venue_val" android:layout_marginTop="10dp"
+            android:layout_below="@+id/textView_chat_extraLecture_venue_val" android:layout_marginTop="5dp"
             android:layout_centerHorizontal="true" />
         <TextView
             android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -65,7 +83,7 @@
             android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:text="From: "       android:id="@+id/textView_chat_extraLecture_fromtime"
             android:textSize="22px" android:textColor="@android:color/holo_blue_dark"
-            android:layout_marginTop="10dp" android:layout_below="@+id/textView_chat_extraLecture_date_val"
+            android:layout_marginTop="5dp" android:layout_below="@+id/textView_chat_extraLecture_date_val"
             android:layout_alignLeft="@+id/textView_chat_extraLecture_subject"
             android:layout_alignStart="@+id/textView_chat_extraLecture_subject" />
         <TextView
@@ -97,7 +115,8 @@
             android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:text="Message" android:id="@+id/textView_chat_extraLecture_totime_message"
             android:layout_gravity="center_horizontal" android:textSize="25px"
-            android:textColor="@android:color/black" android:layout_marginTop="10dp"
+            android:textColor="@android:color/black" android:layout_marginTop="6dp"
+            android:layout_marginBottom="7dp"
             android:layout_below="@+id/textView_chat_extraLecture_totime" android:layout_centerHorizontal="true" />
     </RelativeLayout>
 
