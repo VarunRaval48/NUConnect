@@ -107,7 +107,7 @@ public class MainActivity extends Activity {
                 Toast.makeText(
                         getApplicationContext(),
                         "This device doesn't support Play services, App will not work normally",
-                        Toast.LENGTH_LONG).show();
+                        Toast.LENGTH_SHORT).show();
                 finish();
             }
             return false;

@@ -28,7 +28,9 @@
 
                     <Button
                         android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:text="Add \nRecepipent" android:id="@+id/buttonAddIndv" />
+                        android:text="Add \nRecepipent" android:id="@+id/buttonAddIndv"
+                        android:background="@drawable/roundbutton_addreceipent" android:textColor="@android:color/white"
+                        android:minWidth="50dp"/>
 
                     <AutoCompleteTextView
                         android:layout_width="match_parent" android:layout_height="wrap_content"

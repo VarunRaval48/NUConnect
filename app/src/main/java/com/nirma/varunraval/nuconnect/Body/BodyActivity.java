@@ -87,7 +87,7 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
 
     Button dateButton;
     AutoCompleteTextView textView_venue, textView_Subject;
-    TextView textView_time_to=null, textView_time_from=null;
+    Button textView_time_to=null, textView_time_from=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -260,7 +260,7 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
     }
 
     public void showTimePickerDialogTo(View v){
-        Log.i("BodyActivity", (v.getId()==R.id.textView_time_to)+"");
+        Log.i("BodyActivity", (v.getId()==R.id.button_time_to)+"");
         TimePickerFragment timePickerFragment = new TimePickerFragment();
         Bundle arg = new Bundle();
         arg.putString("type", "To");
@@ -333,8 +333,8 @@ public class BodyActivity extends Activity implements BodyFragmentInform.OnFragm
                         .commit();
 
                 fragmentManager.executePendingTransactions();
-                textView_time_to = (TextView)findViewById(R.id.textView_time_to);
-                textView_time_from = (TextView)findViewById(R.id.textView_time_from);
+                textView_time_to = (Button)findViewById(R.id.button_time_to);
+                textView_time_from = (Button)findViewById(R.id.button_time_from);
                 dateButton = (Button)findViewById(R.id.buttonDate);
 
             }
