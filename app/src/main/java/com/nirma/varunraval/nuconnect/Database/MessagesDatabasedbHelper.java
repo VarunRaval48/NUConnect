@@ -1,13 +1,10 @@
-package com.nirma.varunraval.nuconnect.Database;
+package com.nirma.varunraval.nuconnect.database;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.AsyncTask;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import org.json.JSONException;

@@ -21,7 +21,7 @@
     <string name="sender_id">611036220045</string>
     <string name="api_key_server">AIzaSyBO1EeoxA7GqZ8iRvQZEdeX2rtL9266Lts</string>
 
-    <string name="server_url">:9000/nuconnect/</string>
+    <string name="server_url">/nuconnect/</string>
     <string name="server_tom_url">:8080/examples/</string>
 
     <string-array name="list_drawer_student">

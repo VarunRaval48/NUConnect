@@ -1,7 +1,6 @@
-package com.nirma.varunraval.nuconnect.Database;
+package com.nirma.varunraval.nuconnect.database;
 
 import android.provider.BaseColumns;
-import android.provider.ContactsContract;
 
 /**
  * Created by Varun on 10/22/2015.

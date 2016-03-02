@@ -1,6 +1,5 @@
 package com.nirma.varunraval.nuconnect.message;
 
-import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -8,19 +7,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 
 import com.google.android.gms.gcm.GcmListenerService;
-import com.nirma.varunraval.nuconnect.Database.MessagesDatabasedbHelper;
+import com.nirma.varunraval.nuconnect.database.MessagesDatabasedbHelper;
 import com.nirma.varunraval.nuconnect.R;
 import com.nirma.varunraval.nuconnect.SendIDToServer;
 import com.nirma.varunraval.nuconnect.body.BodyActivity;
 import com.nirma.varunraval.nuconnect.body.BodyFragmentHome;
-import com.nirma.varunraval.nuconnect.body.Chat_ExtraLecture_ArrayAdapter;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -28,10 +24,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;

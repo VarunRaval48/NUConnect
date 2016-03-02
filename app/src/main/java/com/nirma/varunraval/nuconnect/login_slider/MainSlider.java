@@ -114,13 +114,20 @@ public class MainSlider extends FragmentActivity implements Login_Fragment.OnFra
             Intent inte = new Intent(MainSlider.this, BodyActivity.class);
             Bundle arg = new Bundle();
 
-            arg.putString("email", "test");
-            arg.putString("name", "test");
+            arg.putString("email", "13bce092");
+            arg.putString("name", "VARUN RAVAL");
             arg.putBoolean("verified", true);
-            arg.putString("login_type", "Faculty");
+            arg.putString("login_type", "student");
 
             inte.putExtra("user_info", arg);
 
+            inte.putExtra("intent_type", "new_login");
+
+            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
+            editor.putString("NUConnect_username", "VARUN RAVAL");
+            editor.putString("NUConnect_email", "13bce092");
+            editor.putString("NUConnect_login_type", "student");
+            editor.commit();
             startActivity(inte);
 
             finish();

@@ -36,15 +36,13 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TableLayout;
-import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.nirma.varunraval.nuconnect.Database.DatabaseContract;
-import com.nirma.varunraval.nuconnect.Database.MessagesDatabasedbHelper;
+import com.nirma.varunraval.nuconnect.database.MessagesDatabasedbHelper;
 import com.nirma.varunraval.nuconnect.MainActivity;
 import com.nirma.varunraval.nuconnect.message.sendUpstreamMessage;
 import com.nirma.varunraval.nuconnect.R;
@@ -56,7 +54,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;

@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.nirma.varunraval.nuconnect.Database.MessagesDatabasedbHelper;
+import com.nirma.varunraval.nuconnect.database.MessagesDatabasedbHelper;
 import com.nirma.varunraval.nuconnect.R;
 import com.nirma.varunraval.nuconnect.SendIDToServer;
 
